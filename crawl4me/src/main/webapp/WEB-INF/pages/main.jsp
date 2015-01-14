@@ -33,12 +33,13 @@
 			success : function(data) {
 				$('#result').html("");
 				console.log(data);
-				
-				for (var key in data) {
-				    console.log(key + ': ' + data[key]);
+
+				for ( var key in data) {
+					console.log(key + ': ' + data[key]);
 				}
 				$('#result').html(
-						"Result" + ': ' + data.result[key] + "</br>Key:- " + data[key]);
+						"Result" + ': ' + data.result[key] + "</br>Key:- "
+								+ data[key]);
 
 			},
 			error : function() {
@@ -110,5 +111,39 @@
 		</section>
 	</div>
 	<div id="result"></div>
+	<%@ page import="java.util.*, by.njjnex.collector.Launcher, cn.edu.hfut.dmic.webcollector.net.Proxys, com.google.common.collect.ArrayListMultimap, com.google.common.collect.ListMultimap" %>
+	
+	<% 
+	LinkedHashMap<String, String> domRules = new LinkedHashMap<String, String>();
+	domRules.put("Name: ", "div[class=content__header]");
+	domRules.put("Price: ", "span[itemprop=price]");
+	
+	Launcher crawler = new Launcher("/tutu1", "http://www.21vek.by/3d_glasses/.*.html");
+	crawler.setThreads(10);
+	crawler.addSeed("http://www.21vek.by/3d_glasses/");
+	crawler.setDomRules(domRules);
+	Proxys proxys = new Proxys();
+	crawler.setProxys(proxys);
+	crawler.setResumable(false);
+
+	try {
+		crawler.start(3);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	
+	ListMultimap<String, String> result = ArrayListMultimap.create();
+	result = crawler.getResult();
+	
+	for (int i = 0; i <= (result.size() - 1) / 2; i++) {
+		for (String key : result.keySet())
+			System.out.println(key + " : " + result.get(key).get(i));
+		
+	}%>
+	
+	<% out.println(result.asMap()); %>
+		
+	
 </body>
 </html>
