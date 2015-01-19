@@ -4,6 +4,11 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +24,13 @@ import com.google.common.collect.ListMultimap;
 @Controller
 public class MainController {
 
+	private SimpMessagingTemplate template;
+
+	@Autowired
+	public MainController(SimpMessagingTemplate template) {
+		this.template = template;
+	}
+	
 	@RequestMapping(value = "/")
 	public String mainPage(Model model) {
 		return "main";
@@ -65,5 +77,21 @@ public class MainController {
 		}
 		
 		return result.asMap();
+	}
+	@MessageMapping("/hello")
+	@SendTo("/topic/greetings")
+	public void greeting(String message) throws Exception {
+		Thread.sleep(3000); // simulated delay
+		/*
+		 * Launcher crawler = new Launcher("/tut",
+		 * "http://www.21vek.by/3d_glasses/.*.html",template); crawler.run();
+		 */
+		JSONObject json = new JSONObject();
+		for (int i = 1; i < 5; i++) {
+			json.put("Name", "Samsung gd-333-2");
+			json.put("Price", "3 322 000");
+			json.put("Manufacturer", "China");
+			this.template.convertAndSend("/topic/greetings", json);
+		}
 	}
 }
