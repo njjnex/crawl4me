@@ -19,25 +19,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/stomp.js"></script>
 <script type="text/javascript">
 	var stompClient = null;
-	function setConnected(connected) {
-		document.getElementById('connect').disabled = connected;
-		document.getElementById('disconnect').disabled = !connected;
-		document.getElementById('conversationDiv').style.visibility = connected ? 'visible'
-				: 'hidden';
-		document.getElementById('response').innerHTML = '';
-	}
+	
 	function connect() {
 		var socket = new SockJS('/hello');
 		stompClient = Stomp.over(socket);
 		stompClient.connect({}, function(frame) {
-			setConnected(true);
 			console.log('Connected: ' + frame);
+			var returnedResultCount = 0;
 			stompClient.subscribe('/topic/greetings', function(greeting) {
-				showGreeting(JSON.parse(greeting.body).content);
+				console.log(greeting.body);
+				var result = JSON.parse(greeting.body);
+				returnedResultCount++;
+				console.log(result.content  + " 2");
+				if (returnedResultCount == 1) {
+					createResultTable(result);
+				}
+				addResultRow(result, returnedResultCount);
+
 			});
 		});
 	}
@@ -47,26 +50,71 @@
 		console.log("Disconnected");
 	}
 	function sendName() {
-		var name = document.getElementById('name').value;
-		stompClient.send("/app/hello", {}, JSON.stringify({
-			'name' : name
-		}));
+		
+		removeResultTable();
+		
+		var url = document.getElementById('url').value;
+		var regex = document.getElementById('regex').value;
+		
+		var domRuleName1 = document.getElementById('domRuleName1').value;
+		var domRuleName2 = document.getElementById('domRuleName2').value;
+		var domRuleValue1 = document.getElementById('domRuleValue1').value;
+		var domRuleValue2 = document.getElementById('domRuleValue2').value;
+		console.log(domRuleName1 +':' + domRuleValue1);
+		
+		var item = {}
+		item ["url"] = url;
+		item ["regex"] =regex;
+		var map = {}
+		item ["domRules"] = map;
+		map [domRuleName1] = domRuleValue1;
+		if(domRuleName2 && domRuleValue2) map [domRuleName2] = domRuleValue2;
+		
+		stompClient.send("/app/hello", {}, JSON.stringify(item));
 	}
-	function showGreeting(message) {
-		var response = document.getElementById('response');
-		var p = document.createElement('p');
-		p.style.wordWrap = 'break-word';
-		p.appendChild(document.createTextNode(message));
-		response.appendChild(p);
+
+	function removeResultTable(){
+		var tbl = document.getElementById("table");
+        if(tbl) tbl.parentNode.removeChild(tbl);
+
+	}
+	function createResultTable(result) {
+		var resultDiv = document.getElementById("resultTable");
+		var table = document.createElement("table");
+		table.setAttribute("class", "table table-striped, table-bordered");
+		table.setAttribute("id", "table");
+		resultDiv.appendChild(table);
+		var tableHeader = table.createTHead();
+		var row = tableHeader.insertRow(0);
+
+		var cell = row.insertCell();
+		cell.innerHTML = "#";
+		for ( var key in result) {
+			var cell = row.insertCell();
+			cell.innerHTML = key;
+		}
+	}
+
+	function addResultRow(result, returnedResultCount) {
+		var table = document.getElementById("table");
+		var row = table.insertRow(-1);
+		var cell = row.insertCell(-1);
+		cell.innerHTML = returnedResultCount;
+
+		for ( var key in result) {
+			cell = row.insertCell(-1);
+			cell.innerHTML = result[key];
+		}
 	}
 </script>
 
 </head>
 <script type="text/javascript">
 	function madeAjaxCall() {
+		sendName();
 		$.ajax({
 			type : "post",
-			url : "http://localhost:8080/crawl4me/postMessage",
+			url : "http://localhost:8080/postMessage",
 			cache : false,
 			data : 'url=' + $("#url").val() + "&regex=" + $("#regex").val()
 					+ "&domRuleName1=" + $("#domRuleName1").val()
@@ -80,9 +128,7 @@
 				for ( var key in data) {
 					console.log(key + ': ' + data[key]);
 				}
-				$('#result').html(
-						"Result" + ': ' + data.result[key] + "</br>Key:- "
-								+ data[key]);
+				$('#result').html("Result </br>Key:- ");
 
 			},
 			error : function() {
@@ -101,12 +147,12 @@
 
 					<div class="form-group col-lg-12">
 						<label>URL</label> <input type="url" name="url" id="url"
-							class="form-control" value="http://www.21vek.by/tv/">
+							class="form-control" value="http://www.21vek.by/3d_glasses/samsung_ssgp51002.html">
 					</div>
 
 					<div class="form-group col-lg-12">
 						<label>Regex</label> <input type="text" name="regex" id="regex"
-							class="form-control" value="http://www.21vek.by/tv/.*.html">
+							class="form-control" value="http://www.21vek.by/3d_glasses/samsung_ssgp51002.html">
 					</div>
 
 					<div class="col-sm-6">
@@ -154,19 +200,9 @@
 		</section>
 	</div>
 
-	<div id="result"></div>
-
-
-	<div>
-		<div>
-			<button id="connect" onclick="connect();">Connect</button>
-			<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
-		</div>
-		<div id="conversationDiv">
-			<label>What is your name?</label><input type="text" id="name" />
-			<button id="sendName" onclick="sendName();">Send</button>
-			<p id="response"></p>
-		</div>
+	<div class="col-md-6">
+		<div class="table-responsive" id="resultTable"></div>
 	</div>
+		<script type="text/javascript">connect();</script>
 </body>
 </html>
