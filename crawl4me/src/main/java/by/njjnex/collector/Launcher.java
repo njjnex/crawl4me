@@ -1,6 +1,7 @@
 package by.njjnex.collector;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
@@ -15,9 +16,6 @@ import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.Proxys;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
-
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
 
 public class Launcher extends DeepCrawler {
 
@@ -45,8 +43,7 @@ public class Launcher extends DeepCrawler {
 		regexRule.addRule("^" + rule + "$"); // positive rule
 	}
 
-	public Links visitAndGetNextLinks(Page page,
-			LinkedHashMap<String, String> domRules) {
+	public Links visitAndGetNextLinks(Page page, LinkedHashMap<String, String> domRules) {
 		
 		Document doc = null;
 		try {
@@ -56,16 +53,17 @@ public class Launcher extends DeepCrawler {
 							"Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0")
 					.referrer("https://www.google.com/").get();
 		} catch (IOException e) {
-			System.out
-					.println("Cannot create connection: " + e.getStackTrace());
+			System.out.println("Cannot create connection: " + e.getStackTrace()); 
+			this.messagingTemplate.convertAndSend("/topic/console", new Output("Cannot create connection: " + e.getStackTrace()));//
 			e.printStackTrace();
 		}
-
 		String title = doc.title();
-		
-		String details = page.getDoc().select("h1[class=primary-heading]")
+		System.out.println("URL:" + page.getUrl() + " Title: " + title);		
+		this.messagingTemplate.convertAndSend("/topic/console", new Output("Found matching page with URL: " + page.getUrl() + "; Title: " + title));
+			
+		String details = page.getDoc().select("title")
 				.text();
-		System.out.println("URL:" + page.getUrl() + " Title: " + title);
+		
 		System.out.println("Details: " + details);
 				
 		String key = null;
@@ -95,6 +93,7 @@ public class Launcher extends DeepCrawler {
 	public void run(Crawler crawler, String urlToScan,
 			LinkedHashMap<String, String> domRules) throws Exception {
 
+		this.messagingTemplate.convertAndSend("/topic/console", new Output("Started scanning: " + new Date()));
 		crawler.addSeed(urlToScan);
 		crawler.setDomRules(domRules);
 		/* 2.x version directly support proxy randomly switching */

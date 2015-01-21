@@ -1,19 +1,18 @@
 package by.me2.model;
 
-import java.util.LinkedHashMap;
 
 public class Output {
-	private LinkedHashMap<String, String> result;
+	private String result;
 
-	public Output(LinkedHashMap<String, String> result) {
-		this.result = result;
+	public Output(String string) {
+		this.result = string;
 	}
 
-	public LinkedHashMap<String, String> getResult() {
+	public String getResult() {
 		return result;
 	}
 
-	public void setResult(LinkedHashMap<String, String> result) {
+	public void setResult(String result) {
 		this.result = result;
 	}
 

@@ -2,8 +2,9 @@ package by.me2.model;
 
 import java.util.LinkedHashMap;
 
-public class UserInput {
+public class ScanningTemplate {
 	
+	private String id;
 	private String url;
 	private String regex;
 	private LinkedHashMap<String,String> domRules;
@@ -24,6 +25,12 @@ public class UserInput {
 	}
 	public void setDomRules(LinkedHashMap<String, String> domRules) {
 		this.domRules = domRules;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
