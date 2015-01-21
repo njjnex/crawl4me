@@ -1,6 +1,6 @@
-package by.me2.service;
+package by.njjnex.service;
 
-import by.me2.model.ScanningTemplate;
+import by.njjnex.model.ScanningTemplate;
 
 public interface TemplateService {
 

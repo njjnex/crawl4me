@@ -1,6 +1,6 @@
-package by.me2.dao;
+package by.njjnex.dao;
 
-import by.me2.model.ScanningTemplate;
+import by.njjnex.model.ScanningTemplate;
 
 public interface TemplateDao {
 

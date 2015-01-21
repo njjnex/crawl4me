@@ -1,4 +1,4 @@
-package by.me2.model;
+package by.njjnex.model;
 
 
 public class Output {

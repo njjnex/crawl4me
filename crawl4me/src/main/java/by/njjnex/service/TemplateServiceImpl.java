@@ -1,11 +1,11 @@
-package by.me2.service;
+package by.njjnex.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.me2.dao.TemplateDao;
-import by.me2.model.ScanningTemplate;
+import by.njjnex.dao.TemplateDao;
+import by.njjnex.model.ScanningTemplate;
 
 @Service
 public class TemplateServiceImpl implements TemplateService {

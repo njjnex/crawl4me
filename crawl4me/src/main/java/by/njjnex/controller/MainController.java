@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import by.me2.model.ScanningTemplate;
-import by.me2.service.TemplateService;
 import by.njjnex.collector.Launcher;
+import by.njjnex.model.ScanningTemplate;
+import by.njjnex.service.TemplateService;
 
 @Controller
 public class MainController {
