@@ -21,12 +21,14 @@ public class TemplateServiceImpl implements TemplateService {
 	}
 
 	@Override
+	@Transactional
 	public ScanningTemplate getTemplate(String id) {
 		return templateDao.getTemplate(id);
 		
 	}
 
 	@Override
+	@Transactional
 	public void removeTemplate(String id) {
 		templateDao.removeTemplate(id);
 		

@@ -2,18 +2,20 @@
  *  Open Websocket connection and subscribe/unsubscribe to the topics
  */
 var stompClient = null;
+var returnedResultCount = 0;
 
 	function connect() {
+		
 		var socket = new SockJS('/hello');
 		stompClient = Stomp.over(socket);
 		stompClient.connect({}, function(frame) {
 			console.log('Connected: ' + frame);
-			var returnedResultCount = 0;
-			stompClient.subscribe('/topic/console', function(logOut) {
+			
+			stompClient.subscribe('/user/topic/console', function(logOut) {
 				var resultLog = JSON.parse(logOut.body);
 				consoleOutput(resultLog.result);
 			});
-			stompClient.subscribe('/topic/greetings', function(greeting) {
+			stompClient.subscribe('/user/topic/greetings', function(greeting) {
 				console.log(greeting.body);
 				var result = JSON.parse(greeting.body);
 				returnedResultCount++;
@@ -31,22 +33,22 @@ var stompClient = null;
 		console.log("Disconnected");
 	}
 	function newScan() {
-
-		removeResultTable();
+		createNewScanButton();
+		window.location.href = 'http://localhost:8080/#result';
 		stompClient.send("/app/hello", {}, JSON.stringify(createRequestMap()));
 	}
 
 	function removeResultTable() {
-		var tbl = document.getElementById("table");
-		if (tbl)
-			tbl.parentNode.removeChild(tbl);
+		var tbl = document.getElementById("resultTable");
+		if (tbl) tbl.parentNode.removeChild(tbl);
+		returnedResultCount = 0;
 
 	}
 	function createResultTable(result) {
-		var resultDiv = document.getElementById("resultTable");
+		var resultDiv = document.getElementById("resultTableDiv");
 		var table = document.createElement("table");
-		table.setAttribute("class", "table table-striped, table-bordered");
-		table.setAttribute("id", "table");
+		table.setAttribute("class","table table-striped");
+		table.setAttribute("id","resultTable");
 		resultDiv.appendChild(table);
 		var tableHeader = table.createTHead();
 		var row = tableHeader.insertRow(0);
@@ -60,7 +62,8 @@ var stompClient = null;
 	}
 
 	function addResultRow(result, returnedResultCount) {
-		var table = document.getElementById("table");
+		var table = document.getElementById("resultTable");
+		if(!table) var table = createResultTable(result);
 		var row = table.insertRow(-1);
 		var cell = row.insertCell(-1);
 		cell.innerHTML = returnedResultCount;
@@ -72,8 +75,8 @@ var stompClient = null;
 	}
 
 	function consoleOutput(result){
-		var console = document.getElementById("console");
-		var p = document.createElement("p");
+		var console = document.getElementById("consoleBody");
+		var p = document.createElement(p);
 		p.innerHTML = "> " + result;
 		console.appendChild(p);	
 	}
@@ -106,4 +109,31 @@ var stompClient = null;
 			map[domRuleName4] = domRuleValue4;
 		
 		return requestMap;
+	}
+	function createScanButton(){
+		
+		var buttonDiv = document.getElementById("scanStarter");
+		if(!document.getElementById("scanButton")) var button = document.createElement("button");
+		if(document.getElementById("scanButton")) var button = document.getElementById("scanButton");
+		button.setAttribute("class","btn btn-lg btn-success");
+		button.setAttribute("id","scanButton");
+		button.setAttribute("onclick","newScan();");
+		button.innerHTML = "Start scan";
+		buttonDiv.appendChild(button);
+	}
+	function createNewScanButton(){
+		var button = document.getElementById("scanButton");
+		button.innerHTML = "Clear and start new scan";
+		button.setAttribute("class","btn btn-lg btn-warning");
+		button.setAttribute("onclick","clearLastScan();");
+	}
+	function clearLastScan(){
+		createScanButton();
+		
+		var console = document.getElementById("consoleBody");
+		console.innerHTML = "<p>Scanning output console...</p>"
+		
+		removeResultTable();
+			
+		
 	}

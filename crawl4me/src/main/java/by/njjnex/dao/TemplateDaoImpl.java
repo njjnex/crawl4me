@@ -20,8 +20,8 @@ public class TemplateDaoImpl implements TemplateDao {
 
 	@Override
 	public ScanningTemplate getTemplate(String id) {
-		sessionFactory.getCurrentSession().createQuery("FROM ScanningTemplate where id = :id").setString("id", id);
-		return null;
+		return (ScanningTemplate) sessionFactory.getCurrentSession().createQuery("FROM ScanningTemplate where id = :id").setString("id", id).uniqueResult();
+		 
 	}
 
 	@Override

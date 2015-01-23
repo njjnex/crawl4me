@@ -1,6 +1,7 @@
 package by.njjnex.collector;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
@@ -25,6 +26,7 @@ public class Launcher extends DeepCrawler {
 	private SimpMessagingTemplate messagingTemplate;
 
 	LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
+	private Principal principal;
 
 	public LinkedHashMap<String, String> getResult() {
 		return result;
@@ -34,9 +36,10 @@ public class Launcher extends DeepCrawler {
 		this.result = result;
 	}
 
-	public Launcher(String crawlPath, String rule,
+	public Launcher(String crawlPath, Principal principal, String rule,
 			SimpMessagingTemplate messagingTemplate) {
 		super(crawlPath);
+		this.principal = principal;
 		this.crawlPath = crawlPath;
 		this.messagingTemplate = messagingTemplate;
 		this.urlRule = rule;
@@ -78,7 +81,7 @@ public class Launcher extends DeepCrawler {
 				System.out.println("***********dom : " + key + " : " + value);
 				result.put(key, value);
 			}
-			this.messagingTemplate.convertAndSend("/topic/greetings", result);
+			this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/greetings", result);
 
 			System.out.println(key + " : " + value);
 			result.clear();
@@ -93,7 +96,7 @@ public class Launcher extends DeepCrawler {
 	public void run(Crawler crawler, String urlToScan,
 			LinkedHashMap<String, String> domRules) throws Exception {
 
-		this.messagingTemplate.convertAndSend("/topic/console", new Output("Started scanning: " + new Date()));
+		this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Started scanning: " + new Date()));
 		crawler.addSeed(urlToScan);
 		crawler.setDomRules(domRules);
 		/* 2.x version directly support proxy randomly switching */
