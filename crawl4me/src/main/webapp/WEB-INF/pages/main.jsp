@@ -56,7 +56,76 @@
 			}
 		});
 	}
+	function postMessage() {
+		$.ajax({
+			type : "post",
+			url : "/postMessage",
+			cache : false,
+			contentType : "application/json",
+			data : JSON.stringify(document.getElementById("userComment").value),
+			success : function(data) {
+				console.log(data);
+				if(data != null)createPost(data);
+				
+			},
+			error : function() {
+				alert('Error while rosting message');
+			}
+		});
+	}
+	function createPost(data){
+		var well = document.getElementById("well");
+        var messageBoard = document.getElementById("messageBoard");
+		messageBoard.innerHTML = null;
+		 for (var i=0;i<data.length;i++) {
+	                
+	        var author = data[i].author;
+            var date = data[i].date;
+            var text = data[i].text;
 
+			
+            
+            var messagePost = document.createElement("ul");
+            messagePost.setAttribute("class","list-unstyled ui-sortable");
+            messagePost.setAttribute("id","messagePost");
+               
+
+            var authorElement = document.createElement("strong");
+            authorElement.setAttribute("class", "list-unstyled ui-sortable");
+            authorElement.innerHTML = author;
+            messagePost.appendChild(authorElement);
+
+            var dateElement = document.createElement("small");
+            dateElement.setAttribute("class", "pull-right text-muted");
+            dateElement.innerHTML = date;
+            messagePost.appendChild(dateElement);
+
+            var textElement = document.createElement("li");
+            textElement.setAttribute("class", "ui-state-default");
+            textElement.innerHTML = text;
+            messagePost.appendChild(textElement);
+            
+            messageBoard.appendChild(messagePost);
+
+         <%--   <ul data-brackets-id="12674" class="list-unstyled ui-sortable"
+				id="messagePost">
+
+				<strong class="pull-left primary-font" id="messageAuthor">${message.author}</strong>
+				<small class="pull-right text-muted"> </span>${message.date}
+				</small>
+				</br>
+				<li class="ui-state-default" id="messageText">${message.text}</li>
+				</br>
+
+			</ul>
+		</c:forEach> --%>
+            
+		 }
+		 well.appendChild(messageBoard);
+   }
+	
+
+	
 	function scanTemplate(data) {
 		var divTemplate = document.getElementById("saveTemplate");
 		var button = document.getElementById("saveTemplateButton");
@@ -67,8 +136,8 @@
 		input.setAttribute("class", "form-control");
 		divTemplate.appendChild(input);
 		input.setAttribute("value", "http://crawl4me.net/" + data);
-
 	}
+	
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,6 +157,14 @@
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
 </head>
 <body>
+	<%@ page
+		import="org.springframework.security.core.context.SecurityContextHolder"%>
+	<%
+		String aUser = SecurityContextHolder.getContext()
+				.getAuthentication().getName();
+	%>
+	<c:set var="activeUser" value="<%=aUser%>" scope="session" />
+
 	<div class="fix-header" id="home">
 		<div class="w-container">
 			<div class="w-nav" data-collapse="medium" data-animation="default"
@@ -104,7 +181,7 @@
 
 
 				<div class="w-col w-col-3 logo">
-					<a href="#"><img class="logo"
+					<a href="${pageContext.request.contextPath}/#"><img class="logo"
 						src="${pageContext.request.contextPath}/resources/template/images/logo.png"
 						alt="Elegance"></a>
 				</div>
@@ -126,9 +203,21 @@
 							<nav class="w-nav-menu nav-menu" role="navigation"> <a
 								class="w-nav-link menu-li" href="#home">Home</a> <a
 								class="w-nav-link menu-li" href="#result">Crawler Result</a> <a
-								class="w-nav-link menu-li" href="#questions">Need help?</a> <a
-								class="w-nav-link menu-li" href="#portfolio">How To</a> <a
-								class="w-nav-link menu-li" href="#contact">Log in</a> </nav>
+								class="w-nav-link menu-li" href="#questions">How To |
+								Questions</a> <sec:authorize access="authenticated"
+								var="authenticated" /> <c:choose>
+								<c:when test="${!authenticated}">
+									<a class="w-nav-link menu-li" href="#logIn"
+										onclick="$('#login').modal('show')">Log in</a>
+
+								</c:when>
+								<c:otherwise>
+									<a class="w-nav-link menu-li"
+										href="${pageContext.request.contextPath}/logout.html">Log
+										out - ${activeUser}</a>
+
+								</c:otherwise>
+							</c:choose> </nav>
 							<div class="w-nav-button">
 								<div class="w-icon-nav-menu"></div>
 							</div>
@@ -152,6 +241,15 @@
 
 	<div class="crawler">
 		<div class="sp-slideshow">
+		<c:if test="${resultString ne null}">
+								<div class="alert alert-info alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4>${resultString}</h4>
+      
+     
+    </div>
+  
+							</c:if>
 			<h2 class="scan-heading">Free online data crawler.</h2>
 			<div class="container-fluid">
 				<section class="container">
@@ -176,13 +274,13 @@
 										request.setAttribute("i", i);
 								%>
 								<div class="col-sm-6">
-									<label>Name${i}</label> <input type="text"
+									<label>Parameter ${i}:</label> <input type="text"
 										name="domRuleName${i}" id="domRuleName${i}"
 										class="form-control" value="${domRule.key}">
 								</div>
 								<div class="col-sm-6">
-									<label>Value${i}</label> <input type="text"
-										name="domRuleValue${i}" id="domRuleValue${i}"
+									<label>Looking beetween specific tag:</label> <input
+										type="text" name="domRuleValue${i}" id="domRuleValue${i}"
 										class="form-control" value="${domRule.value}">
 								</div>
 
@@ -195,7 +293,7 @@
 								<c:choose>
 									<c:when test="${loggedIn}">
 										<span class="input-group-btn">
-											<button class="btn btn-info" id="saveTemplateButton"
+											<button class="btn btn-default" id="saveTemplateButton"
 												onclick="saveTemplate();" value="Add scan">Save
 												settings</button>
 										</span>
@@ -207,7 +305,7 @@
 										</p>
 										<div class="col-sm-6">
 											<span class="input-group-btn">
-												<button class="btn btn-info disabled"
+												<button class="btn btn-default disabled"
 													id="saveTemplateButton" onclick="saveTemplate();"
 													value="Add scan">Save settings</button>
 											</span>
@@ -219,8 +317,9 @@
 
 						</div>
 
-
 						<div class="col-md-6" id="scanStarter">
+					
+							
 							<br>
 							<p>Enter valid http adress from where scrapping will start.
 								After scanning this page all links to other pages that matches
@@ -233,12 +332,13 @@
 							</p>
 							<p>For Name you can choose any name. It will describe the
 								value what you are looking in the page.</p>
-							div class="price"> or &lt;p id="itemName">. See <a href="#howTo">How To</a>
-								for examples.</p>
-							
+							div class="price"> or &lt;p id="itemName">. See <a href="#howTo">How
+								To</a> for examples.
+							</p>
+
 
 							<!-- Alert block -->
-							
+
 							<div class="alert alert-warning alert-dismissible fade in"
 								role="alert" id="legalAlert">
 
@@ -261,7 +361,6 @@
 
 					</div>
 				</div>
-			
 			</div>
 			</section>
 		</div>
@@ -280,41 +379,39 @@
 
 
 	<div class="result-parlex" id="result">
-	<div class="w-container">
-		<div class="wrap">
-			<div class="about">
-				<h1 class="about-heading">
-					Result
-				</h1>
-				<div class="about-text">Here you will find your crawling
-					result.</div>
-				<div class="sepreater"></div>
-			
-			<div class="col-md-7">
-				<div class="panel panel-success" id="tablePanel">
-					<div class="panel-heading">Result table</div>
-					<div class="panel-body" id="resultTableDiv"></div>
-				</div>
-			</div>
+		<div class="w-container">
+			<div class="wrap">
+				<div class="about">
+					<h1 class="about-heading">Result</h1>
+					<div class="about-text">Here you will find your crawling
+						result.</div>
+					<div class="sepreater"></div>
 
-			<div class="col-md-5">
-				<div class="panel panel-success" id="console">
-					<div class="panel-heading">Console output</div>
-					<div class="panel-body" id="consoleBody">
-						<p>Scanning output console...</p>
+					<div class="col-md-7">
+						<div class="panel panel-success" id="tablePanel">
+							<div class="panel-heading">Result table</div>
+							<div class="panel-body" id="resultTableDiv"></div>
+						</div>
+					</div>
+
+					<div class="col-md-5">
+						<div class="panel panel-success" id="console">
+							<div class="panel-heading">Console output</div>
+							<div class="panel-body" id="consoleBody">
+								<p>Scanning output console...</p>
+							</div>
+						</div>
 					</div>
 				</div>
+
+
+				<img class="about-img"
+					src="${pageContext.request.contextPath}/resources/template/images/about.png"
+					alt="52de15aa5d3566c14300015e_about.png">
 			</div>
-</div>
-
-
-			<img class="about-img"
-				src="${pageContext.request.contextPath}/resources/template/images/about.png"
-				alt="52de15aa5d3566c14300015e_about.png">
-		</div>
 		</div>
 	</div>
-		<!--///////////////////////////////////////////////////////
+	<!--///////////////////////////////////////////////////////
        // End result section 
        //////////////////////////////////////////////////////////-->
 
@@ -324,211 +421,256 @@
        //////////////////////////////////////////////////////////-->
 
 	<div class="questions-parlex" id="questions">
-	
-		 <div class="parlex2-back">
+
+		<div class="parlex2-back">
 			<div class="w-container">
 				<div class="wrap">
 					<div class="process">
 						<h1 class="our-process-heading">Questions / How TO</h1>
 						<div class="sepreater"></div>
-					
-					
-					<div class="container">
-    <div class="col-lg-4 col-sm-6 text-center">
-    <div class="well">
-        <h4>Need help or have questions? We will answer as soon as possible.</h4>
-    <div class="input-group">
-        <input type="text" id="userComment"
-											class="form-control input-sm chat-input"
-											placeholder="Write your message here..." />
-	    <span class="input-group-btn" onclick="addComment()">     
-            <a href="${pageContext.request.contextPath}/postMessage"
-											class="btn btn-primary btn-sm"><span
-												class="glyphicon glyphicon-comment"></span> Live message</a>
-        </span>
-    </div>
-    <hr data-brackets-id="12673">
-    <ul data-brackets-id="12674" id="sortable"
-										class="list-unstyled ui-sortable">
-        <strong class="pull-left primary-font">James</strong>
-        <small class="pull-right text-muted">
-           <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-        </br>
-        <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-        </br>
-         <strong class="pull-left primary-font">Taylor</strong>
-        <small class="pull-right text-muted">
-           <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-        </br>
-        <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-        
-    </ul>
-    </div>
-</div>
-					
-					
-					<div class="process-text">
-						<div class="process-text">Our process is straight forward,
-							simple, &amp; successful.</div>
-						<div class="w-row">
-							<div class="w-col w-col-3">
-<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
-<!-- 									<a href="#set-1" class="hi-icon hi-icon-locked">Security</a> -->
-<!-- 								</div> -->
-								<h4 class="our-process-sys">BRAINSTORM</h4>
-								<p class="process-paragraph">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit. Suspendisse varius enim in eros
-									elementum tristique. Duis cursus, mi quis viverra ornare, eros
-									dolor interdum nulla, ut commodo diam libero vitae erat. Aenean
-									faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc
-									ut sem vitae risus tristique posuere.</p>
+
+
+						<div class="container">
+							<div class="col-lg-4 col-sm-6 text-center">
+								<div class="well" id="well">
+									<h5>Need help or have questions? We will answer as soon as
+										possible.</h5>
+									<div class="input-group">
+
+
+										<c:choose>
+											<c:when test="${!authenticated}">
+												<input type="text" id="userComment"
+													class="form-control input-sm chat-input"
+													placeholder="Please log in to live  messages" />
+												<span class="input-group-btn" onclick=""> <a
+													class="btn btn-primary btn-sm disabled"><span
+														class="glyphicon glyphicon-comment"></span> Post message</a></span>
+
+											</c:when>
+											<c:otherwise>
+												<input type="text" id="userComment"
+													class="form-control input-sm chat-input"
+													placeholder="Your messase text here." />
+												<span class="input-group-btn" onclick="postMessage();">
+													<a class="btn btn-primary btn-sm"><span
+														class="glyphicon glyphicon-comment"></span> Post message</a>
+												</span>
+
+											</c:otherwise>
+										</c:choose>
+
+
+									</div>
+									<hr id="messageBoard">
+									<%-- <c:forEach var="message" items="${messages}">
+										<ul data-brackets-id="12674" class="list-unstyled ui-sortable"
+											id="messagePost">
+
+											<strong class="pull-left primary-font" id="messageAuthor">${message.author}</strong>
+											<small class="pull-right text-muted"> </span>${message.date}
+											</small>
+											</br>
+											<li class="ui-state-default" id="messageText">${message.text}</li>
+											</br>
+
+										</ul>
+									</c:forEach> --%>
+								</div>
 							</div>
-							<div class="w-col w-col-3">
-<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
-<!-- 									<a href="#set-1" class="hi-icon hi-icon-mobile">Mobile</a> -->
-<!-- 								</div> -->
-								<h4 class="our-process-sys">PLAN</h4>
-								<p class="process-paragraph">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit. Suspendisse varius enim in eros
-									elementum tristique. Duis cursus, mi quis viverra ornare, eros
-									dolor interdum nulla, ut commodo diam libero vitae erat. Aenean
-									faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc
-									ut sem vitae risus tristique posuere.</p>
-							</div>
-							<div class="w-col w-col-3">
-<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
-<!-- 									<a href="#set-1" class="hi-icon hi-icon-screen">Desktop</a> -->
-<!-- 								</div> -->
-								<h4 class="our-process-sys">DESIGN</h4>
-								<p class="process-paragraph">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit. Suspendisse varius enim in eros
-									elementum tristique. Duis cursus, mi quis viverra ornare, eros
-									dolor interdum nulla, ut commodo diam libero vitae erat. Aenean
-									faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc
-									ut sem vitae risus tristique posuere.</p>
-							</div>
-							<div class="w-col w-col-3">
-<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
-<!-- 									<a href="#set-1" class="hi-icon hi-icon-earth">Partners</a> -->
-<!-- 								</div> -->
-								<h4 class="our-process-sys">DEVELOP</h4>
-								<p class="process-paragraph">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit. Suspendisse varius enim in eros
-									elementum tristique. Duis cursus, mi quis viverra ornare, eros
-									dolor interdum nulla, ut commodo diam libero vitae erat. Aenean
-									faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc
-									ut sem vitae risus tristique posuere.</p>
+
+
+							<div class="process-text">
+								<div class="process-text">Our process is straight forward,
+									simple, &amp; successful.</div>
+								<div class="w-row">
+									<div class="w-col w-col-3">
+										<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
+										<!-- 									<a href="#set-1" class="hi-icon hi-icon-locked">Security</a> -->
+										<!-- 								</div> -->
+										<h4 class="our-process-sys">BRAINSTORM</h4>
+										<p class="process-paragraph">Lorem ipsum dolor sit amet,
+											consectetur adipiscing elit. Suspendisse varius enim in eros
+											elementum tristique. Duis cursus, mi quis viverra ornare,
+											eros dolor interdum nulla, ut commodo diam libero vitae erat.
+											Aenean faucibus nibh et justo cursus id rutrum lorem
+											imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+									</div>
+									<div class="w-col w-col-3">
+										<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
+										<!-- 									<a href="#set-1" class="hi-icon hi-icon-mobile">Mobile</a> -->
+										<!-- 								</div> -->
+										<h4 class="our-process-sys">PLAN</h4>
+										<p class="process-paragraph">Lorem ipsum dolor sit amet,
+											consectetur adipiscing elit. Suspendisse varius enim in eros
+											elementum tristique. Duis cursus, mi quis viverra ornare,
+											eros dolor interdum nulla, ut commodo diam libero vitae erat.
+											Aenean faucibus nibh et justo cursus id rutrum lorem
+											imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+									</div>
+									<div class="w-col w-col-3">
+										<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
+										<!-- 									<a href="#set-1" class="hi-icon hi-icon-screen">Desktop</a> -->
+										<!-- 								</div> -->
+										<h4 class="our-process-sys">DESIGN</h4>
+										<p class="process-paragraph">Lorem ipsum dolor sit amet,
+											consectetur adipiscing elit. Suspendisse varius enim in eros
+											elementum tristique. Duis cursus, mi quis viverra ornare,
+											eros dolor interdum nulla, ut commodo diam libero vitae erat.
+											Aenean faucibus nibh et justo cursus id rutrum lorem
+											imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+									</div>
+									<div class="w-col w-col-3">
+										<!-- 								<div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a"> -->
+										<!-- 									<a href="#set-1" class="hi-icon hi-icon-earth">Partners</a> -->
+										<!-- 								</div> -->
+										<h4 class="our-process-sys">DEVELOP</h4>
+										<p class="process-paragraph">Lorem ipsum dolor sit amet,
+											consectetur adipiscing elit. Suspendisse varius enim in eros
+											elementum tristique. Duis cursus, mi quis viverra ornare,
+											eros dolor interdum nulla, ut commodo diam libero vitae erat.
+											Aenean faucibus nibh et justo cursus id rutrum lorem
+											imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 	<!--///////////////////////////////////////////////////////
        // End How to section 
        //////////////////////////////////////////////////////////-->
-	<!--///////////////////////////////////////////////////////
-       // Footer section 
-       //////////////////////////////////////////////////////////-->
 
-	<div class="footer-parlex">
-		<div class="parlex9-back">
-			<div class="w-container">
-				<div class="wrap">
-					<img class="footer-logo" src="images/footer-logo.png"
-						alt="Elegance">
-					<div class="footer-social">
-						<div class="fotter-social-wrap">
-							<a href="https://www.facebook.com/"><img
-								class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Facebook.png"
-								alt="52dd249c929b601f5400054c_Facebook.png"></a> <a
-								href="https://www.twitter.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Twitter.png"
-								alt="52dd24f2929b601f54000551_Twitter.png"></a> <a
-								href="https://plus.google.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Google-plus.png"
-								alt="52dd26a55b54031d540005af_Google-plus.png"></a> <a
-								href="https://www.blogger.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Blogger.png"
-								alt="52de52e7b6d2171f78000414_Blogger.png"></a> <a
-								href="https://www.digg.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Digg.png"
-								alt="52de53174702a71e780003c3_Digg.png"></a> <a
-								href="https://www.pinterest.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Pinterest.png"
-								alt="52de533c5d3566c1430003e9_Pinterest.png"></a> <a
-								href="https://www.flicker.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Flickr.png"
-								alt="52de535f1b42bfc24300049e_Flickr.png"></a> <a
-								href="https://www.vimeo.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Vimeo.png"
-								alt="52de537cb6d2171f7800041c_Vimeo.png"></a> <a
-								href="https://www.myspace.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Myspace.png"
-								alt="52de53954702a71e780003c5_Myspace.png"></a> <a
-								href="https://www.stumbleupon.com/"><img
-								class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Stumbleupn.png"
-								alt="52de53c0b6d2171f7800041e_Stumbleupn.png"></a> <a
-								href="https://www.tumblr.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Tumblr.png"
-								alt="52de54021b42bfc2430004a3_Tumblr.png"></a> <a
-								href="https://www.youtube.com/"><img class="fotter-social"
-								src="${pageContext.request.contextPath}/resources/template/images/social/Youtube.png"
-								alt="52de54495d3566c14300040a_Youtube.png"></a>
+	<!-- Modal Login-->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header" id="loginHeader">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Login</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+
+							<form id="loginForm"
+								action="${pageContext.request.contextPath}/<c:url value='j_spring_security_check'/>"
+								method="post" novalidate="novalidate">
+								<div class="form-group">
+									<label for="username" class="control-label">Username</label> <input
+										type="text" class="form-control" name="j_username"
+										id="j_username" value="" required=""
+										title="Please enter you username" placeholder="Username">
+									<span class="help-block"></span>
+								</div>
+								<div class="form-group">
+									<label for="password" class="control-label">Password</label> <input
+										type="password" class="form-control" name="j_password"
+										id="j_password" value="" required=""
+										title="Please enter your password" placeholder="password">
+									<span class="help-block"></span>
+								</div>
+								<div id="loginErrorMsg" class="alert alert-error hide">Wrong
+									username or password</div>
+								<br>
+								<button type="submit" class="btn btn-success btn-block">Login</button>
+								<br> <a href="#" class="btn btn-info btn-block"
+									onclick="register();">New user</a>
+							</form>
+
 						</div>
+
 					</div>
-					<div>
-						<div class="fotter-text">
-							<p class="fotter-quote">“ THE LIGHT WITHIN US BOWS TO THE
-								LIGHT WITHIN YOU. ”</p>
-							<p class="copyright-area">
-								©2014 ELEGANCE. ALL RIGHTS RESERVED,TEMPLATE BY&nbsp;<a
-									href="https://carinotech.com" title="Carino Technologies"
-									target="_blank">CARINO TECHNOLOGIES</a>
-							</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Register form -->
+
+		<div class="modal fade" id="register" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header" id="loginHeader">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">New user</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12">
+
+								<form id="loginForm"
+									action="${pageContext.request.contextPath}/register"
+									method="post" novalidate="novalidate">
+									<div class="form-group">
+										<label for="username" class="control-label">Username</label> <input
+											type="text" class="form-control" name="username"
+											id="username" value="" required=""
+											title="Please enter you username" placeholder="Username">
+										<span class="help-block"></span>
+									</div>
+									<div class="form-group">
+										<label for="username" class="control-label">Email</label> <input
+											type="text" class="form-control" name="email" id="email"
+											value="" required="" title="Please enter you username"
+											placeholder="Email"> <span class="help-block"></span>
+									</div>
+									<div class="form-group">
+										<label for="password" class="control-label">Password</label> <input
+											type="password" class="form-control" name="password"
+											id="password" value="" required=""
+											title="Please enter your password" placeholder="password">
+										<span class="help-block"></span>
+									</div>
+									<div id="loginErrorMsg" class="alert alert-error hide">Wrong
+										username or password</div>
+									<br>
+									<button type="submit" class="btn btn-success btn-block">Register</button>
+									<br>
+								</form>
+
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!--///////////////////////////////////////////////////////
-       // End Footer section 
-       //////////////////////////////////////////////////////////-->
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/template/js/jquery.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/template/js/normal.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/template/js/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/template/js/carousels.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/template/js/slider-modernizr.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/template/js/classie.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/template/js/toucheffects.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/template/js/modernizr.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/template/js/animation.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/alert.js"></script>
+		<script type="text/javascript"
+			src="${pageContext.request.contextPath}/resources/template/js/jquery.js"></script>
+		<script type="text/javascript"
+			src="${pageContext.request.contextPath}/resources/template/js/normal.js"></script>
 
-	<script type="text/javascript">
-		$('#legalAlert').on('closed.bs.alert', function() {
-			createScanButton();
-		})
-	</script>
+		<script
+			src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/alert.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/modal.js"></script>
+
+		<script type="text/javascript">
+			$('#legalAlert').on('closed.bs.alert', function() {
+				createScanButton();
+			})
+
+
+			function register(){
+				$('#register').modal('show')
+			}
+
+			postMessage();
+			
+		</script>
+		
 </body>
 
 </html>

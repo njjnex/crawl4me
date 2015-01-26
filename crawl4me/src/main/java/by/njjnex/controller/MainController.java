@@ -2,6 +2,7 @@ package by.njjnex.controller;
 
 import java.security.Principal;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import by.njjnex.collector.Launcher;
 import by.njjnex.logic.DomRuleConverter;
+import by.njjnex.model.Message;
 import by.njjnex.model.ScanningTemplate;
+import by.njjnex.service.MessageService;
 import by.njjnex.service.TemplateService;
 
 @Controller
@@ -31,6 +34,9 @@ public class MainController {
 	}
 	@Autowired
 	TemplateService templateService;
+	
+	@Autowired
+	MessageService messageService;
 
 	@RequestMapping("/")
 	public String mainPage(Model model) {
@@ -43,6 +49,9 @@ public class MainController {
 		domRules.put("Text", "p[class=copyright-area]");
 		defaultScanningTemplate.setDomRules(domRules);
 		
+		/*List<Message> allMessages = messageService.getMessages();
+		
+		model.addAttribute("messages", allMessages);*/
 		model.addAttribute("template", defaultScanningTemplate);
 		return "main";
 	}

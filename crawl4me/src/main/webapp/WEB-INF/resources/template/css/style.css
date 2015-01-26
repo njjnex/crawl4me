@@ -26,10 +26,12 @@ h1 {
 }
 h2 {
   margin: 10px 0px;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 36px;
   font-weight: 700;
-  text-align: center;
+  
+ 
+  
 }
 h3 {
   margin: 10px 0px;
@@ -497,7 +499,8 @@ input.sp-selector-5:checked ~ .sp-content .sp-slider > li:nth-child(5){
   background: rgba(255, 255, 255, 0);
 }
 .logo {
-  margin-top: 0px;
+  margin-top: 5px;
+  float: left;
 }
 .menu-li {
   padding-top: 30px;
@@ -617,6 +620,7 @@ input.sp-selector-5:checked ~ .sp-content .sp-slider > li:nth-child(5){
   padding-bottom: 0px;
   color: white;
   text-align: center;
+  margin-left:30px;
 }
 .parlex3 {
   background-size: cover;
@@ -801,7 +805,7 @@ box-shadow: 5px 5px 0px #20AE61;
 }
 .process-paragraph {
   color: white;
-  text-align: center;
+  text-align: left;
 }
 .porfolio-paragraph {
   margin-top: 20px;
@@ -892,8 +896,8 @@ box-shadow: 5px 5px 0px #20AE61;
   position: fixed;
   z-index: 999;
   width: 100%;
-  height: auto;
-  background-color: rgba(255, 255, 255, 1);
+  height: 59px;
+  background-color: #ff9f71;
 }
 .navbar {
 }
@@ -1790,10 +1794,14 @@ html { overflow-y: scroll; }
 }
 
 .scan-heading{
-	color: #00b8b1;
-	
+	color: #a4ec00;
 	padding-top: 10px;
 	font-family: Lato, sans-serif;
+	 margin-left: 140px;
+	 text-align: left;
+	 font-family: 'Yanone Kaffeesatz', serif;
+
+
 }
 .form-group, #scanStarter p, label{
 	color: #00b8b1;
@@ -1815,12 +1823,11 @@ html { overflow-y: scroll; }
 	color: black;
 }
 .about{
-	width: 90%;
+	width: 100%;
 	margin: auto;
 }
 .well {
     min-height: 20px;
-    padding: 19px;
     margin-bottom: 20px;
     background-color: #F5F5F5;
     border: 1px solid #E3E3E3;
@@ -1828,4 +1835,23 @@ html { overflow-y: scroll; }
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
     width:150%;
     margin-top:60px;
+    text-align:left;
+    height: auto;
+}
+.modal-header{
+	background-color: #00b8b1;
+	border-top-left-radius: 5px; 
+	border-top-right-radius: 5px; 
+}
+#messagePost{
+	min-height: 20px;
+    padding: 19px;
+    width:110%;
+    background-color: #F5F5F5;
+    border: 1px solid #E3E3E3;
+    /* border-radius: 4px; */
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+    text-align:left;
+    height: auto;
+	
 }

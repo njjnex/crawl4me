@@ -12,5 +12,7 @@
 
 		<!-- Mappings -->
 		<mapping class="by.njjnex.model.ScanningTemplate" />
+		<mapping class="by.njjnex.model.Message" />
+		<mapping class="by.njjnex.model.User" />
 	</session-factory>
 </hibernate-configuration>
