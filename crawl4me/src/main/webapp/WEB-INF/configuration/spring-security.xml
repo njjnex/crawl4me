@@ -15,7 +15,7 @@
 				
 		<security:form-login login-page="/login"
 			default-target-url="/" authentication-failure-url="/error-login" />
-		<security:logout logout-url="/logout.html" logout-success-url="/" />
+		<security:logout logout-url="/logout" logout-success-url="/" />
 
 </security:http>
 	

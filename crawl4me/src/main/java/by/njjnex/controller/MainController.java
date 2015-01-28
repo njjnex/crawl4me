@@ -48,10 +48,7 @@ public class MainController {
 		domRules.put("Title", "title");
 		domRules.put("Text", "p[class=copyright-area]");
 		defaultScanningTemplate.setDomRules(domRules);
-		
-		/*List<Message> allMessages = messageService.getMessages();
-		
-		model.addAttribute("messages", allMessages);*/
+				
 		model.addAttribute("template", defaultScanningTemplate);
 		return "main";
 	}

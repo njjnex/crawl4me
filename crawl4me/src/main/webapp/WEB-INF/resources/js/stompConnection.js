@@ -45,14 +45,14 @@ var returnedResultCount = 0;
 
 	}
 	function createResultTable(result) {
-		var resultDiv = document.getElementById("resultTableDiv");
-		var table = document.createElement("table");
-		table.setAttribute("class","table table-striped");
+		var resultDiv = document.getElementById("resultTableDiv");		
+		var table = document.createElement("table");						
+		table.setAttribute("class","table table-striped");				
 		table.setAttribute("id","resultTable");
 		resultDiv.appendChild(table);
 		var tableHeader = table.createTHead();
 		var row = tableHeader.insertRow(0);
-
+		
 		var cell = row.insertCell();
 		cell.innerHTML = "#";
 		for ( var key in result) {
@@ -112,10 +112,11 @@ var returnedResultCount = 0;
 	}
 	function createScanButton(){
 		
+		document.getElementById("legalAlert").remove();
 		var buttonDiv = document.getElementById("scanStarter");
 		if(!document.getElementById("scanButton")) var button = document.createElement("button");
 		if(document.getElementById("scanButton")) var button = document.getElementById("scanButton");
-		button.setAttribute("class","btn btn-lg btn-success");
+		button.setAttribute("class","btn btn-outline btn-lg ");
 		button.setAttribute("id","scanButton");
 		button.setAttribute("onclick","newScan();");
 		button.innerHTML = "Start scan";
@@ -136,4 +137,15 @@ var returnedResultCount = 0;
 		removeResultTable();
 			
 		
+	}
+	function emailShowMe(){
+		var footer = document.getElementById("showEmail");
+		footer.innerHTML = "njjnex@gmail.com";
+
+	}
+	function emailShow(){
+		var footer = document.getElementById("footer");
+		var email = document.createTextNode("njjnex@gmail.com");
+		footer.appendChild(email);
+
 	}

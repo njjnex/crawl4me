@@ -31,6 +31,12 @@ public class UserController {
 		
 		model.addAttribute("resultString", resultString);
 
-		return "forward:main";
+		return "forward:/";
+	}
+	
+	@RequestMapping("/error-login")
+	public String errorLogin(Model model){
+		model.addAttribute("resultString", "Incorrect login please try again.");
+		return "forward:/";
 	}
 }
