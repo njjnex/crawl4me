@@ -30,9 +30,10 @@ function generateId() {
 		var button = document.getElementById("saveTemplateButton");
 		button.setAttribute("class", "btn btn-success disabled");
 		button.innerHTML = "Link to your scan:";
-
+		
+		var saveLink = document.getElementById("saveTemplateLink");
 		var input = document.createElement("input");
 		input.setAttribute("class", "form-control");
-		divTemplate.appendChild(input);
-		input.setAttribute("value", "http://crawl4me.net/" + data);
+		saveLink.appendChild(input);
+		input.setAttribute("value", "http://scrapingon.com/s" + data);
 	}

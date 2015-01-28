@@ -21,6 +21,7 @@ var returnedResultCount = 0;
 				returnedResultCount++;
 				if (returnedResultCount == 1) {
 					createResultTable(result);
+					console.log("Create result table");
 				}
 				addResultRow(result, returnedResultCount);
 
@@ -34,7 +35,7 @@ var returnedResultCount = 0;
 	}
 	function newScan() {
 		createNewScanButton();
-		window.location.href = 'http://localhost:8080/#result';
+		window.location.replace("#jump4");
 		stompClient.send("/app/hello", {}, JSON.stringify(createRequestMap()));
 	}
 
@@ -77,7 +78,7 @@ var returnedResultCount = 0;
 	function consoleOutput(result){
 		var console = document.getElementById("consoleBody");
 		var p = document.createElement(p);
-		p.innerHTML = "> " + result;
+		p.innerHTML = "- " + result + "<br>";
 		console.appendChild(p);	
 	}
 	
@@ -112,7 +113,7 @@ var returnedResultCount = 0;
 	}
 	function createScanButton(){
 		
-		document.getElementById("legalAlert").remove();
+		if(document.getElementById("legalAlert")) document.getElementById("legalAlert").remove();
 		var buttonDiv = document.getElementById("scanStarter");
 		if(!document.getElementById("scanButton")) var button = document.createElement("button");
 		if(document.getElementById("scanButton")) var button = document.getElementById("scanButton");

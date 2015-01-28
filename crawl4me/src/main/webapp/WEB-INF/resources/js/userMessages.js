@@ -50,7 +50,7 @@
             authorElement.appendChild(dateElement);
             messageBody.appendChild(authorElement);
             
-            var content = document.createTextNode(text);
+            var content = document.createTextNode(JSON.parse(text));
             messageBody.appendChild(content);
                    
             

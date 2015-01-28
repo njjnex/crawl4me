@@ -2,12 +2,14 @@ package by.njjnex.collector;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import by.njjnex.model.Output;
@@ -20,21 +22,20 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 
 public class Launcher extends DeepCrawler {
 
-	RegexRule regexRule = new RegexRule();
-	String crawlPath;
+	private final int MAXIMUM_RESULT = 10;
+	
+	private Principal principal;
+	private RegexRule regexRule = new RegexRule();
+	private String crawlPath;
 	private String urlRule;
 	private SimpMessagingTemplate messagingTemplate;
+	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
-	LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
-	private Principal principal;
-
-	public LinkedHashMap<String, String> getResult() {
-		return result;
-	}
-
-	public void setResult(LinkedHashMap<String, String> result) {
-		this.result = result;
-	}
+	private LinkedHashMap<String, String> resultPage = new LinkedHashMap<String, String>();
+	private LinkedHashMap<String, String> resultURL = new LinkedHashMap<String, String>();
+	
+	
+	
 
 	public Launcher(String crawlPath, Principal principal, String rule,
 			SimpMessagingTemplate messagingTemplate) {
@@ -43,60 +44,72 @@ public class Launcher extends DeepCrawler {
 		this.crawlPath = crawlPath;
 		this.messagingTemplate = messagingTemplate;
 		this.urlRule = rule;
-		regexRule.addRule("^" + rule + "$"); // positive rule
+		regexRule.addRule(rule); // positive rule
+		
 	}
 
 	public Links visitAndGetNextLinks(Page page, LinkedHashMap<String, String> domRules) {
-		
+				
 		Document doc = null;
+						
 		try {
-			doc = Jsoup
-					.connect(page.getUrl())
-					.userAgent(
-							"Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0")
-					.referrer("https://www.google.com/").get();
+			doc = Jsoup.connect(page.getUrl()).userAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0").referrer("https://www.google.com/").get();
 		} catch (IOException e) {
-			System.out.println("Cannot create connection: " + e.getStackTrace()); 
-			this.messagingTemplate.convertAndSend("/topic/console", new Output("Cannot create connection: " + e.getStackTrace()));//
+			this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Cannot create connection: Is URL is valid?"));
 			e.printStackTrace();
 		}
 		String title = doc.title();
 		System.out.println("URL:" + page.getUrl() + " Title: " + title);		
-		this.messagingTemplate.convertAndSend("/topic/console", new Output("Found matching page with URL: " + page.getUrl() + "; Title: " + title));
+		this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Found page: " + page.getUrl()) + " proceed...");
 			
-		String details = page.getDoc().select("title")
-				.text();
-		
-		System.out.println("Details: " + details);
-				
+		String titleText = page.getDoc().select("title").text();
+								
 		String key = null;
 		String value = null;
 		
-		if (!details.isEmpty()) {
+		int resultCount = 0;
+		
+		if (!titleText.isEmpty()) {
 			for (Entry<String, String> domRule : domRules.entrySet()) {
 
 				key = domRule.getKey();
 				value = page.getDoc().select(domRule.getValue()).text();
-
-				System.out.println("***********dom : " + key + " : " + value);
-				result.put(key, value);
+				
+					resultCount++;
+					resultPage.put(key, value);
 			}
-			this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/greetings", result);
-
+			
+			boolean emptyResult = true;
+			
+			for(String resultValue : resultPage.values()){
+				System.out.println(resultValue + "--------------");
+				if(!resultValue.equals(""))
+					emptyResult = false;
+			}
+			
+			if(!emptyResult){
+				this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/greetings", resultPage);
+			}
+			
 			System.out.println(key + " : " + value);
-			result.clear();
+			resultPage.clear();
 		}
 
 		Links nextLinks = new Links();
 		nextLinks.addAllFromDocument(doc, regexRule);
-
-		return nextLinks;
+		
+		if(resultCount > MAXIMUM_RESULT){
+			this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Maximum result limitper one scan: " + MAXIMUM_RESULT));
+			return null;
+		}else{
+			return nextLinks;
+		}
 	}
 
 	public void run(Crawler crawler, String urlToScan,
 			LinkedHashMap<String, String> domRules) throws Exception {
-
-		this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Started scanning: " + new Date()));
+		
+		this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Started scanning: " + sdf.format(new Date())));
 		crawler.addSeed(urlToScan);
 		crawler.setDomRules(domRules);
 		/* 2.x version directly support proxy randomly switching */

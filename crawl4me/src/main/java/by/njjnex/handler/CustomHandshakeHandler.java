@@ -16,16 +16,13 @@ public class CustomHandshakeHandler extends DefaultHandshakeHandler {
 	@Override
 	protected Principal determineUser(ServerHttpRequest request,
 			WebSocketHandler wsHandler, Map<String, Object> attributes) {
-		System.out.println(request.getHeaders());
-		System.out.println(request.getURI());
-		
+				
 		HttpHeaders headers = request.getHeaders();
-		System.out.println(headers.getFirst("cookie"));
 		Principal principal = request.getPrincipal();
+		
 		if(principal == null)
-		principal = new UsernamePasswordAuthenticationToken(headers.getFirst("cookie"), "-", Arrays.asList(new SimpleGrantedAuthority("ANONYMOUS")));
-		
-		
+			principal = new UsernamePasswordAuthenticationToken(headers.getFirst("cookie"), "-", Arrays.asList(new SimpleGrantedAuthority("ANONYMOUS")));
+					
 		return principal;
 	}
 

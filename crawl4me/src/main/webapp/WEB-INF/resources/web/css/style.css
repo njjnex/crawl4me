@@ -510,7 +510,7 @@ form fieldset {
 .jumper {
   height: 0;
   position: relative;
-  top: -10px;
+  top: -5px;
 }
 /*= WORK
 ---------------------------------------------------------------------------------------------- */
@@ -911,7 +911,7 @@ form fieldset {
     top:5px;
 }
 #saveTemplateButton{
-	margin-top: 5px;
+	margin-top: 0px;
 }
 #textTemplate{
 	color: white;
@@ -921,4 +921,8 @@ form fieldset {
 .panel-success > .panel-heading{
 	background-color:#242b32;
 	color:#fff;
+}
+mark{
+	color:green;
+	background-color: white;
 }

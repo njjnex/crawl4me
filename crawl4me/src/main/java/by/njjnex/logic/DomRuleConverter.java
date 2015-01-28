@@ -14,7 +14,12 @@ public class DomRuleConverter {
 			 if(value.startsWith("<") && value.endsWith(">")){
 				 result = value.replaceFirst(" ", "[");
 				 result = result.replaceFirst("<", "");
-				 result = result.replaceAll(">", "]");
+				 if(result.contains("=")){
+					 result = result.replaceAll(">", "]");
+				 }else{
+					 result = result.replaceAll(">", "");
+				 }
+				 
 				 result = result.replaceAll("\"", "");
 				 rule.setValue(result);
 				 System.out.println("rule after:" + result);
@@ -24,4 +29,11 @@ public class DomRuleConverter {
 		}
 		return (LinkedHashMap<String, String>) domRules;
 	}
-}
+	public String extractSelector(Map<String, String> domRules){
+		for(Entry<String, String> rule:domRules.entrySet()){
+			String value =rule.getValue();
+	
+		}
+		return null;
+	}
+}	
