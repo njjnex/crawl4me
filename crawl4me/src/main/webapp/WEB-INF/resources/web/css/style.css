@@ -423,9 +423,20 @@ form fieldset {
 }
 .section.type-2 {
   background: #fff;
+ 
+  
 }
 .section.type-3 {
   background: #f0f2f4;
+  background: url(../img/header/111.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        color:white;
+        opacity: 0.75;
+ 
+  
 }
 .section.big {
   height: 100%;
@@ -442,6 +453,7 @@ form fieldset {
 }
 .section-headlines {
   margin-bottom: 10px;
+  
 }
 .section-headlines > h2 {
 	 font-family: 'Roboto', Arial, sans-serif;
@@ -455,7 +467,7 @@ form fieldset {
   word-spacing: 5px;
   font-size: 32px;
 }
-.section-headlines > h4 {
+.section-headlines > h3 {
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
@@ -467,6 +479,19 @@ form fieldset {
   letter-spacing: 2px;
   word-spacing: 5px;
 }
+.section-headlines > h4 {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 2px solid #ddd;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 35px;
+  letter-spacing: 2px;
+  word-spacing: 5px;
+}
+
 .section-headlines > div {
   line-height: 1.8;
 }
@@ -479,8 +504,8 @@ form fieldset {
   top: 0;
   position: absolute;
   z-index: 2;
-  opacity: 0.85;
-  filter: alpha(opacity=85);
+  opacity: 0.75;
+  filter: alpha(opacity=75);
 }
 .splash-block {
   position: absolute;
@@ -616,7 +641,7 @@ form fieldset {
   margin-right: 25px;
   width: 60px;
   height: 60px;
-  border: 3px solid #eee;
+  border: 3px solid #84C225;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -716,7 +741,7 @@ form fieldset {
   background: #242b32;
   color: #a5b3bf;
   font-size: 13px;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 .footer * {
   line-height: 20px;
@@ -866,7 +891,7 @@ form fieldset {
 	display:none;
 }
 #contactForm{
-	background-color: #242b32;
+	background-color: #2A333B;
 }
 #contacts{
 	padding-left: 15px;
@@ -874,7 +899,7 @@ form fieldset {
 	max-width: 1400px;
 }
 #loginMePopUp { 
-    background-color:#242b32;
+    background-color:#2A333B;
     border-radius:5px;
     color:#fff;
     display:none; 
@@ -884,7 +909,7 @@ form fieldset {
     max-width: 350px;
 }
 #registerMePopUp { 
-    background-color:#242b52;
+    background-color:#565050;
     border-radius:5px;
     color:#fff;
     text: bold;
@@ -895,7 +920,7 @@ form fieldset {
     max-width: 350px;
 }
 #resultPopUp{
-	background-color:#800080;
+	background-color:#B199B1;
     border-radius:5px;
     color:#fff;
     display:none; 
@@ -921,4 +946,12 @@ form fieldset {
 .panel-success > .panel-heading{
 	background-color:#242b32;
 	color:#fff;
+}
+.navbar-brand {
+    float: left;
+    padding: 5px;
+    font-size: 12px;
+    line-height: 20px;
+    height:60px;
+    color:#84C225;
 }
