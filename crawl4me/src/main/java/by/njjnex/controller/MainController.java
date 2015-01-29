@@ -1,6 +1,8 @@
 package by.njjnex.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import by.njjnex.collector.Launcher;
 import by.njjnex.logic.DomRuleConverter;
 import by.njjnex.model.Message;
+import by.njjnex.model.Output;
 import by.njjnex.model.ScanningTemplate;
 import by.njjnex.service.MessageService;
 import by.njjnex.service.TemplateService;
@@ -37,16 +40,18 @@ public class MainController {
 	
 	@Autowired
 	MessageService messageService;
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
 	@RequestMapping("/")
 	public String mainPage(Model model) {
 		
 		ScanningTemplate defaultScanningTemplate = new ScanningTemplate();
 		defaultScanningTemplate.setUrl("http://localhost:8080/");
-		defaultScanningTemplate.setRegex("http://localhost:8080/.*");
+		defaultScanningTemplate.setRegex("http://localhost:8080/");
 		Map<String,String> domRules = new LinkedHashMap<String, String>();
-		domRules.put("Title", "title");
-		domRules.put("Text", "p[class=copyright-area]");
+		domRules.put("Title", "<title>");
+		domRules.put("Text", "<div id=\"footer\">");
 		defaultScanningTemplate.setDomRules(domRules);
 				
 		model.addAttribute("template", defaultScanningTemplate);
@@ -94,11 +99,16 @@ public class MainController {
 	public void greeting(ScanningTemplate userInput, Principal principal) throws Exception {
 				
 		System.out.println(principal + " : " + principal.getName());
-		DomRuleConverter converter = new DomRuleConverter();
-		userInput.setDomRules(converter.convertTag((userInput.getDomRules()))); //convert dom rules
-		
-		Launcher crawler = new Launcher("/tut", principal, userInput.getRegex(), template);
-		crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());
-
+		if(principal.getName() != null){
+			DomRuleConverter converter = new DomRuleConverter();
+			userInput.setDomRules(converter.convertTag((userInput.getDomRules()))); //convert dom rules
+			
+			Launcher crawler = new Launcher("/tut", principal, userInput.getRegex(), template);
+			crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());
+			
+			this.template.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Finished: " + sdf.format(new Date())));
+		}else{
+			this.template.convertAndSend("/topic/console", new Output("ERROR: Please reload page and try again. " + sdf.format(new Date())));
+		}
 	}
 }

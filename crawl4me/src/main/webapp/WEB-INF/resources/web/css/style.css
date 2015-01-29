@@ -535,7 +535,7 @@ form fieldset {
 .jumper {
   height: 0;
   position: relative;
-  top: -10px;
+  top: -5px;
 }
 /*= WORK
 ---------------------------------------------------------------------------------------------- */
@@ -936,7 +936,7 @@ form fieldset {
     top:5px;
 }
 #saveTemplateButton{
-	margin-top: 5px;
+	margin-top: 0px;
 }
 #textTemplate{
 	color: white;
@@ -954,4 +954,8 @@ form fieldset {
     line-height: 20px;
     height:60px;
     color:#84C225;
+}
+mark{
+	color:green;
+	background-color: white;
 }

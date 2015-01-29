@@ -165,12 +165,12 @@
 								<div class="col-sm-6">
 									<label>Parameter name ${i}:</label> <input type="text"
 										name="domRuleName${i}" id="domRuleName${i}"
-										class="form-control" value="${domRule.key}">
+										class="form-control" value='${domRule.key}'>
 								</div>
 								<div class="col-sm-6">
 									<label>Looking beetween specific tag:</label> <input
 										type="text" name="domRuleValue${i}" id="domRuleValue${i}"
-										class="form-control" value="${domRule.value}">
+										class="form-control" value='${domRule.value}'>
 								</div>
 
 							</c:forEach>
@@ -185,7 +185,7 @@
 											You are able to save and share scan settings.
 										</p>
 									<div class="col-sm-6">
-										<span class="input-group-btn">
+										<span class="input-group-btn" id="saveTemplateLink">
 											<button class="btn btn-outline" id="saveTemplateButton"
 												onclick="saveTemplate();" value="Add scan">Save this
 												settings</button>
@@ -316,13 +316,21 @@
                                         E-commerce scraping data example. <i class="icon-plus"></i><i class="icon-minus"></i></a>
                                 </h3>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
+                            <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> collect products name and price from E-shop.
+                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/women/new-arrivals/jewelry.html</mark>
+                                   	<br />
+                                    <br />
+                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/women/new-arrivals/jewelry/.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
                                     <br />
                                     <br />
-                                    <b>Solution:</b> find in HTML source file tag which surround Name value and paste it to the crawler form than find tag wich surround Price and paste it to the crawler form.
-                                    
+                                    <b>Problem:</b> when we start scan all result will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
+                                    <br />
+                                    <br /> 
+                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>[g]+</mark> to the end of our regex, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.skagen.com/gb/en/women/new-arrivals/jewelry/.*</mark> for URL Regex.
+                                    <br />
+                                    <br />
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sn5qQv">http://scrapingon.com/sn5qQv</a>
                                 </div>
                             </div>
                         </div>
@@ -336,14 +344,7 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
-                                    in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-                                    <br />
-                                    <br />
-                                    Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked
-                                    up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-                                    and going through the cites of the word in classical literature, discovered the
-                                    undoubtable source.
+                                    Coming soon....
                                 </div>
                             </div>
                         </div>
@@ -357,12 +358,7 @@
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
-                                    in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-                                    Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked
-                                    up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-                                    and going through the cites of the word in classical literature, discovered the
-                                    undoubtable source.
+                                    Coming soon....
                                 </div>
                             </div>
                         </div>
@@ -471,8 +467,8 @@
     <div class="section type-1 section-contact">
         <div class="container" id="contacts">
             <div class="section-headlines">
-                <h4>Contact Us</h4>
-                <h5>Provide your message with detailed information with links.</h5>
+                <h4>Messages</h4>
+                <h5>Please provide your message with detailed information with links.</h5>
             </div>
             <div class="col-sm-6" id="messageBoard"></div>
        
@@ -488,7 +484,7 @@
 								                        <div class="form-group">
 								                            <textarea class="form-control" id="message" name="message" rows="5"></textarea>
 								                        </div>
-								                        <button class="btn btn-outline" id="logIn" onclick="loginMe();">Send</button>
+								                        <button class="btn btn-outline disabled" id="logIn">Send</button>
 								                    </form>
 
 											</c:when>
