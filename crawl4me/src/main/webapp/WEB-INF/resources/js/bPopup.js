@@ -5,10 +5,7 @@
 	   $('#loginMePopUp').bPopup();
    }
    function registerMe() {
-	   $('#registerMePopUp').bPopup({
-		        speed: 450,
-	            transition: 'slideDown'
-	        });
+	   $('#registerMePopUp').bPopup();
    }
    function resultPopUp() {
 	   $('#resultPopUp').bPopup();
