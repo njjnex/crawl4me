@@ -59,7 +59,7 @@
                             class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="${pageContext.request.contextPath}/resources/web/img/logo.png" alt="" /></a>
+                        <img src="${pageContext.request.contextPath}/resources/web/img/logo1.png" alt="" /></a>
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
@@ -264,8 +264,8 @@
     <div class="section type-2">
         <div class="container">
             <div class="section-headlines">
-                <h4>
-                    ScrapingOn.com web scraping service.</h4>
+                <h3>
+                    ScrapingOn.com web scraping service.</h3>
                 <div>
                      Web scraping or crawling is a computer software technique of extracting information from websites. It can be useful in many cases:
                 </div>

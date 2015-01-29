@@ -23,10 +23,13 @@ public class UserController {
 
 		User user = new User(username, email, password);
 		String resultString = null;
-		resultString = "Registration completed please Log In";
+		
 		
 		if (userService.getUser(user.getUsername()) != null) {
 			resultString = "Please choose another username!";
+		}else{
+			resultString = "Registration completed please Log In";
+			userService.createUser(user);
 		}
 		
 		model.addAttribute("resultString", resultString);

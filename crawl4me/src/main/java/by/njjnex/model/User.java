@@ -11,6 +11,8 @@ import javax.persistence.Table;
 public class User {
 
 	
+	
+
 	public User() {
 		super();
 	}
@@ -20,6 +22,7 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.userRole = "ROLE_USER";
+		this.enable =true;
 	}
 
 	@Id
@@ -38,6 +41,9 @@ public class User {
 
 	@Column(name = "ROLE")
 	private String userRole;
+	
+	@Column(name = "ENABLE")
+	private boolean enable;
 
 	public long getId() {
 		return id;
@@ -77,6 +83,14 @@ public class User {
 
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
+	}
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 	
 	
