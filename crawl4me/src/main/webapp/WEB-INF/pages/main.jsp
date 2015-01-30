@@ -443,15 +443,90 @@
             <div class="col-md-7">
 						<div class="panel panel-success" id="tablePanel">
 							<div class="panel-heading">Result table</div>
-							<div class="panel-body" id="resultTableDiv"></div>
+							<%-- <img class="img-responsive" alt=""
+                         src="${pageContext.request.contextPath}/resources/web/img/sample_overlay.gif" /> --%>
+							<div class="panel-body" id="resultTableDiv">	12 Parfumeurs Francais		0,00	
+46909		12 PARFUMEURS Intrigues des Hommes men 100ml edp	16005,00	
+46910		12 PARFUMEURS Intrigues des Hommes men test 100ml edp	11525,00	
+46923		12 PARFUMEURS Le Charmeur men 100ml edp	16005,00	
+46924		12 PARFUMEURS Le Charmeur men test 100ml edp	11525,00	
+46921		12 PARFUMEURS Le Fantome men 100ml edp	16005,00	
+46922		12 PARFUMEURS Le Fantome men test 100ml edp	11525,00	
+46920		12 PARFUMEURS Ma Reine lady 100ml edp	15135,00	
+46919		12 PARFUMEURS Ma Reine lady test 100ml edp	11525,00	
+46913		12 PARFUMEURS Mon Amour lady 100ml edp	15135,00	
+46914		12 PARFUMEURS Mon Amour lady test 100ml edp	11525,00	
+46916		12 PARFUMEURS Mon Cher men test 100ml edp	11525,00	
+46911		12 PARFUMEURS Mon Roi men 100ml edp	16005,00	
+46912		12 PARFUMEURS Mon Roi men test 100ml edp	11525,00	
+46930		12 PARFUMEURS Secret de l'Amour lady test 100ml edp	11525,00	
+46927		12 PARFUMEURS Secrets des Hommes men 100ml edp	16005,00	
+46928		12 PARFUMEURS Secrets des Hommes men test 100ml edp	11525,00	
+	Acqua di Parma		0,00	
+40324		ACQUA DI PARMA Colonia unisex  50ml edC	3440,00	
+40325		ACQUA DI PARMA Colonia unisex 100ml edC	4720,00	
+	Adidas		0,00	
+18003		ADIDAS Deep Energy men  50ml edT  	210,00	
+25962		ADIDAS Deep Energy men 100ml edT  	240,00	
+12115		ADIDAS Dynamic Pulse men  50ml edT  	210,00	
+1904		ADIDAS Dynamic Pulse men 100ml edT  	240,00	
+42159		ADIDAS Extreme Power men  50ml edT  	210,00	
+38036		ADIDAS Extreme Power men 100ml edT  	240,00	
+44157		ADIDAS Fizzy Energy lady 30ml edT 	270,00	
+44273		ADIDAS Fizzy Energy lady 50ml edT 	305,00	
+3684		ADIDAS Floral Dream lady  30ml edT 	270,00	
+1074		ADIDAS Fruity Rhythm lady  30ml edT 	270,00	
+4326		ADIDAS Ice Dive men  50ml edT  	210,00	
+1182		ADIDAS Ice Dive men 100ml edT  	255,00	
+32915		ADIDAS Intense Touch men  50ml edT   	210,00	
+34620		ADIDAS Intense Touch men 100ml edT   	240,00	
+35133		ADIDAS Natural Vitality lady  30ml edT 	270,00	
+29208		ADIDAS Pure Game men  50ml edT  	210,00	
+34440		ADIDAS Pure Game men 100ml edT  	240,00	
+16616		ADIDAS Pure Lightness lady  30ml edT 	270,00	
+44762		ADIDAS Team Five men 100ml edT 	240,00	
+12119		ADIDAS Team Force men  50ml edT	215,00	
+4878		ADIDAS Team Force men 100ml edT	275,00	
+2218		ADIDAS Victory League men  50ml edT 	215,00	
+							</div>
 						</div>
 					</div>
 
 					<div class="col-md-5">
 						<div class="panel panel-success" id="console">
 							<div class="panel-heading">Console output</div>
+							
 							<div class="panel-body" id="consoleBody">
-								<p>Scanning output console...</p>
+								<p>Scanning output console...</p>	12 Parfumeurs Francais		0,00	
+46909		12 PARFUMEURS Intrigues des Hommes men 100ml edp	16005,00	
+46910		12 PARFUMEURS Intrigues des Hommes men test 100ml edp	11525,00	
+46923		12 PARFUMEURS Le Charmeur men 100ml edp	16005,00	
+46924		12 PARFUMEURS Le Charmeur men test 100ml edp	11525,00	
+46921		12 PARFUMEURS Le Fantome men 100ml edp	16005,00	
+46922		12 PARFUMEURS Le Fantome men test 100ml edp	11525,00	
+46920		12 PARFUMEURS Ma Reine lady 100ml edp	15135,00	
+46919		12 PARFUMEURS Ma Reine lady test 100ml edp	11525,00	
+46913		12 PARFUMEURS Mon Amour lady 100ml edp	15135,00	
+46914		12 PARFUMEURS Mon Amour lady test 100ml edp	11525,00	
+46916		12 PARFUMEURS Mon Cher men test 100ml edp	11525,00	
+46911		12 PARFUMEURS Mon Roi men 100ml edp	16005,00	
+46912		12 PARFUMEURS Mon Roi men test 100ml edp	11525,00	
+46930		12 PARFUMEURS Secret de l'Amour lady test 100ml edp	11525,00	
+46927		12 PARFUMEURS Secrets des Hommes men 100ml edp	16005,00	
+46928		12 PARFUMEURS Secrets des Hommes men test 100ml edp	11525,00	
+	Acqua di Parma		0,00	
+40324		ACQUA DI PARMA Colonia unisex  50ml edC	3440,00	
+40325		ACQUA DI PARMA Colonia unisex 100ml edC	4720,00	
+	Adidas		0,00	
+18003		ADIDAS Deep Energy men  50ml edT  	210,00	
+25962		ADIDAS Deep Energy men 100ml edT  	240,00	
+12115		ADIDAS Dynamic Pulse men  50ml edT  	210,00	
+1904		ADIDAS Dynamic Pulse men 100ml edT  	240,00	
+
+	
+								
+								<%-- <img class="img-circle " alt=""
+							src="${pageContext.request.contextPath}/resources/web/img/sample-stamp.png"/> --%>
 							</div>
 						</div>
 					</div>
