@@ -8,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +23,7 @@ public class ScanningTemplate {
 	@Column(name = "REGEX")
 	private String regex;
 	@ElementCollection(fetch= FetchType.EAGER)
+	@OrderColumn
 	private Map<String,String> domRules = new LinkedHashMap<String,String>();
 	public String getUrl() {
 		return url;

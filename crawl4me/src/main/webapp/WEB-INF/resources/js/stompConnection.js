@@ -6,11 +6,12 @@ var returnedResultCount = 0;
 
 	function connect() {
 		
+		/*var socket = new SockJS('http://scrapingon-me2by.rhcloud.com:8000/hello');*/
 		var socket = new SockJS('/hello');
 		stompClient = Stomp.over(socket);
 		stompClient.connect({}, function(frame) {
 			console.log('Connected: ' + frame);
-			
+								
 			stompClient.subscribe('/user/topic/console', function(logOut) {
 				var resultLog = JSON.parse(logOut.body);
 				consoleOutput(resultLog.result);
@@ -35,6 +36,8 @@ var returnedResultCount = 0;
 	}
 	function newScan() {
 		createNewScanButton();
+		removeResultConsole();
+		removeResultTable();
 		window.location.replace("#jump4");
 		stompClient.send("/app/hello", {}, JSON.stringify(createRequestMap()));
 	}
@@ -42,8 +45,11 @@ var returnedResultCount = 0;
 	function removeResultTable() {
 		var tbl = document.getElementById("resultTable");
 		if (tbl) tbl.parentNode.removeChild(tbl);
-		returnedResultCount = 0;
-
+	}
+	function removeResultConsole() {
+		var console = document.getElementById("consoleBody");
+		console.innerHTML = "<p>Scanning output console...</p>"
+		
 	}
 	function createResultTable(result) {
 		var resultDiv = document.getElementById("resultTableDiv");		
@@ -125,17 +131,13 @@ var returnedResultCount = 0;
 	}
 	function createNewScanButton(){
 		var button = document.getElementById("scanButton");
-		button.innerHTML = "Clear and start new scan";
+		button.innerHTML = "Start new scan";
 		button.setAttribute("class","btn btn-lg btn-warning");
 		button.setAttribute("onclick","clearLastScan();");
 	}
 	function clearLastScan(){
 		createScanButton();
-		
-		var console = document.getElementById("consoleBody");
-		console.innerHTML = "<p>Scanning output console...</p>"
-		
-		removeResultTable();
+		returnedResultCount = 0;
 			
 		
 	}

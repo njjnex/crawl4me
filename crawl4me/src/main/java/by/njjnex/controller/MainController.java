@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+
 import by.njjnex.collector.Launcher;
 import by.njjnex.logic.DomRuleConverter;
-import by.njjnex.model.Message;
+import by.njjnex.logic.FileUtils;
+import by.njjnex.logic.QuotesReplacer;
 import by.njjnex.model.Output;
 import by.njjnex.model.ScanningTemplate;
 import by.njjnex.service.MessageService;
@@ -74,7 +76,9 @@ public class MainController {
 			@PathVariable ("id") String generatedId,
 			@RequestBody ScanningTemplate scanningTemplate) {
 		
+		Map<String, String> domRules = scanningTemplate.getDomRules();
 		scanningTemplate.setId("s"+generatedId);
+		scanningTemplate.setDomRules(new QuotesReplacer().replaceQuotes(domRules));
 		
 		System.out.println("get id: " + "s"+generatedId + "url: " + scanningTemplate.getUrl());
 		templateService.saveTemplate(scanningTemplate);
@@ -100,13 +104,20 @@ public class MainController {
 				
 		System.out.println(principal + " : " + principal.getName());
 		if(principal.getName() != null){
-			DomRuleConverter converter = new DomRuleConverter();
-			userInput.setDomRules(converter.convertTag((userInput.getDomRules()))); //convert dom rules
 			
-			Launcher crawler = new Launcher("/tut", principal, userInput.getRegex(), template);
+			DomRuleConverter converterDom = new DomRuleConverter();
+			QuotesReplacer replacerQuote = new QuotesReplacer();
+			userInput.setDomRules(replacerQuote.replaceQuotes((userInput.getDomRules())));
+			userInput.setDomRules(converterDom.convertTag((userInput.getDomRules()))); //convert dom rules
+			
+			/*String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
+			String saveDir = "/tututshki/";
+			
+			Launcher crawler = new Launcher(saveDir, principal, userInput.getRegex(), template);
 			crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());
 			
 			this.template.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Finished: " + sdf.format(new Date())));
+			FileUtils.deleteDir(saveDir); 
 		}else{
 			this.template.convertAndSend("/topic/console", new Output("ERROR: Please reload page and try again. " + sdf.format(new Date())));
 		}

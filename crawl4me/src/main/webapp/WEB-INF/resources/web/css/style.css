@@ -959,3 +959,23 @@ mark{
 	color:green;
 	background-color: white;
 }
+#tablePanel h4, #consoleHeading h4{
+	color: white;
+}
+#resultTable{
+	color: black;
+}
+#consoleBody{
+	color: black;
+	font-size: 12px;
+}
+#resultHeader h3{
+	color: black;
+}
+#legalAlert{
+	background: #242b32; 
+	border: 1px solid white;
+}
+/* #crawlerPage{
+	color: white;
+} */

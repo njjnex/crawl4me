@@ -66,7 +66,7 @@
                         <li class="active"><a href="#jump0">Home</a></li>
                         <li><a href="#jump1">How To</a></li>
                         <li><a href="#jump4">Result</a></li>
-                        <li><a href="#jump6">Questions</a></li>
+                        <li><a href="#jump6">Messages</a></li>
                         <sec:authorize access="authenticated" var="authenticated" /> 
 					    <c:choose>
 						 	<c:when test="${!authenticated}">
@@ -122,7 +122,7 @@
     </header>
     <div class="jumper" id="jump0">
     </div>
-    <div class="section type-1 big splash">
+    <div class="section type-1 big splash" id="crawlerPage">
         <div class="splash-cover">
         </div>
         <div class="container">
@@ -164,12 +164,12 @@
 								%>
 								<div class="col-sm-6">
 									<label>Parameter name ${i}:</label> <input type="text"
-										name="domRuleName${i}" id="domRuleName${i}"
+										name='domRuleName${i}' id="domRuleName${i}"
 										class="form-control" value='${domRule.key}'>
 								</div>
 								<div class="col-sm-6">
 									<label>Looking beetween specific tag:</label> <input
-										type="text" name="domRuleValue${i}" id="domRuleValue${i}"
+										type="text" name='domRuleValue${i}' id='domRuleValue${i}'
 										class="form-control" value='${domRule.value}'>
 								</div>
 
@@ -199,7 +199,7 @@
 										</p>
 										<div class="col-sm-6">
 											<span class="input-group-btn">
-												<button class="btn btn-default disabled"
+												<button class="btn btn-outline disabled"
 													id="saveTemplateButton" onclick="saveTemplate();"
 													value="Add scan">Save settings</button>
 											</span>
@@ -234,7 +234,7 @@
 
 							<!-- Alert block -->
 
-							<div class="alert alert-info alert-dismissible fade in"
+							<div class="alert alert-default alert-dismissible fade in"
 								role="alert" id="legalAlert">
 
 								<h4>Legal issues.</h4>
@@ -258,6 +258,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div id="jump1" class="jumper">
     </div>
@@ -318,16 +319,16 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/women/new-arrivals/jewelry.html</mark>
+                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.example.com.html</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/women/new-arrivals/jewelry/.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
+                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.example.com/.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
                                     <br />
                                     <br />
-                                    <b>Problem:</b> when we start scan all result will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
+                                    <b>Problem:</b> when we start scan results will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
                                     <br />
                                     <br /> 
-                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>[g]+</mark> to the end of our regex, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.skagen.com/gb/en/women/new-arrivals/jewelry/.*</mark> for URL Regex.
+                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.example.com/.*g</mark> for URL Regex.
                                     <br />
                                     <br />
                                     <b>Link with settings:</b> <a href="http://scrapingon.com/sn5qQv">http://scrapingon.com/sn5qQv</a>
@@ -427,7 +428,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
   <div id="jump4" class="jumper">
     </div>
     <div class="section type-3">
@@ -435,23 +436,26 @@
             <div class="section-headlines">
                 <h4>
                     Scraping result</h4>
-                <div>
-                    Here you will see all scrapping processes in real time. 
+                <div id="resultHeader">
+                    <h3>Real time data scraping process.</h3> 
                 </div>
             </div>
             
             <div class="col-md-7">
 						<div class="panel panel-success" id="tablePanel">
-							<div class="panel-heading">Result table</div>
-							<div class="panel-body" id="resultTableDiv"></div>
+							<div class="panel-heading"><h4>Result table</h4></div>
+							<div class="panel-body" id="resultTableDiv">
+								<table class="table table-striped" id="resultTable"><thead><tr><td>#</td><td>Name</td><td>Price</td></tr><tr><td>1</td><td>Agnethe Silver-Tone Grey Crystal Pearl Ring</td><td>£39.00</td></tr><tr><td>2</td><td>Katrine Rose-Gold-Tone Heart Pendant Necklace</td><td>£35.00</td></tr><tr><td>3</td><td>Katrine Rose-Gold-Tone Heart Pendant Necklace</td><td>£89.00</td></tr><tr><td>4</td><td>Ditte Silver-Tone Round Pendant Necklace</td><td>£45.00</td></tr><tr><td>5</td><td>Katrine Silver-Tone Heart Pendant Necklace</td><td>£59.00</td></tr><tr><td>6</td><td>Katrine Silver-Tone Pendant Necklace</td><td>£39.00</td></tr><tr><td>7</td><td>Katrine Rose-Gold-Tone Pendant Necklace</td><td>£49.00</td></tr><tr><td>8</td><td>Krinsen Silver-Tone Ring</td><td>£49.00</td></tr></thead></table>
+							</div>
 						</div>
 					</div>
 
 					<div class="col-md-5">
 						<div class="panel panel-success" id="console">
-							<div class="panel-heading">Console output</div>
+							<div class="panel-heading" id="consoleHeading"><h4>Console output</h4></div>
 							<div class="panel-body" id="consoleBody">
 								<p>Scanning output console...</p>
+								- Started scanning: 13:57:03 28-01-2015<br><p>- Found page: http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/katrine-silver-tone-pendant-necklace-pdpskj0602p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/katrine-rose-gold-tone-pendant-necklace-pdpskj0603p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/krinsen-silver-tone-ring-pdpskj0600p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/ditte-rose-gold-tone-round-pendant-necklace-pdpskj0557p.html?referer=productlisting<br></p><p>- Finished: 13:57:06 28-01-2015<br>
 							</div>
 						</div>
 					</div>

@@ -51,16 +51,16 @@ public class Launcher extends DeepCrawler {
 	public Links visitAndGetNextLinks(Page page, LinkedHashMap<String, String> domRules) {
 				
 		Document doc = null;
-						
+					
 		try {
 			doc = Jsoup.connect(page.getUrl()).userAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0").referrer("https://www.google.com/").get();
 		} catch (IOException e) {
 			this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Cannot create connection: Is URL is valid?"));
 			e.printStackTrace();
 		}
-		String title = doc.title();
-		System.out.println("URL:" + page.getUrl() + " Title: " + title);		
-		this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Found page: " + page.getUrl()) + " proceed...");
+		
+				
+		this.messagingTemplate.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Found page: " + page.getUrl() + " proceed..."));
 			
 		String titleText = page.getDoc().select("title").text();
 								
