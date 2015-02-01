@@ -110,8 +110,8 @@ public class MainController {
 			userInput.setDomRules(replacerQuote.replaceQuotes((userInput.getDomRules())));
 			userInput.setDomRules(converterDom.convertTag((userInput.getDomRules()))); //convert dom rules
 			
-			/*String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
-			String saveDir = "/tututshki/";
+			String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
+			/*String saveDir = "/tut/";*/
 			
 			Launcher crawler = new Launcher(saveDir, principal, userInput.getRegex(), template);
 			crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());

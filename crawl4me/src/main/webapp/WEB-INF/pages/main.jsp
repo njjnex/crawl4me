@@ -6,9 +6,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
+   <!--  <meta charset="utf-8"> -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     <title>ScrapingOn free online data scraping.</title>
     <!-- Stylesheets -->
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.css" rel="stylesheet">
@@ -40,6 +41,17 @@
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
 	
+	<!-- Google Analytics -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59209796-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	
 </head>
 <body >
@@ -443,106 +455,19 @@
             
             <div class="col-md-7">
 						<div class="panel panel-success" id="tablePanel">
-<<<<<<< HEAD
 							<div class="panel-heading"><h4>Result table</h4></div>
 							<div class="panel-body" id="resultTableDiv">
 								<table class="table table-striped" id="resultTable"><thead><tr><td>#</td><td>Name</td><td>Price</td></tr><tr><td>1</td><td>Agnethe Silver-Tone Grey Crystal Pearl Ring</td><td>£39.00</td></tr><tr><td>2</td><td>Katrine Rose-Gold-Tone Heart Pendant Necklace</td><td>£35.00</td></tr><tr><td>3</td><td>Katrine Rose-Gold-Tone Heart Pendant Necklace</td><td>£89.00</td></tr><tr><td>4</td><td>Ditte Silver-Tone Round Pendant Necklace</td><td>£45.00</td></tr><tr><td>5</td><td>Katrine Silver-Tone Heart Pendant Necklace</td><td>£59.00</td></tr><tr><td>6</td><td>Katrine Silver-Tone Pendant Necklace</td><td>£39.00</td></tr><tr><td>7</td><td>Katrine Rose-Gold-Tone Pendant Necklace</td><td>£49.00</td></tr><tr><td>8</td><td>Krinsen Silver-Tone Ring</td><td>£49.00</td></tr></thead></table>
-=======
-							<div class="panel-heading">Result table</div>
-							<%-- <img class="img-responsive" alt=""
-                         src="${pageContext.request.contextPath}/resources/web/img/sample_overlay.gif" /> --%>
-							<div class="panel-body" id="resultTableDiv">	12 Parfumeurs Francais		0,00	
-46909		12 PARFUMEURS Intrigues des Hommes men 100ml edp	16005,00	
-46910		12 PARFUMEURS Intrigues des Hommes men test 100ml edp	11525,00	
-46923		12 PARFUMEURS Le Charmeur men 100ml edp	16005,00	
-46924		12 PARFUMEURS Le Charmeur men test 100ml edp	11525,00	
-46921		12 PARFUMEURS Le Fantome men 100ml edp	16005,00	
-46922		12 PARFUMEURS Le Fantome men test 100ml edp	11525,00	
-46920		12 PARFUMEURS Ma Reine lady 100ml edp	15135,00	
-46919		12 PARFUMEURS Ma Reine lady test 100ml edp	11525,00	
-46913		12 PARFUMEURS Mon Amour lady 100ml edp	15135,00	
-46914		12 PARFUMEURS Mon Amour lady test 100ml edp	11525,00	
-46916		12 PARFUMEURS Mon Cher men test 100ml edp	11525,00	
-46911		12 PARFUMEURS Mon Roi men 100ml edp	16005,00	
-46912		12 PARFUMEURS Mon Roi men test 100ml edp	11525,00	
-46930		12 PARFUMEURS Secret de l'Amour lady test 100ml edp	11525,00	
-46927		12 PARFUMEURS Secrets des Hommes men 100ml edp	16005,00	
-46928		12 PARFUMEURS Secrets des Hommes men test 100ml edp	11525,00	
-	Acqua di Parma		0,00	
-40324		ACQUA DI PARMA Colonia unisex  50ml edC	3440,00	
-40325		ACQUA DI PARMA Colonia unisex 100ml edC	4720,00	
-	Adidas		0,00	
-18003		ADIDAS Deep Energy men  50ml edT  	210,00	
-25962		ADIDAS Deep Energy men 100ml edT  	240,00	
-12115		ADIDAS Dynamic Pulse men  50ml edT  	210,00	
-1904		ADIDAS Dynamic Pulse men 100ml edT  	240,00	
-42159		ADIDAS Extreme Power men  50ml edT  	210,00	
-38036		ADIDAS Extreme Power men 100ml edT  	240,00	
-44157		ADIDAS Fizzy Energy lady 30ml edT 	270,00	
-44273		ADIDAS Fizzy Energy lady 50ml edT 	305,00	
-3684		ADIDAS Floral Dream lady  30ml edT 	270,00	
-1074		ADIDAS Fruity Rhythm lady  30ml edT 	270,00	
-4326		ADIDAS Ice Dive men  50ml edT  	210,00	
-1182		ADIDAS Ice Dive men 100ml edT  	255,00	
-32915		ADIDAS Intense Touch men  50ml edT   	210,00	
-34620		ADIDAS Intense Touch men 100ml edT   	240,00	
-35133		ADIDAS Natural Vitality lady  30ml edT 	270,00	
-29208		ADIDAS Pure Game men  50ml edT  	210,00	
-34440		ADIDAS Pure Game men 100ml edT  	240,00	
-16616		ADIDAS Pure Lightness lady  30ml edT 	270,00	
-44762		ADIDAS Team Five men 100ml edT 	240,00	
-12119		ADIDAS Team Force men  50ml edT	215,00	
-4878		ADIDAS Team Force men 100ml edT	275,00	
-2218		ADIDAS Victory League men  50ml edT 	215,00	
->>>>>>> branch 'master' of https://github.com/njjnex/crawl4me.git
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-5">
 						<div class="panel panel-success" id="console">
-<<<<<<< HEAD
 							<div class="panel-heading" id="consoleHeading"><h4>Console output</h4></div>
-=======
-							<div class="panel-heading">Console output</div>
-							
->>>>>>> branch 'master' of https://github.com/njjnex/crawl4me.git
 							<div class="panel-body" id="consoleBody">
-<<<<<<< HEAD
 								<p>Scanning output console...</p>
 								- Started scanning: 13:57:03 28-01-2015<br><p>- Found page: http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/katrine-silver-tone-pendant-necklace-pdpskj0602p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/katrine-rose-gold-tone-pendant-necklace-pdpskj0603p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/krinsen-silver-tone-ring-pdpskj0600p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/ditte-rose-gold-tone-round-pendant-necklace-pdpskj0557p.html?referer=productlisting<br></p><p>- Finished: 13:57:06 28-01-2015<br>
-=======
-								<p>Scanning output console...</p>	12 Parfumeurs Francais		0,00	
-46909		12 PARFUMEURS Intrigues des Hommes men 100ml edp	16005,00	
-46910		12 PARFUMEURS Intrigues des Hommes men test 100ml edp	11525,00	
-46923		12 PARFUMEURS Le Charmeur men 100ml edp	16005,00	
-46924		12 PARFUMEURS Le Charmeur men test 100ml edp	11525,00	
-46921		12 PARFUMEURS Le Fantome men 100ml edp	16005,00	
-46922		12 PARFUMEURS Le Fantome men test 100ml edp	11525,00	
-46920		12 PARFUMEURS Ma Reine lady 100ml edp	15135,00	
-46919		12 PARFUMEURS Ma Reine lady test 100ml edp	11525,00	
-46913		12 PARFUMEURS Mon Amour lady 100ml edp	15135,00	
-46914		12 PARFUMEURS Mon Amour lady test 100ml edp	11525,00	
-46916		12 PARFUMEURS Mon Cher men test 100ml edp	11525,00	
-46911		12 PARFUMEURS Mon Roi men 100ml edp	16005,00	
-46912		12 PARFUMEURS Mon Roi men test 100ml edp	11525,00	
-46930		12 PARFUMEURS Secret de l'Amour lady test 100ml edp	11525,00	
-46927		12 PARFUMEURS Secrets des Hommes men 100ml edp	16005,00	
-46928		12 PARFUMEURS Secrets des Hommes men test 100ml edp	11525,00	
-	Acqua di Parma		0,00	
-40324		ACQUA DI PARMA Colonia unisex  50ml edC	3440,00	
-40325		ACQUA DI PARMA Colonia unisex 100ml edC	4720,00	
-	Adidas		0,00	
-18003		ADIDAS Deep Energy men  50ml edT  	210,00	
-25962		ADIDAS Deep Energy men 100ml edT  	240,00	
-12115		ADIDAS Dynamic Pulse men  50ml edT  	210,00	
-1904		ADIDAS Dynamic Pulse men 100ml edT  	240,00	
-
-	
-								
-								<%-- <img class="img-circle " alt=""
-							src="${pageContext.request.contextPath}/resources/web/img/sample-stamp.png"/> --%>
->>>>>>> branch 'master' of https://github.com/njjnex/crawl4me.git
 							</div>
 						</div>
 					</div>
@@ -690,8 +615,7 @@
 			
 			
 			postMessage();
-
-			
+	
 			</script>
 </body>
 </html>

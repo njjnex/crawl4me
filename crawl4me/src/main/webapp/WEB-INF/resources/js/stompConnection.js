@@ -6,8 +6,8 @@ var returnedResultCount = 0;
 
 	function connect() {
 		
-		/*var socket = new SockJS('http://scrapingon-me2by.rhcloud.com:8000/hello');*/
-		var socket = new SockJS('/hello');
+		var socket = new SockJS('http://scrapingon-me2by.rhcloud.com:8000/hello');
+		/*var socket = new SockJS('/hello');*/
 		stompClient = Stomp.over(socket);
 		stompClient.connect({}, function(frame) {
 			console.log('Connected: ' + frame);

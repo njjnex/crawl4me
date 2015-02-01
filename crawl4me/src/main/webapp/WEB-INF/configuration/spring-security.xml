@@ -22,9 +22,9 @@
 	
 	<!-- Hibernate-related Configuration -->
 	 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/WEB-INF/configuration/jdbcMySQL.properties" />
-          <!-- p:location="/WEB-INF/configuration/jdbcMySQLOpenShift.properties" /> -->
-           
+          
+          p:location="/WEB-INF/configuration/jdbcMySQLOpenShift.properties" />
+           <!-- p:location="/WEB-INF/configuration/jdbcMySQL.properties" /> -->
 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"

@@ -74,7 +74,7 @@ public class Launcher extends DeepCrawler {
 
 				key = domRule.getKey();
 				value = page.getDoc().select(domRule.getValue()).text();
-				
+								
 					resultCount++;
 					resultPage.put(key, value);
 			}
@@ -82,7 +82,6 @@ public class Launcher extends DeepCrawler {
 			boolean emptyResult = true;
 			
 			for(String resultValue : resultPage.values()){
-				System.out.println(resultValue + "--------------");
 				if(!resultValue.equals(""))
 					emptyResult = false;
 			}
