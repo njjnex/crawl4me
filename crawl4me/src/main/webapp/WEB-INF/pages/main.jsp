@@ -32,7 +32,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/custom.js"></script>
     
     <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/alert.js"></script>
-		
+   		
 	<script	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stomp.js"></script>
 	
@@ -40,6 +40,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/templateSaver.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/buttonsCreator.js"></script>
 	
 	<!-- Google Analytics -->
 	<script>
@@ -71,7 +72,7 @@
                             class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="${pageContext.request.contextPath}/resources/web/img/logo1.png" alt="" /></a>
+                        <img src="${pageContext.request.contextPath}/resources/web/img/logo2.png" alt="" /></a>
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
@@ -145,8 +146,7 @@
                             <h2>
                                 Free online web scraper.</h2>                            
                         </div>
-                        <!-- <a href="#jump2" class="btn btn-outline btn-lg">Our Portfolio </a>&nbsp; <a href="#jump6"
-                            class="btn btn-outline btn-lg">Hire Us </a> -->
+                        
                  <!-- Registration data alert -->
                        <c:if test="${resultString ne null}">
 							<script type="text/javascript">resultPopUp(); 
@@ -236,9 +236,9 @@
 								extracted. To specify this rule you can use special symbols.
 								Look for examples in <a href="#jump1">How To.</a><br> <br>
 							</p>
-							<p>For Parametr Name you can choose any name. It will describe the
+							<p>For Parameter Name you can choose any name. It will describe the
 								value what you are looking in the page.</p>
-							Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking beetween specific tag:</i> field. It should looks like:	
+							Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like:	
 								&lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="#jump1">How
 								To</a> for examples.
 							</p>
@@ -322,6 +322,7 @@
                 </div>
                 <div class="col-lg-6 features">
                     <div class="panel-group" id="accordion">
+                        
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
@@ -343,15 +344,15 @@
                                     <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.example.com/.*g</mark> for URL Regex.
                                     <br />
                                     <br />
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sn5qQv">http://scrapingon.com/sn5qQv</a>
+                                    <b>Link with settings:</b> <a href="http://www.scrapingon.com/sn5qQv">http://www.scrapingon.com/sn5qQv</a>
                                 </div>
                             </div>
                         </div>
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                                        href="#collapseTwo">Companies data scraping example. <i class="icon-plus"></i><i class="icon-minus">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    	Companies data scraping example. <i class="icon-plus"></i><i class="icon-minus">
                                         </i></a>
                                 </h3>
                             </div>

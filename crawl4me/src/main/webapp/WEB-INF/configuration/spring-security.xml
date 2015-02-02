@@ -23,14 +23,15 @@
 	<!-- Hibernate-related Configuration -->
 	 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
           
-          p:location="/WEB-INF/configuration/jdbcMySQLOpenShift.properties" />
-           <!-- p:location="/WEB-INF/configuration/jdbcMySQL.properties" /> -->
+          p:location="/WEB-INF/configuration/jdbcMySQL.properties" />
+         <!--  p:location="/WEB-INF/configuration/jdbcMySQLOpenShift.properties" /> -->
+          
 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.databaseUrl}?useUnicode=true&amp;characterEncoding=UTF-8"
 		p:username="${jdbc.username}" p:password="${jdbc.password}"	/>
-		
+			
 	<security:authentication-manager>
 	  <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="dataSource"

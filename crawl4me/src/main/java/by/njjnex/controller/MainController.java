@@ -98,8 +98,8 @@ public class MainController {
 		return "main";
 	}
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
+	@MessageMapping("/crawler")
+	@SendTo("/topic/result")
 	public void greeting(ScanningTemplate userInput, Principal principal) throws Exception {
 				
 		System.out.println(principal + " : " + principal.getName());
@@ -110,16 +110,17 @@ public class MainController {
 			userInput.setDomRules(replacerQuote.replaceQuotes((userInput.getDomRules())));
 			userInput.setDomRules(converterDom.convertTag((userInput.getDomRules()))); //convert dom rules
 			
-			String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
-			/*String saveDir = "/tut/";*/
+			/*String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
+			String saveDir = "/tut/";
 			
 			Launcher crawler = new Launcher(saveDir, principal, userInput.getRegex(), template);
 			crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());
 			
 			this.template.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Finished: " + sdf.format(new Date())));
+			
 			FileUtils.deleteDir(saveDir); 
 		}else{
-			this.template.convertAndSend("/topic/console", new Output("ERROR: Please reload page and try again. " + sdf.format(new Date())));
+			this.template.convertAndSend("/topic/console", new Output("ERROR: Please reload crawler page and try again. " + sdf.format(new Date())));
 		}
 	}
 }
