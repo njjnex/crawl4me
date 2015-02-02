@@ -49,11 +49,11 @@ public class MainController {
 	public String mainPage(Model model) {
 		
 		ScanningTemplate defaultScanningTemplate = new ScanningTemplate();
-		defaultScanningTemplate.setUrl("http://localhost:8080/");
-		defaultScanningTemplate.setRegex("http://localhost:8080/");
+		defaultScanningTemplate.setUrl("http://www.carpisa.it/en/shop-online/donna/oggettistica/portagioie-3/");
+		defaultScanningTemplate.setRegex("http://www.carpisa.it/en/shop-online/donna/oggettistica/portagioie-3/.*");
 		Map<String,String> domRules = new LinkedHashMap<String, String>();
-		domRules.put("Title", "<title>");
-		domRules.put("Text", "<div id=\"footer\">");
+		domRules.put("Title", "<div id=\"description\">");
+		domRules.put("Text", "<span class=\"price\">");
 		defaultScanningTemplate.setDomRules(domRules);
 				
 		model.addAttribute("template", defaultScanningTemplate);
@@ -110,8 +110,8 @@ public class MainController {
 			userInput.setDomRules(replacerQuote.replaceQuotes((userInput.getDomRules())));
 			userInput.setDomRules(converterDom.convertTag((userInput.getDomRules()))); //convert dom rules
 			
-			/*String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
-			String saveDir = "/tut/";
+			String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
+			/*String saveDir = "/tut/";*/
 			
 			Launcher crawler = new Launcher(saveDir, principal, userInput.getRegex(), template);
 			crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());
