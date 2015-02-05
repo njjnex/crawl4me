@@ -3,6 +3,7 @@ package by.njjnex.collector;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -11,6 +12,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import by.njjnex.logic.ValueExtractor;
+import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
 import by.njjnex.model.ScanningTemplate;
 import cn.edu.hfut.dmic.webcollector.crawler.Crawler;
@@ -28,7 +30,7 @@ public class Launcher extends DeepCrawler{
 	private final String USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0";
 	private final String REFERRER = "https://www.google.com/";
 	
-	private int resultCount = 0;
+	private int pageCount = 0;
 	private int resultFounded = 0;
 	private boolean maximumReached = false;
 		
@@ -38,7 +40,7 @@ public class Launcher extends DeepCrawler{
 	private Principal principal;
 	private SimpMessagingTemplate messagingTemplate;
 	private LinkedHashMap<String, String> resultPage = new LinkedHashMap<String, String>();
-	private LinkedHashMap<String, String> domRules;
+	private ArrayList<DomRule> domRules;
 	private ScanningTemplate scanningTemplate;
 	
 	
@@ -47,36 +49,36 @@ public class Launcher extends DeepCrawler{
 		this.scanningTemplate = scanningTemplate;
 		this.principal = principal;
 		this.messagingTemplate = messagingTemplate;
-		this.domRules = (LinkedHashMap<String, String>) scanningTemplate.getDomRules();
+		this.domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
 		regexRule.addRule(scanningTemplate.getRegex()); // positive rule
 		
-		settingCrawler(this, scanningTemplate.getUrl(), (LinkedHashMap<String, String>) domRules );
+		settingCrawler(this, scanningTemplate.getUrl(), domRules );
 	}
 
 	
 	public Links visitAndGetNextLinks(Page page) {
 
 		Document doc = null;
-
+		String titleText = null;
+		
 		try {
 			doc = Jsoup.connect(page.getUrl()).userAgent(USER_AGENT).referrer(REFERRER).get();
+			titleText = doc.select("title").text();
 		} catch (IOException e) {
-			this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output("Cannot create connection...."));
+			this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output("ERROR: Cannot create connection...."));
 			e.printStackTrace();
 		}
 
 		this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output("Found page: " + page.getUrl() + " proceed..."));
-
-		String titleText = doc.select("title").text();
-						
+					
 		if (!titleText.isEmpty()){
 			resultPage = new ValueExtractor(scanningTemplate).extract(doc);
-			resultCount++;
+			pageCount++;
 		}
 			
 			boolean emptyResult = true;
 
-			if (resultCount == 0) {
+			if (pageCount == 0) {
 				for (String resultValue : resultPage.values()) {
 					if (resultValue.equals(""))
 						emptyResult = true;
@@ -87,7 +89,7 @@ public class Launcher extends DeepCrawler{
 						emptyResult = false;
 					}
 			
-			System.out.println("page count: " + resultCount);
+			System.out.println("page count: " + pageCount);
 			System.out.println("empty? " + emptyResult);
 			if (!emptyResult) {
 				resultFounded++;
@@ -101,7 +103,7 @@ public class Launcher extends DeepCrawler{
 		nextLinks.addAllFromDocument(doc, regexRule);
 
 		if (resultFounded > MAXIMUM_RESULT) maximumReached = true;
-		
+		if (pageCount > 100) maximumReached = true;
 		
 		if(maximumReached){
 			this.messagingTemplate.convertAndSendToUser(principal.getName(),
@@ -112,7 +114,7 @@ public class Launcher extends DeepCrawler{
 		return nextLinks;
 	}
 
-	public void settingCrawler(Crawler userCrawler, String urlToScan, LinkedHashMap<String, String> domRules) throws Exception {
+	public void settingCrawler(Crawler userCrawler, String urlToScan, ArrayList<DomRule> domRules) throws Exception {
 		this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output("Started scanning: " + sdf.format(new Date())));
 		userCrawler.addSeed(urlToScan);
 		userCrawler.setThreads(THREADS);

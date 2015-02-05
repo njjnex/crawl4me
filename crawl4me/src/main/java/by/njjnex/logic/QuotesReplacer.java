@@ -1,13 +1,13 @@
 package by.njjnex.logic;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+
+import by.njjnex.model.DomRule;
 
 public class QuotesReplacer {
 
-	public Map<String, String> replaceQuotes(Map<String, String> domRules){
-		for(Entry<String, String> rule:domRules.entrySet()){
+	public ArrayList<DomRule> replaceQuotes(ArrayList<DomRule> domRules){
+		for(DomRule rule:domRules){
 			String value =rule.getValue();
 			String result = null;
 						
@@ -16,6 +16,6 @@ public class QuotesReplacer {
 			 	rule.setValue(result);
 			 }
 		}
-		return (LinkedHashMap<String, String>) domRules;
+		return domRules;
 	}
 }

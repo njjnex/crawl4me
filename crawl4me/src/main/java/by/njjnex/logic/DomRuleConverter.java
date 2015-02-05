@@ -1,10 +1,10 @@
 package by.njjnex.logic;
 
 import java.util.ArrayList;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.njjnex.model.DomRule;
 import by.njjnex.model.ScanningTemplate;
 
 public class DomRuleConverter {
@@ -14,11 +14,13 @@ public class DomRuleConverter {
 		
 		ArrayList<String> selectors = new ArrayList<String>();
 		
-		for(Entry<String, String> rule: scanningTemplate.getDomRules().entrySet()){
+		for(DomRule rule: scanningTemplate.getDomRules()){
 			String value = rule.getValue();
 			String result = null;
 					
 			System.out.println("rule before:" + value);
+			
+			value = value.trim();
 			
 			if (value.contains("{")){
 				String selector = StringUtils.substringBetween(value, "{","}");

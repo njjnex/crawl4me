@@ -2,11 +2,10 @@ package by.njjnex.logic;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.jsoup.nodes.Document;
 
+import by.njjnex.model.DomRule;
 import by.njjnex.model.ScanningTemplate;
 
 public class ValueExtractor {
@@ -25,10 +24,10 @@ public class ValueExtractor {
 		String value = null;
 		String key = null;
 		String selector = null;
-		Map<String,String> domRules = scanningTemplate.getDomRules();
+		ArrayList<DomRule> domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
 		ArrayList<String> selectors = scanningTemplate.getSelectors();
 		
-		for (Entry<String, String> domRule : domRules.entrySet()){
+		for (DomRule domRule : domRules){
 			
 			key = domRule.getKey();
 			selector = selectors.get(domRuleNumber);
