@@ -1,35 +1,37 @@
 package by.njjnex.logic;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
+import by.njjnex.model.DomRule;
+import by.njjnex.model.ScanningTemplate;
+
 public class DomRuleConverter {
 	
-	private List<String> selectors = new ArrayList<String>();
 	
-	public Map<String, String> convertTag(Map<String, String> domRules){
-		for(Entry<String, String> rule:domRules.entrySet()){
-			String value =rule.getValue();
+	public ScanningTemplate convertTags(ScanningTemplate scanningTemplate){
+		
+		ArrayList<String> selectors = new ArrayList<String>();
+		
+		for(DomRule rule: scanningTemplate.getDomRules()){
+			String value = rule.getValue();
 			String result = null;
+					
 			System.out.println("rule before:" + value);
+			
+			value = value.trim();
 			
 			if (value.contains("{")){
 				String selector = StringUtils.substringBetween(value, "{","}");
-				selectors.add(selector);
-				
 				value = StringUtils.substringBefore(value, "{");
-				System.out.println("value substring " + value);
+				selectors.add(selector);
+				System.out.println("Selector extracted: " + selector);
 			}else{
-				selectors.add("0");
-				System.out.println("no selectors founded " + value);
+				selectors.add("empty");
+				System.out.println("No selectors founded " + value);
 			}
-			
-			
+				
 			 if(value.startsWith("<") && value.endsWith(">")){
 				 result = value.replaceFirst(" ", "[");
 				 result = result.replaceFirst("<", "");
@@ -43,10 +45,10 @@ public class DomRuleConverter {
 				 rule.setValue(result);
 				 System.out.println("rule after:" + result);
 			 }
-			
 		}
+		scanningTemplate.setSelectors(selectors);
 		
-		
-		return (LinkedHashMap<String, String>) domRules;
+		return scanningTemplate;
 	}
+
 }	

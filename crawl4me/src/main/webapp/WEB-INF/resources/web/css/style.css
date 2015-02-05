@@ -965,6 +965,7 @@ form fieldset {
 mark{
 	color:green;
 	background-color: white;
+	font-weight: bold;
 }
 #tablePanel h4, #consoleHeading h4{
 	color: white;
