@@ -332,10 +332,10 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.example.com.html</mark>
+                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.example.com/.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
+                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
                                     <br />
                                     <br />
                                     <b>Problem:</b> when we start scan results will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
@@ -344,7 +344,7 @@
                                     <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.example.com/.*g</mark> for URL Regex.
                                     <br />
                                     <br />
-                                    <b>Link with settings:</b> <a href="http://www.scrapingon.com/sn5qQv">http://www.scrapingon.com/sn5qQv</a>
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sHmrWa">http://scrapingon.com/sHmrWa</a>
                                 </div>
                             </div>
                         </div>
@@ -352,13 +352,22 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    	Companies data scraping example. <i class="icon-plus"></i><i class="icon-minus">
+                                    	URL scraping example. <i class="icon-plus"></i><i class="icon-minus">
                                         </i></a>
                                 </h3>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Coming soon....
+                                    <b>Task:</b> get schools URLs from: <mark> http://www.ncaa.com/schools/a</mark>
+                                   	<br />
+                                    <br />
+                                    <b>Steps:</b> copy-paste link to the <b>URL to scan</b> and <b>URL Regex</b> fields. At the end of regex add <mark>\w{2,20}</mark> hats mean that any worls symbol must be found from 2 to 20 times. After that find tags in HTML code with data. Copy-paste it to the other fields.  
+                                    <br />
+                                    <br />
+                                    <b>Problem:</b> no problems... 
+                                    <br />
+                                    <br /> 
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/s3pjpP">http://scrapingon.com/sn5qQv</a>
                                 </div>
                             </div>
                         </div>
