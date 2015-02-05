@@ -278,9 +278,9 @@
         <div class="container">
             <div class="section-headlines">
                 <h3>
-                    ScrapingOn.com web scraping service.</h3>
+                    ScrapingOn.com free online web scraping.</h3>
                 <div>
-                     Web scraping or crawling is a computer software technique of extracting information from websites. It can be useful in many cases:
+                     Data crawling as easy as never before. Extract and organise data in one click. It can be useful in many cases:
                 </div>
             </div>
             <div class="row">
@@ -372,7 +372,19 @@
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Coming soon....
+                                    <b>Task:</b> crawl islands prices from: <mark> http://www.caribbeanislandbrokers.com</mark>
+                                   	<br />
+                                    <br />
+                                    <b>Steps:</b> visit site and open first island in the list copy-paste URL <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye</mark> as we want parce all islands the start crawling <b>URL to scan</b>will be <mark> http://www.caribbeanislandbrokers.com/islands-for-sale</mark> and <b>URL Regex</b> <mark>http://www.caribbeanislandbrokers.com/islands-for-sale.*</mark>. Open island page as HTML (Right-click on a web page to open the right-click context menu and select Page Source) and find <i>Manta Caye</i> text in the content. This text is placed in <mark>&lt;h2&gt;</mark> tags copy-paste it into <b>Looking beetween specific tag:</b> field. At the next line we can see price also placed in <mark>&lt;h2&gt;</mark> tags copy-paste into <b>Looking beetween specific tag:</b> second Parameter name.
+                                    <br />
+                                    <br />
+                                    <b>Problem:</b> how crawled will detects where is name tag and where is price tag as there bouth placed between <mark>&lt;h2&gt;</mark> tags.
+                                    <br />
+                                    <br /> 
+                                    <b>Solution:</b> to show crawler from with tags scrap data we can add selectors to the end of tag <b>{first}</b> or <b>{last}</b>. So in the <b>Looking beetween specific tag:</b> for first parameter <i>Name</i> we will have <mark>&lt;h2&gt;{first}</mark> and <mark>&lt;h2&gt;{last}</mark> for the second. When we will start scan we can see that not unique results appear as pages like <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye/image-3927</mark> also proceeded to avoid this simple add <mark>\D</mark> at the end of <b>URL Regex</b> it will crawler to scan only pages that ends with letters (not digists).
+                                    <br />
+                                    <br />
+                                    <b>Link with settings:</b> 
                                 </div>
                             </div>
                         </div>
@@ -390,7 +402,7 @@
             <div class="row">
                 <div class="col-lg-6 features">
                     <h3>
-                        About scraper free version:</h3>
+                        About scraper 1.1 version:</h3>
                     <div class="skills">
                         <p>Start right now:</p>
                       <ul>
@@ -414,6 +426,11 @@
                        		<li>If you need more functionality please Contact us and we will add what you need.</li>
                         </ul>
                         <hr>
+                        <p>Whats new:</p>
+                       	<ul>	
+                       		<li>Supports selectors syntax {first} and {last} ex: &lt;h2&gt;{first}. See real estate example.</li>
+                       		<li>Performance upgrades.</li>
+                        </ul>
                        
                     </div>
                 </div>
