@@ -90,16 +90,6 @@ function createRequestMap(){
 			domRules.push(domRule4);
 		}	
 		console.log("request MAP " + requestMap);
-		/*var map = {}
-		requestMap["domRules"] = map;
-		if (domRuleName1 && domRuleValue1)
-			map[domRuleName1] = domRuleValue1;
-		if (domRuleName2 && domRuleValue2)
-			map[domRuleName2] = domRuleValue2;
-		if (domRuleName3 && domRuleValue3)
-			map[domRuleName3] = domRuleValue3;
-		if (domRuleName4 && domRuleValue4)
-			map[domRuleName4] = domRuleValue4;*/
-		
+				
 		return requestMap;
 }
