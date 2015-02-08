@@ -268,7 +268,7 @@ h6 {
 }
 strong,
 b {
-  color: #555;
+  color: #666;
 }
 a {
   color: #0088cc;
@@ -387,7 +387,7 @@ form fieldset {
   color: #a5b3bf;
 }
 .section.type-1 h1,
-.section.type-1 h2,
+
 .section.type-1 h3,
 .section.type-1 h4,
 .section.type-1 h5,
@@ -395,6 +395,9 @@ form fieldset {
 .section.type-1 strong,
 .section.type-1 b {
   color: #fff;
+}
+.section.type-1 h2 {
+	color:#a5b3bf;
 }
 .section.type-1 h4 {
   color: #a5b3bf;
@@ -405,7 +408,7 @@ form fieldset {
 }
 .section.type-1 .form-control {
   background: #384048;
-  border-color: transparent !important;
+  border-color:/*  transparent !important */#eee;
   color: #a5b3bf;
   -o-transition: background-color 0.3s linear;
   -ms-transition: background-color 0.3s linear;
@@ -423,30 +426,30 @@ form fieldset {
 }
 .section.type-2 {
   background: #fff;
- 
+  height: 1262px;
+  width: 1349px;
   
 }
 .section.type-3 {
   background: #f0f2f4;
-  background: url(../img/header/section-grey.jpg) no-repeat center center fixed;
+  /* background: url(../img/header/1111.jpg) no-repeat center center fixed; */
   -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        color:white;
+       /*  color:white; */
         opacity: 0.75;
- 
+ .
   
 }
 .section.big {
   height: 100%;
 }
 .section.splash {
-  background: url(../img/header/headerbg.jpg) fixed no-repeat;
+  /* background: url(../img/header/headerbg.jpg) fixed no-repeat; */
   position: relative;
   z-index: 1;
 }
-
 .section.splash h1 {
   font-size: 50px;
   font-weight: 500;
@@ -484,7 +487,7 @@ form fieldset {
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
-  color: #fff;
+  color: #777;
   border-bottom: 2px solid #ddd;
   display: inline-block;
   padding-bottom: 10px;
@@ -499,14 +502,14 @@ form fieldset {
 /*= SPLASH
 ---------------------------------------------------------------------------------------------- */
 .splash-cover {
-  background: black;
+  background: #2a333b;
   width: 100%;
   height: 100%;
   top: 0;
   position: absolute;
   z-index: 2;
-  opacity: 0.45;
-  filter: alpha(opacity=45);
+  opacity: 0.85;
+  filter: alpha(opacity=85);
 }
 .splash-block {
   position: absolute;
@@ -901,17 +904,18 @@ form fieldset {
 }
 #loginMePopUp { 
     background-color:#2A333B;
-    border-radius:5px;
+    border-radius:3px;
     color:#fff;
     display:none; 
     padding:20px;
     min-width:300px;
     min-height: 180px;
     max-width: 350px;
+    font-size: 18px;
 }
 #registerMePopUp { 
-    background-color:#565050;
-    border-radius:5px;
+    background-color:#36424b;
+    border-radius:3px;
     color:#fff;
     text: bold;
     display:none; 
@@ -919,16 +923,18 @@ form fieldset {
     min-width:300px;
     min-height: 180px;
     max-width: 350px;
+     font-size: 18px;
 }
 #resultPopUp{
-	background-color:#B199B1;
-    border-radius:5px;
+	background-color:#84C225;
+    border-radius:3px;
     color:#fff;
     display:none; 
     padding:20px;
     min-width:300px;
     min-height: 10px;
     max-width: 550px;
+    
 }
 .b-close{
     cursor:pointer;
@@ -972,9 +978,11 @@ margin-top:20px;
     /* margin-bottom: 20px;
     background-color: #84C225; */
       background: url(../img/header/sample_overlay.gif) no-repeat center center fixed ;
-    border: 1px solid transparent;
+    border: 1px solid #fff;
     border-radius: 3px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    color: black
 }
 .navbar-brand {
     float: left;
@@ -987,4 +995,28 @@ margin-top:20px;
 mark{
 	color:green;
 	background-color: white;
+	font-weight: bold;
+}
+#tablePanel h4, #consoleHeading h4{
+	color: white;
+}
+#resultTable{
+	color: black;
+}
+#consoleBody{
+	color: black;
+	font-size: 12px;
+}
+#resultHeader h3{
+	color: #777;
+}
+#legalAlert{
+	background: #242b32; 
+	border: 1px solid white;
+}
+/* #crawlerPage{
+	color: white;
+} */
+.container {
+    max-width: 1349px;
 }
