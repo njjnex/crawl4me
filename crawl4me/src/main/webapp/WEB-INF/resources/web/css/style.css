@@ -987,3 +987,6 @@ mark{
 /* #crawlerPage{
 	color: white;
 } */
+.container {
+    max-width: 1349px;
+}
