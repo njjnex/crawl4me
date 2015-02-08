@@ -71,8 +71,8 @@
                         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
                             class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://scrapingon.com">
-                        <img src="${pageContext.request.contextPath}/resources/web/img/logo2.png" alt="Scparingon.com" /></a>
+                    <a class="navbar-brand" href="#">
+                        <img src="${pageContext.request.contextPath}/resources/web/img/logo2.png" alt="" /></a>
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
@@ -98,12 +98,16 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#jump0" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                             Home</a></li>
-                       <li><a href="#jump1" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            How to</a></li>
-                        <li><a href="#jump4" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            Result</a></li>
+                        <li><a href="#jump1" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            How To</a></li>
+                        <li><a href="#jump2" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            Portfolio</a></li>
+                        <li><a href="#jump3" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            Pricing</a></li>
+                        <li><a href="#jump5" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            Clients</a></li>
                         <li><a href="#jump6" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            Messages</a></li>
+                            Contact</a></li>
                         <sec:authorize access="authenticated" var="authenticated" /> 
 					    <c:choose>
 						 	<c:when test="${!authenticated}">
@@ -247,7 +251,9 @@
 
 								<h4>Legal issues.</h4>
 								<p>Web scraping may be against the terms of use of some
-									websites.</p>
+									websites. It really depends on a number of factors and you’ll
+									certainly want to consult with a licensed attorney about your
+									specific situation and your country law.</p>
 								<p>
 									<button type="button" class="btn btn-outline btn-lg"
 										data-dismiss="alert" aria-label="Close" onclick="connect();">I
@@ -326,19 +332,19 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html</mark>
+                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.example.com.html</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
+                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.example.com/.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
                                     <br />
                                     <br />
                                     <b>Problem:</b> when we start scan results will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
                                     <br />
                                     <br /> 
-                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be scanned. So we will got <mark>http://www.skagen.com/gb/en/men/new-arrivals/.*g</mark> for URL Regex.
+                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.example.com/.*g</mark> for URL Regex.
                                     <br />
                                     <br />
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sKWQVc">http://scrapingon.com/sKWQVc</a>
+                                    <b>Link with settings:</b> <a href="http://www.scrapingon.com/sn5qQv">http://www.scrapingon.com/sn5qQv</a>
                                 </div>
                             </div>
                         </div>
@@ -346,22 +352,13 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    	Data scraping example. <i class="icon-plus"></i><i class="icon-minus">
+                                    	Companies data scraping example. <i class="icon-plus"></i><i class="icon-minus">
                                         </i></a>
                                 </h3>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> get schools URLs from: <mark> http://www.ncaa.com/schools/a</mark> wich starts from <b>a</b> letter and no longer than 20 symbols.
-                                   	<br />
-                                    <br />
-                                    <b>Steps:</b> copy-paste link to the <b>URL to scan</b> and <b>URL Regex</b> fields. At the end of regex add <mark>.{2,20}</mark> hats mean that any symbol must be found from 2 to 20 times.So you will get <mark>http://www.ncaa.com/schools/a.{2,20}</mark>. After that find tags in HTML code with data. Copy-paste it to the other fields.  
-                                    <br />
-                                    <br />
-                                    <b>Problem:</b> no problems... 
-                                    <br />
-                                    <br /> 
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/svp58x">http://scrapingon.com/svp58x</a>
+                                    Coming soon....
                                 </div>
                             </div>
                         </div>
@@ -378,16 +375,16 @@
                                     <b>Task:</b> crawl islands prices from: <mark> http://www.caribbeanislandbrokers.com</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> visit site and open first island in the list copy-paste URL <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye</mark> as we want parce all islands the start crawling <i>URL to scan</i> will be <mark> http://www.caribbeanislandbrokers.com/islands-for-sale</mark> and <i>URL Regex</i> <mark>http://www.caribbeanislandbrokers.com/islands-for-sale.*</mark>. Open island page as HTML (Right-click on a web page to open the right-click context menu and select Page Source) and find <i>Manta Caye</i> text in the content. This text is placed in <mark>&lt;h2&gt;</mark> tags copy-paste it into <i>Looking beetween specific tag:</i> field. At the next line we can see price also placed in <mark>&lt;h2&gt;</mark> tags copy-paste into <i>Looking beetween specific tag:</i> second Parameter name.
+                                    <b>Steps:</b> visit site and open first island in the list copy-paste URL <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye</mark> as we want parce all islands the start crawling <b>URL to scan</b>will be <mark> http://www.caribbeanislandbrokers.com/islands-for-sale</mark> and <b>URL Regex</b> <mark>http://www.caribbeanislandbrokers.com/islands-for-sale.*</mark>. Open island page as HTML (Right-click on a web page to open the right-click context menu and select Page Source) and find <i>Manta Caye</i> text in the content. This text is placed in <mark>&lt;h2&gt;</mark> tags copy-paste it into <b>Looking beetween specific tag:</b> field. At the next line we can see price also placed in <mark>&lt;h2&gt;</mark> tags copy-paste into <b>Looking beetween specific tag:</b> second Parameter name.
                                     <br />
                                     <br />
                                     <b>Problem:</b> how crawled will detects where is name tag and where is price tag as there bouth placed between <mark>&lt;h2&gt;</mark> tags.
                                     <br />
                                     <br /> 
-                                    <b>Solution:</b> to show crawler from with tags scrap data we can add selectors to the end of tag <i>{first}</i> or <i>{last}</i>. So in the <i>Looking beetween specific tag:</i> for first parameter <i>Name</i> we will have <mark>&lt;h2&gt;{first}</mark> and <mark>&lt;h2&gt;{last}</mark> for the second. When we will start scan we can see that not unique results appear as pages like <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye/image-3927</mark> also proceeded to avoid this simple add <mark>\D</mark> at the end of <i>URL Regex</i> it will crawler to scan only pages that ends with letters (not digists).
+                                    <b>Solution:</b> to show crawler from with tags scrap data we can add selectors to the end of tag <b>{first}</b> or <b>{last}</b>. So in the <b>Looking beetween specific tag:</b> for first parameter <i>Name</i> we will have <mark>&lt;h2&gt;{first}</mark> and <mark>&lt;h2&gt;{last}</mark> for the second. When we will start scan we can see that not unique results appear as pages like <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye/image-3927</mark> also proceeded to avoid this simple add <mark>\D</mark> at the end of <b>URL Regex</b> it will crawler to scan only pages that ends with letters (not digists).
                                     <br />
                                     <br />
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/shZv2U">http://scrapingon.com/shZv2U</a>
+                                    <b>Link with settings:</b> 
                                 </div>
                             </div>
                         </div>
@@ -442,12 +439,17 @@
                     <p><strong>Start crawling with ScrapingOn.com step-by-steb:</strong><br>
                     <ol>
                     	<li>Read Legal issues and click I got it. Let's start button</li>
-                    	<li>Enter crawling resource in URL to scan and chose wich page should be examined by filling URL Regex rule field</li>
-                    	<li>Choose wich data you want to scrap from pages. Open page as HTML code view and find between wich tags your data placed after copy paste tag for the first parameter and do the same for the second parameter.</li>
+                    	<li>Choose the resource to crawl. In our case it will be <i>http://www.carpisa.it/</i></li>
+                    	<li>We want to crawl goods and prices from woman jewel boxes category. Visit to any product page in this category. In our case it is <b>http://www.carpisa.it/en/shop-online/donna/oggettistica/portagioie-3/clodette-jewel-box.html</b></li>
+                    	<li>Copy paste url to Starting crawl URL field (without product name). So it will be <i>http://www.carpisa.it/en/shop-online/donna/oggettistica/portagioie-3/</i></li>
+                    	<li>As we want to crawl all jewel boxes from this category we can paste it also to Regex URL field and add <strong>.*</strong>to the end so we will got in the Regex URL field <b>http://www.carpisa.it/en/shop-online/donna/oggettistica/portagioie-3/.*</b>
+                    	<li>Right click in browser choose <i>View Source</i> and got html source page.</li>
+                    	<li>Find between wich tags jewel box name placed. We must find tags with uniques id or class that appears only one time on each page. <i>CTRL+F</i> will help us to find prase<i>Clodette-Jewel box</i> in the HTML source. Forth result is what we are looking for. Is situated between &lth2&gt tags which is place in the &ltdiv id="description" class="active"&gt. This div we will use. But as we can use only one div parameter we will put in the Looking beetween specific tag form <b>&ltdiv id="description"&gt.</b></li>
+                    	<li>Use the same way to find product price. It will be <b>&ltspan class="price"&gt</b>.Copy and paste it to the second Looking beetween specific tag: field.</li>
                     	<li>Click Scan button and scraping will start so you can able to see console log and result table with crawled result.</li>
                     </ol>
                     <p><strong>Having some problems with you scraping.</strong><br>
-                        If you cannot scrap some resource please contact us via email or live message in the site. We will solve your problem and create link for your scan settings. Provide your message with link to site for crawling and specify data wich you want to extract.
+                        If you cannot scrap some resource please contact us with contact form or live message in the site. We will solve your problem and create link for your scan settings. Provide your message with link to site for crawling and specify data wich you want to extract.
                     </p>
                     <p><strong>Want more functions.</strong><br>
                         Please contact us and we will include more functionaluty to web scrapper according to your needs.
@@ -626,7 +628,7 @@
   		
   		<script type="text/javascript">
 			$('#legalAlert').on('closed.bs.alert', function() {
-				setTimeout(createScanButton, 3000);
+				createScanButton();
 			})
 			
 			
