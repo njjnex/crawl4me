@@ -115,8 +115,8 @@ public class MainController {
 			
 			userInput = converterDom.convertTags(userInput);
 			
-			String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
-			/*String saveDir = "/tut/";*/
+			/*String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
+			String saveDir = "/tut/";
 			
 			Launcher crawler = new Launcher(userInput, principal, template, saveDir);
 						
