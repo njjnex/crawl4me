@@ -1,14 +1,16 @@
 package by.njjnex.model;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TEMPLATE")
@@ -21,8 +23,11 @@ public class ScanningTemplate {
 	private String url;
 	@Column(name = "REGEX")
 	private String regex;
-	@ElementCollection(fetch= FetchType.EAGER)
-	private Map<String,String> domRules = new LinkedHashMap<String,String>();
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<DomRule> domRules = new ArrayList<DomRule>();
+	@Transient
+	private ArrayList<String> selectors = new ArrayList<String>();
+	
 	public String getUrl() {
 		return url;
 	}
@@ -35,19 +40,26 @@ public class ScanningTemplate {
 	public void setRegex(String regex) {
 		this.regex = regex;
 	}
-	
-	public Map<String, String> getDomRules() {
-		return domRules;
-	}
-	public void setDomRules(Map<String, String> domRules) {
-		this.domRules = domRules;
-	}
+		
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+	public ArrayList<String> getSelectors() {
+		return selectors;
+	}
+	public void setSelectors(ArrayList<String> selectors) {
+		this.selectors = selectors;
+	}
+	public void setDomRules(List<DomRule> domRules) {
+		this.domRules = domRules;
+	}
+	public List<DomRule> getDomRules() {
+		return domRules;
+	}
+	
 	
 	
 	

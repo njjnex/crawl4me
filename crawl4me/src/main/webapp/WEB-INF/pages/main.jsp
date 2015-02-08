@@ -6,9 +6,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
+   <!--  <meta charset="utf-8"> -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     <title>ScrapingOn free online data scraping.</title>
     <!-- Stylesheets -->
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.css" rel="stylesheet">
@@ -31,7 +32,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/custom.js"></script>
     
     <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/alert.js"></script>
-		
+   		
 	<script	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stomp.js"></script>
 	
@@ -39,7 +40,19 @@
 	<script src="${pageContext.request.contextPath}/resources/js/templateSaver.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/buttonsCreator.js"></script>
 	
+	<!-- Google Analytics -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59209796-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	
 </head>
 <body >
@@ -59,14 +72,14 @@
                             class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="${pageContext.request.contextPath}/resources/web/img/logo1.png" alt="" /></a>
+                        <img src="${pageContext.request.contextPath}/resources/web/img/logo2.png" alt="" /></a>
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="#jump0">Home</a></li>
                         <li><a href="#jump1">How To</a></li>
                         <li><a href="#jump4">Result</a></li>
-                        <li><a href="#jump6">Questions</a></li>
+                        <li><a href="#jump6">Messages</a></li>
                         <sec:authorize access="authenticated" var="authenticated" /> 
 					    <c:choose>
 						 	<c:when test="${!authenticated}">
@@ -122,7 +135,7 @@
     </header>
     <div class="jumper" id="jump0">
     </div>
-    <div class="section type-1 big splash">
+    <div class="section type-1 big splash" id="crawlerPage">
         <div class="splash-cover">
         </div>
         <div class="container">
@@ -133,8 +146,7 @@
                             <h2>
                                 Free online web scraper.</h2>                            
                         </div>
-                        <!-- <a href="#jump2" class="btn btn-outline btn-lg">Our Portfolio </a>&nbsp; <a href="#jump6"
-                            class="btn btn-outline btn-lg">Hire Us </a> -->
+                        
                  <!-- Registration data alert -->
                        <c:if test="${resultString ne null}">
 							<script type="text/javascript">resultPopUp(); 
@@ -164,12 +176,12 @@
 								%>
 								<div class="col-sm-6">
 									<label>Parameter name ${i}:</label> <input type="text"
-										name="domRuleName${i}" id="domRuleName${i}"
+										name='domRuleName${i}' id="domRuleName${i}"
 										class="form-control" value='${domRule.key}'>
 								</div>
 								<div class="col-sm-6">
 									<label>Looking beetween specific tag:</label> <input
-										type="text" name="domRuleValue${i}" id="domRuleValue${i}"
+										type="text" name='domRuleValue${i}' id='domRuleValue${i}'
 										class="form-control" value='${domRule.value}'>
 								</div>
 
@@ -199,7 +211,7 @@
 										</p>
 										<div class="col-sm-6">
 											<span class="input-group-btn">
-												<button class="btn btn-default disabled"
+												<button class="btn btn-outline disabled"
 													id="saveTemplateButton" onclick="saveTemplate();"
 													value="Add scan">Save settings</button>
 											</span>
@@ -224,9 +236,9 @@
 								extracted. To specify this rule you can use special symbols.
 								Look for examples in <a href="#jump1">How To.</a><br> <br>
 							</p>
-							<p>For Parametr Name you can choose any name. It will describe the
+							<p>For Parameter Name you can choose any name. It will describe the
 								value what you are looking in the page.</p>
-							Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking beetween specific tag:</i> field. It should looks like:	
+							Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like:	
 								&lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="#jump1">How
 								To</a> for examples.
 							</p>
@@ -234,14 +246,12 @@
 
 							<!-- Alert block -->
 
-							<div class="alert alert-info alert-dismissible fade in"
+							<div class="alert alert-default alert-dismissible fade in"
 								role="alert" id="legalAlert">
 
 								<h4>Legal issues.</h4>
 								<p>Web scraping may be against the terms of use of some
-									websites. It really depends on a number of factors and you’ll
-									certainly want to consult with a licensed attorney about your
-									specific situation and your country law.</p>
+									websites. </p>
 								<p>
 									<button type="button" class="btn btn-outline btn-lg"
 										data-dismiss="alert" aria-label="Close" onclick="connect();">I
@@ -259,15 +269,16 @@
             </div>
         </div>
     </div>
+    </div>
     <div id="jump1" class="jumper">
     </div>
     <div class="section type-2">
         <div class="container">
             <div class="section-headlines">
                 <h3>
-                    ScrapingOn.com web scraping service.</h3>
+                    ScrapingOn.com free online web scraping.</h3>
                 <div>
-                     Web scraping or crawling is a computer software technique of extracting information from websites. It can be useful in many cases:
+                     Data crawling as easy as never before. Extract and organise data in one click. It can be useful in many cases:
                 </div>
             </div>
             <div class="row">
@@ -309,6 +320,7 @@
                 </div>
                 <div class="col-lg-6 features">
                     <div class="panel-group" id="accordion">
+                        
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
@@ -318,33 +330,42 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/women/new-arrivals/jewelry.html</mark>
+                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/women/new-arrivals/jewelry/.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
+                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
                                     <br />
                                     <br />
-                                    <b>Problem:</b> when we start scan all result will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
+                                    <b>Problem:</b> when we start scan results will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
                                     <br />
                                     <br /> 
-                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>[g]+</mark> to the end of our regex, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be examined. So we will got <mark>http://www.skagen.com/gb/en/women/new-arrivals/jewelry/.*</mark> for URL Regex.
+                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be scanned. So we will got <mark>http://www.skagen.com/gb/en/men/new-arrivals/.*g</mark> for URL Regex.
                                     <br />
                                     <br />
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sn5qQv">http://scrapingon.com/sn5qQv</a>
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sKWQVc">http://scrapingon.com/sKWQVc</a>
                                 </div>
                             </div>
                         </div>
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                                        href="#collapseTwo">Companies data scraping example. <i class="icon-plus"></i><i class="icon-minus">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    	Data scraping example. <i class="icon-plus"></i><i class="icon-minus">
                                         </i></a>
                                 </h3>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Coming soon....
+                                    <b>Task:</b> get schools URLs from: <mark> http://www.ncaa.com/schools/a</mark> wich starts from <b>a</b> letter and no longer than 20 symbols.
+                                   	<br />
+                                    <br />
+                                    <b>Steps:</b> copy-paste link to the <b>URL to scan</b> and <b>URL Regex</b> fields. At the end of regex add <mark>.{2,20}</mark> hats mean that any symbol must be found from 2 to 20 times.So you will get <mark>http://www.ncaa.com/schools/a.{2,20}</mark>. After that find tags in HTML code with data. Copy-paste it to the other fields.  
+                                    <br />
+                                    <br />
+                                    <b>Problem:</b> no problems... 
+                                    <br />
+                                    <br /> 
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/svp58x">http://scrapingon.com/svp58x</a>
                                 </div>
                             </div>
                         </div>
@@ -358,7 +379,19 @@
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Coming soon....
+                                    <b>Task:</b> crawl islands prices from: <mark> http://www.caribbeanislandbrokers.com</mark>
+                                   	<br />
+                                    <br />
+                                    <b>Steps:</b> visit site and open first island in the list copy-paste URL <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye</mark> as we want parce all islands the start crawling <i>URL to scan</i> will be <mark> http://www.caribbeanislandbrokers.com/islands-for-sale</mark> and <i>URL Regex</i> <mark>http://www.caribbeanislandbrokers.com/islands-for-sale.*</mark>. Open island page as HTML (Right-click on a web page to open the right-click context menu and select Page Source) and find <i>Manta Caye</i> text in the content. This text is placed in <mark>&lt;h2&gt;</mark> tags copy-paste it into <i>Looking beetween specific tag:</i> field. At the next line we can see price also placed in <mark>&lt;h2&gt;</mark> tags copy-paste into <i>Looking beetween specific tag:</i> second Parameter name.
+                                    <br />
+                                    <br />
+                                    <b>Problem:</b> how crawled will detects where is name tag and where is price tag as there bouth placed between <mark>&lt;h2&gt;</mark> tags.
+                                    <br />
+                                    <br /> 
+                                    <b>Solution:</b> to show crawler from with tags scrap data we can add selectors to the end of tag <i>{first}</i> or <i>{last}</i>. So in the <i>Looking beetween specific tag:</i> for first parameter <i>Name</i> we will have <mark>&lt;h2&gt;{first}</mark> and <mark>&lt;h2&gt;{last}</mark> for the second. When we will start scan we can see that not unique results appear as pages like <mark>http://www.caribbeanislandbrokers.com/islands-for-sale/Manta-Caye/image-3927</mark> also proceeded to avoid this simple add <mark>\D</mark> at the end of <i>URL Regex</i> it will crawler to scan only pages that ends with letters (not digists).
+                                    <br />
+                                    <br />
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/shZv2U">http://scrapingon.com/shZv2U</a>
                                 </div>
                             </div>
                         </div>
@@ -376,7 +409,7 @@
             <div class="row">
                 <div class="col-lg-6 features">
                     <h3>
-                        About scraper free version:</h3>
+                        About scraper 1.1 version:</h3>
                     <div class="skills">
                         <p>Start right now:</p>
                       <ul>
@@ -400,6 +433,11 @@
                        		<li>If you need more functionality please Contact us and we will add what you need.</li>
                         </ul>
                         <hr>
+                        <p>Whats new:</p>
+                       	<ul>	
+                       		<li>Supports selectors syntax {first} and {last} ex: &lt;h2&gt;{first}. See real estate example.</li>
+                       		<li>Performance upgrades.</li>
+                        </ul>
                        
                     </div>
                 </div>
@@ -427,7 +465,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
   <div id="jump4" class="jumper">
     </div>
     <div class="section type-3">
@@ -435,98 +473,26 @@
             <div class="section-headlines">
                 <h4>
                     Scraping result</h4>
-                <div>
-                    Here you will see all scrapping processes in real time. 
+                <div id="resultHeader">
+                    <h3>Real time data scraping process.</h3> 
                 </div>
             </div>
             
             <div class="col-md-7">
 						<div class="panel panel-success" id="tablePanel">
-							<div class="panel-heading">Result table</div>
-							<%-- <img class="img-responsive" alt=""
-                         src="${pageContext.request.contextPath}/resources/web/img/sample_overlay.gif" /> --%>
-							<div class="panel-body" id="resultTableDiv">	12 Parfumeurs Francais		0,00	
-46909		12 PARFUMEURS Intrigues des Hommes men 100ml edp	16005,00	
-46910		12 PARFUMEURS Intrigues des Hommes men test 100ml edp	11525,00	
-46923		12 PARFUMEURS Le Charmeur men 100ml edp	16005,00	
-46924		12 PARFUMEURS Le Charmeur men test 100ml edp	11525,00	
-46921		12 PARFUMEURS Le Fantome men 100ml edp	16005,00	
-46922		12 PARFUMEURS Le Fantome men test 100ml edp	11525,00	
-46920		12 PARFUMEURS Ma Reine lady 100ml edp	15135,00	
-46919		12 PARFUMEURS Ma Reine lady test 100ml edp	11525,00	
-46913		12 PARFUMEURS Mon Amour lady 100ml edp	15135,00	
-46914		12 PARFUMEURS Mon Amour lady test 100ml edp	11525,00	
-46916		12 PARFUMEURS Mon Cher men test 100ml edp	11525,00	
-46911		12 PARFUMEURS Mon Roi men 100ml edp	16005,00	
-46912		12 PARFUMEURS Mon Roi men test 100ml edp	11525,00	
-46930		12 PARFUMEURS Secret de l'Amour lady test 100ml edp	11525,00	
-46927		12 PARFUMEURS Secrets des Hommes men 100ml edp	16005,00	
-46928		12 PARFUMEURS Secrets des Hommes men test 100ml edp	11525,00	
-	Acqua di Parma		0,00	
-40324		ACQUA DI PARMA Colonia unisex  50ml edC	3440,00	
-40325		ACQUA DI PARMA Colonia unisex 100ml edC	4720,00	
-	Adidas		0,00	
-18003		ADIDAS Deep Energy men  50ml edT  	210,00	
-25962		ADIDAS Deep Energy men 100ml edT  	240,00	
-12115		ADIDAS Dynamic Pulse men  50ml edT  	210,00	
-1904		ADIDAS Dynamic Pulse men 100ml edT  	240,00	
-42159		ADIDAS Extreme Power men  50ml edT  	210,00	
-38036		ADIDAS Extreme Power men 100ml edT  	240,00	
-44157		ADIDAS Fizzy Energy lady 30ml edT 	270,00	
-44273		ADIDAS Fizzy Energy lady 50ml edT 	305,00	
-3684		ADIDAS Floral Dream lady  30ml edT 	270,00	
-1074		ADIDAS Fruity Rhythm lady  30ml edT 	270,00	
-4326		ADIDAS Ice Dive men  50ml edT  	210,00	
-1182		ADIDAS Ice Dive men 100ml edT  	255,00	
-32915		ADIDAS Intense Touch men  50ml edT   	210,00	
-34620		ADIDAS Intense Touch men 100ml edT   	240,00	
-35133		ADIDAS Natural Vitality lady  30ml edT 	270,00	
-29208		ADIDAS Pure Game men  50ml edT  	210,00	
-34440		ADIDAS Pure Game men 100ml edT  	240,00	
-16616		ADIDAS Pure Lightness lady  30ml edT 	270,00	
-44762		ADIDAS Team Five men 100ml edT 	240,00	
-12119		ADIDAS Team Force men  50ml edT	215,00	
-4878		ADIDAS Team Force men 100ml edT	275,00	
-2218		ADIDAS Victory League men  50ml edT 	215,00	
+							<div class="panel-heading"><h4>Result table</h4></div>
+							<div class="panel-body" id="resultTableDiv">
+								<table class="table table-striped" id="resultTable"><thead><tr><td>#</td><td>Name</td><td>Price</td></tr><tr><td>1</td><td>Agnethe Silver-Tone Grey Crystal Pearl Ring</td><td>£39.00</td></tr><tr><td>2</td><td>Katrine Rose-Gold-Tone Heart Pendant Necklace</td><td>£35.00</td></tr><tr><td>3</td><td>Katrine Rose-Gold-Tone Heart Pendant Necklace</td><td>£89.00</td></tr><tr><td>4</td><td>Ditte Silver-Tone Round Pendant Necklace</td><td>£45.00</td></tr><tr><td>5</td><td>Katrine Silver-Tone Heart Pendant Necklace</td><td>£59.00</td></tr><tr><td>6</td><td>Katrine Silver-Tone Pendant Necklace</td><td>£39.00</td></tr><tr><td>7</td><td>Katrine Rose-Gold-Tone Pendant Necklace</td><td>£49.00</td></tr><tr><td>8</td><td>Krinsen Silver-Tone Ring</td><td>£49.00</td></tr></thead></table>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-5">
 						<div class="panel panel-success" id="console">
-							<div class="panel-heading">Console output</div>
-							
+							<div class="panel-heading" id="consoleHeading"><h4>Console output</h4></div>
 							<div class="panel-body" id="consoleBody">
-								<p>Scanning output console...</p>	12 Parfumeurs Francais		0,00	
-46909		12 PARFUMEURS Intrigues des Hommes men 100ml edp	16005,00	
-46910		12 PARFUMEURS Intrigues des Hommes men test 100ml edp	11525,00	
-46923		12 PARFUMEURS Le Charmeur men 100ml edp	16005,00	
-46924		12 PARFUMEURS Le Charmeur men test 100ml edp	11525,00	
-46921		12 PARFUMEURS Le Fantome men 100ml edp	16005,00	
-46922		12 PARFUMEURS Le Fantome men test 100ml edp	11525,00	
-46920		12 PARFUMEURS Ma Reine lady 100ml edp	15135,00	
-46919		12 PARFUMEURS Ma Reine lady test 100ml edp	11525,00	
-46913		12 PARFUMEURS Mon Amour lady 100ml edp	15135,00	
-46914		12 PARFUMEURS Mon Amour lady test 100ml edp	11525,00	
-46916		12 PARFUMEURS Mon Cher men test 100ml edp	11525,00	
-46911		12 PARFUMEURS Mon Roi men 100ml edp	16005,00	
-46912		12 PARFUMEURS Mon Roi men test 100ml edp	11525,00	
-46930		12 PARFUMEURS Secret de l'Amour lady test 100ml edp	11525,00	
-46927		12 PARFUMEURS Secrets des Hommes men 100ml edp	16005,00	
-46928		12 PARFUMEURS Secrets des Hommes men test 100ml edp	11525,00	
-	Acqua di Parma		0,00	
-40324		ACQUA DI PARMA Colonia unisex  50ml edC	3440,00	
-40325		ACQUA DI PARMA Colonia unisex 100ml edC	4720,00	
-	Adidas		0,00	
-18003		ADIDAS Deep Energy men  50ml edT  	210,00	
-25962		ADIDAS Deep Energy men 100ml edT  	240,00	
-12115		ADIDAS Dynamic Pulse men  50ml edT  	210,00	
-1904		ADIDAS Dynamic Pulse men 100ml edT  	240,00	
-
-	
-								
-								<%-- <img class="img-circle " alt=""
-							src="${pageContext.request.contextPath}/resources/web/img/sample-stamp.png"/> --%>
+								<p>Scanning output console...</p>
+								- Started scanning: 13:57:03 28-01-2015<br><p>- Found page: http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/katrine-silver-tone-pendant-necklace-pdpskj0602p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/katrine-rose-gold-tone-pendant-necklace-pdpskj0603p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/krinsen-silver-tone-ring-pdpskj0600p.html?referer=productlisting<br></p><p>- Found page: http://www.example.com/ditte-rose-gold-tone-round-pendant-necklace-pdpskj0557p.html?referer=productlisting<br></p><p>- Finished: 13:57:06 28-01-2015<br>
 							</div>
 						</div>
 					</div>
@@ -674,8 +640,7 @@
 			
 			
 			postMessage();
-
-			
+	
 			</script>
 </body>
 </html>

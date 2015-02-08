@@ -14,7 +14,7 @@ public class TemplateDaoImpl implements TemplateDao {
 	
 	@Override
 	public void saveTemplate(ScanningTemplate template) {
-		sessionFactory.getCurrentSession().save(template);
+		sessionFactory.getCurrentSession().persist(template);
 
 	}
 

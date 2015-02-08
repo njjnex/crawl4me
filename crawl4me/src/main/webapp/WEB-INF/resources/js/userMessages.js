@@ -42,7 +42,7 @@
 
             var authorElement = document.createElement("h4");
             authorElement.setAttribute("class", "media-heading");
-            authorElement.innerHTML = author;
+            authorElement.innerHTML = author + " ";
             
 
             var dateElement = document.createElement("small");

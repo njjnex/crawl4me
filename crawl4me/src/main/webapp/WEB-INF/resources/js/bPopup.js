@@ -5,12 +5,19 @@
 	   $('#loginMePopUp').bPopup();
    }
    function registerMe() {
-	   $('#registerMePopUp').bPopup();
+	   $('#registerMePopUp').bPopup({
+           modalClose: false,
+           opacity: 0.6,
+           positionStyle: 'fixed' //'fixed' or 'absolute'
+       });
    }
    function resultPopUp() {
-	   $('#resultPopUp').bPopup();
+	   $('#resultPopUp').bPopup({
+           modalClose: false,
+           opacity: 0.6,
+           positionStyle: 'fixed' //'fixed' or 'absolute'
+       });
    }
-
 /*================================================================================
  * @name: bPopup - if you can't get it up, use bPopup
  * @author: (c)Bjoern Klinggaard (twitter@bklinggaard)

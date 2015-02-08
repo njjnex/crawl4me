@@ -34,7 +34,7 @@
 	<!-- Websocket configuration -->
 	
 	<websocket:message-broker application-destination-prefix="/app">
-        <websocket:stomp-endpoint path="/hello">
+        <websocket:stomp-endpoint path="/crawler">
         <websocket:handshake-handler ref="customHandler"/>
             <websocket:sockjs/>
         </websocket:stomp-endpoint>

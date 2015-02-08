@@ -2,10 +2,8 @@ package by.njjnex.controller;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -20,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import by.njjnex.collector.Launcher;
 import by.njjnex.logic.DomRuleConverter;
-import by.njjnex.model.Message;
+import by.njjnex.logic.FileUtils;
+import by.njjnex.logic.QuotesReplacer;
+import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
 import by.njjnex.model.ScanningTemplate;
 import by.njjnex.service.MessageService;
@@ -47,22 +47,27 @@ public class MainController {
 	public String mainPage(Model model) {
 		
 		ScanningTemplate defaultScanningTemplate = new ScanningTemplate();
+
 		defaultScanningTemplate.setUrl("http://localhost:8080/");
 		defaultScanningTemplate.setRegex("http://localhost:8080/");
-		Map<String,String> domRules = new LinkedHashMap<String, String>();
-		domRules.put("Title", "<title>");
-		domRules.put("Text", "<div id=\"footer\">");
-		defaultScanningTemplate.setDomRules(domRules);
+		ArrayList<DomRule> domRules = (ArrayList<DomRule>) defaultScanningTemplate.getDomRules();
+		DomRule domRule1 = new DomRule();
+		DomRule domRule2 = new DomRule();
+		domRule1.setKey("Title");
+		domRule1.setValue("<title>");
+		
+		domRule2.setKey("Text");
+		domRule2.setValue("<div id=\"footer\">");
 				
+		domRules.add(domRule1);
+		domRules.add(domRule2);
+		
+		defaultScanningTemplate.setDomRules(domRules);
+		
 		model.addAttribute("template", defaultScanningTemplate);
 		return "main";
 	}
 
-	@RequestMapping("/admin.html")
-	public String adminPage(Model model) {
-		System.out.println("admin page");
-		return "main";
-	}
 	@RequestMapping("/login")
 	public String loginPage(Model model) {
 		
@@ -74,9 +79,12 @@ public class MainController {
 			@PathVariable ("id") String generatedId,
 			@RequestBody ScanningTemplate scanningTemplate) {
 		
-		scanningTemplate.setId("s"+generatedId);
+		ArrayList<DomRule> domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
+		scanningTemplate.setId("s" + generatedId);
+		scanningTemplate.setDomRules(new QuotesReplacer().replaceQuotes(domRules));
 		
-		System.out.println("get id: " + "s"+generatedId + "url: " + scanningTemplate.getUrl());
+		System.out.println(domRules.get(0).getKey() +" "+ domRules.get(1).getKey());
+		System.out.println("get id: " + "s" + generatedId + "url: " + scanningTemplate.getUrl());
 		templateService.saveTemplate(scanningTemplate);
 
 		return generatedId;
@@ -88,27 +96,35 @@ public class MainController {
 		String id = "s"+generatedId;		
 		System.out.println("get template with id: " + id);
 		ScanningTemplate template = templateService.getTemplate(id);
-
+		
 		model.addAttribute("template",template);
 		
 		return "main";
 	}
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
+	@MessageMapping("/crawler")
+	@SendTo("/topic/result")
 	public void greeting(ScanningTemplate userInput, Principal principal) throws Exception {
 				
 		System.out.println(principal + " : " + principal.getName());
 		if(principal.getName() != null){
-			DomRuleConverter converter = new DomRuleConverter();
-			userInput.setDomRules(converter.convertTag((userInput.getDomRules()))); //convert dom rules
 			
-			Launcher crawler = new Launcher("/tut", principal, userInput.getRegex(), template);
-			crawler.run(crawler, userInput.getUrl(), (LinkedHashMap<String, String>) userInput.getDomRules());
+			DomRuleConverter converterDom = new DomRuleConverter();
+			QuotesReplacer replacerQuote = new QuotesReplacer();
+			userInput.setDomRules(replacerQuote.replaceQuotes((ArrayList<DomRule>) (userInput.getDomRules())));
 			
-			this.template.convertAndSendToUser(principal.getName(),"/topic/console", new Output("Finished: " + sdf.format(new Date())));
+			userInput = converterDom.convertTags(userInput);
+			
+			String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
+			/*String saveDir = "/tut/";*/
+			
+			Launcher crawler = new Launcher(userInput, principal, template, saveDir);
+						
+			FileUtils.deleteDir(saveDir);
+			this.template.convertAndSendToUser(principal.getName(),
+					"/topic/console", new Output("FINISHED: " + sdf.format(new Date())));
 		}else{
-			this.template.convertAndSend("/topic/console", new Output("ERROR: Please reload page and try again. " + sdf.format(new Date())));
+			this.template.convertAndSend("/topic/console", new Output("ERROR: Please reload crawler page and try again. " + sdf.format(new Date())));
 		}
 	}
 }
