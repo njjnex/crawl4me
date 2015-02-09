@@ -427,7 +427,7 @@ form fieldset {
 .section.type-2 {
   background: #fff;
   height: 1262px;
-  width: 1349px;
+ /*  width: 1349px; */
   
 }
 .section.type-3 {
@@ -987,6 +987,3 @@ mark{
 /* #crawlerPage{
 	color: white;
 } */
-.container {
-    max-width: 1349px;
-}
