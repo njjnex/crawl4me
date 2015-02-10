@@ -94,7 +94,7 @@
 				.getAuthentication().getName();
 	%>
 	<c:set var="activeUser" value="<%=aUser%>" scope="session" />
-    <header class="header" id="jump">
+    <header itemscope itemtype="http://schema.org/SoftwareApplication" itemref="_requirements2 _requirements3 _softwareVersion4" class="header" id="jump">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -103,7 +103,7 @@
                             class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="http://scrapingon.com">
-                        <img src="${pageContext.request.contextPath}/resources/web/img/logo2.png" alt="Scparingon.com" /></a>
+                        <img src="${pageContext.request.contextPath}/resources/web/img/logo2.png" alt="Scparingon.com"/><meta itemprop="name" content="Scparingon.com"></a>
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
@@ -162,7 +162,8 @@
     </header>
     <div class="jumper" id="jump0">
     </div>
-    <div class="section type-1 big splash" id="crawlerPage">
+    <span itemscope itemtype="http://schema.org/SoftwareApplication">
+      <div class="section type-1 big splash" id="crawlerPage">
         <div class="splash-cover">
         </div>
         <div class="container">
@@ -170,7 +171,7 @@
                 <div class="centered">
                     <div class="container">
                         <div class="section-headlines">
-                            <h2>
+                            <h2 itemprop="name">>
                                 Free online web scraper.</h2>                            
                         </div>
                         
@@ -296,6 +297,7 @@
             </div>
         </div>
     </div>
+    </span>
     </div>
     <div id="jump1" class="jumper">
     </div>
@@ -435,10 +437,10 @@
             <br>
             <div class="row">
                 <div class="col-lg-6 features">
-                    <h3>
+                    <h3  id="_softwareVersion4" itemprop="softwareVersion">
                         About scraper 1.1 version:</h3>
                     <div class="skills">
-                        <p>Start right now:</p>
+                       <span id="_requirements2" itemprop="requirements"> <p>Start right now:</p>
                       <ul>
                       		<li>No registration, crawler is ready to go!</li>
                       		<li>User FAQ with live examles</li>
@@ -465,7 +467,7 @@
                        		<li>Supports selectors syntax {first} and {last} ex: &lt;h2&gt;{first}. See real estate example.</li>
                        		<li>Performance upgrades.</li>
                         </ul>
-                       
+                       </span>
                     </div>
                 </div>
                 <div class="col-lg-6 features">
