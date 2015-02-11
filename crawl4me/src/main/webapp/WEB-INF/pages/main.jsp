@@ -495,56 +495,39 @@
   
   
      <div id="jump6" class="jumper">
-    </div>
-    <div class="section type-1 section-contact">
+       <div class="section type-1 section-contact">
         <div class="container" id="contacts">
             <div class="section-headlines">
                 <h4>Messages</h4>
-                <h5>Please provide your message with detailed information with links.</h5>
             </div>
-            <div class="col-sm-6" id="messageBoard"></div>
-       
-       
-               <div class="col-sm-6">
-               
-                   <div class="well" id="contactForm">
-                   		
-                   						<c:choose>
-											<c:when test="${!authenticated}">
-												<h4>Please <a href="#" onclick="loginMe();">Log In</a> to post messages.</h4>
-								                    <form role="form" >
-								                        <div class="form-group">
-								                            <textarea class="form-control" id="message" name="message" rows="5"></textarea>
-								                        </div>
-								                        <button class="btn btn-outline disabled" id="logIn">Send</button>
-								                    </form>
+         
+                <div class="col-sm-8" id="disqusId">
+                 	<div id="disqus_thread"></div>
+   							 <script type="text/javascript">
+        							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        							var disqus_shortname = 'scrapingoncom'; // required: replace example with your forum shortname
 
-											</c:when>
-											<c:otherwise>
-												 <h4>Post message <b>${activeUser}</b>:</h4>
-								                    
-								                        <div class="form-group">
-								                            <textarea class="form-control" id="message" name="message" rows="5"></textarea>
-								                        </div>
-								                        <button class="btn btn-outline" onclick="postMessage();">Send</button>
-								                   
-											</c:otherwise>
-										</c:choose>
-										
-                        </div>
-                        <h5>You also can contact us using email address. <a id="showEmail" onclick="emailShowMe();"> Show email</a>. </h5>
-                </div>
-            </div>
+        							/* * * DON'T EDIT BELOW THIS LINE * * */
+						        	(function() {
+						            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+						            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						        })();
+						    </script>
+    						<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+             	</div>   
+         </div>
         </div>
+   </div>
    
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" id="footer">
                     http://www.scrapingon.com &copy; 2015 - <a href="http://www.scrapingon.com">
                         ScrapingOn.</a>  Show <a onclick="emailShow();">email</a>.	
                 </div>
-        
+         -->
         		<!-- Pop up Login -->
 						<div id="loginMePopUp">
 						<a class="b-close">x<a/>
@@ -622,14 +605,14 @@
   				</div>
   				<!-- End register popUp -->
   			  		  		       				
-    </footer>
+  <!--   </footer> -->
   		
   		<script type="text/javascript">
 			$('#legalAlert').on('closed.bs.alert', function() {
-				setTimeout(createScanButton, 3000);
+				setTimeout(createScanButton, 2000);
 			})
 				
-			postMessage();
+			/* postMessage(); */
 	
 			</script>
 </body>

@@ -383,8 +383,9 @@ form fieldset {
   padding: 100px 0;
 }
 .section.type-1 {
-  background: #2a333b;
-  color: #a5b3bf;
+  background: white;
+ 	color: #d2dadf; 
+
 }
 .section.type-1 h1,
 
@@ -765,9 +766,8 @@ form fieldset {
 .well{
 	padding: 10px;
 }
-.section-contact .address-row {
-  display: table;
-  width: 100%;
+.section-contact {
+ 	margin-left: 5%;
 }
 .section-contact .address-sign {
   display: table-cell;
@@ -980,10 +980,14 @@ mark{
 #resultHeader h3{
 	color: #777;
 }
+.section.type-1 h3{
+	color: #777;
+}
 #legalAlert{
 	background: #242b32; 
 	border: 1px solid white;
 }
-/* #crawlerPage{
-	color: white;
-} */
+#disqusId{
+	color: black;
+
+}
