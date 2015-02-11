@@ -48,16 +48,16 @@ public class MainController {
 		
 		ScanningTemplate defaultScanningTemplate = new ScanningTemplate();
 
-		defaultScanningTemplate.setUrl("http://localhost:8080/");
-		defaultScanningTemplate.setRegex("http://localhost:8080/");
+		defaultScanningTemplate.setUrl("http://www.ebay.com/sch/Cell-Phones-Smartphones-/9355/i.html?LH_ItemCondition=1000&_from=R40&_nkw=&Brand=Apple&Carrier=Unlocked&Model=iPhone%25204s&_dcat=9355&Storage%2520Capacity=32GB");
+		defaultScanningTemplate.setRegex("http://www.ebay.com/itm/.*Apple-iPhone-4S.*=item.{10}");
 		ArrayList<DomRule> domRules = (ArrayList<DomRule>) defaultScanningTemplate.getDomRules();
 		DomRule domRule1 = new DomRule();
 		DomRule domRule2 = new DomRule();
-		domRule1.setKey("Title");
-		domRule1.setValue("<title>");
+		domRule1.setKey("Product");
+		domRule1.setValue("<span id=\"vi-lkhdr-itmTitl\">");
 		
-		domRule2.setKey("Text");
-		domRule2.setValue("<div id=\"footer\">");
+		domRule2.setKey("Price");
+		domRule2.setValue("<span id=\"prcIsum\">");
 				
 		domRules.add(domRule1);
 		domRules.add(domRule2);
