@@ -61,7 +61,6 @@
 
 							</c:forEach>
 
-
 							<div class="input-group" id="saveTemplate">
 
 								<sec:authorize var="loggedIn" access="isAuthenticated()" />
