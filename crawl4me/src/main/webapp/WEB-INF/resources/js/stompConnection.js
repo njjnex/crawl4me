@@ -67,7 +67,7 @@ function createRequestMap(){
 		var domRule2 = {};
 		var domRule3 = {};
 		var domRule4 = {};
-		console.log("request MAP " + requestMap);
+	
 			domRule1["ruleNumber"] = 1;
 			domRule1["key"] = domRuleName1;
 			domRule1["value"] = domRuleValue1;
@@ -90,7 +90,6 @@ function createRequestMap(){
 			domRule4["value"] = domRuleValue4;
 			domRules.push(domRule4);
 		}	
-		console.log("request MAP " + requestMap);
-				
+						
 		return requestMap;
 }

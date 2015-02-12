@@ -18,6 +18,7 @@ function generateId() {
 			data : JSON.stringify(createRequestMap()),
 			success : function(data) {
 				scanTemplate(data)
+				console.log("template saved");
 			},
 			error : function() {
 				alert('Error while request..');

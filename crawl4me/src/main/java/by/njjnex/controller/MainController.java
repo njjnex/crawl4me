@@ -73,6 +73,11 @@ public class MainController {
 		
 		return "loginForm";
 	}
+	@RequestMapping("/howTo")
+	public String howToPage(Model model) {
+		
+		return "howTo";
+	}	
 	
 	@RequestMapping("/saveState/{id}")
 	public @ResponseBody String saveTemplate(
