@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.njjnex.dao.TemplateDao;
+import by.njjnex.model.Page;
 import by.njjnex.model.ScanningTemplate;
 
 @Service
@@ -15,7 +16,7 @@ public class TemplateServiceImpl implements TemplateService {
 
 	@Override
 	@Transactional
-	public void saveTemplate(ScanningTemplate template) {
+	public void saveTemplate(Page template) {
 		templateDao.saveTemplate(template);
 
 	}

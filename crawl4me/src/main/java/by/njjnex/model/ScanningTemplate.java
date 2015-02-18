@@ -21,6 +21,8 @@ public class ScanningTemplate {
 	private String id;
 	@Column(name = "URL")
 	private String url;
+	@Column(name = "TITLE")
+	private String title;
 	@Column(name = "REGEX")
 	@ElementCollection
 	private List<String> regex = new ArrayList<String>();
@@ -51,5 +53,11 @@ public class ScanningTemplate {
 	public List<DomRule> getDomRules() {
 		return domRules;
 	}
-
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 }

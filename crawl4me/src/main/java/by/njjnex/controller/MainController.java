@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -23,6 +24,7 @@ import by.njjnex.logic.FileUtils;
 import by.njjnex.logic.QuotesReplacer;
 import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
+import by.njjnex.model.Page;
 import by.njjnex.model.ScanningTemplate;
 import by.njjnex.service.MessageService;
 import by.njjnex.service.TemplateService;
@@ -82,14 +84,12 @@ public class MainController {
 
 	@RequestMapping(value = "/saveState/{id}", method = RequestMethod.POST)
 	public @ResponseBody String saveTemplate(@PathVariable("id") String generatedId,
-			@RequestBody ScanningTemplate scanningTemplate) {
+			@RequestBody Page scanningTemplate) {
 
-		ArrayList<DomRule> domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
+		Set<DomRule> domRules = scanningTemplate.getDomRules();
 		scanningTemplate.setId("s" + generatedId);
 		scanningTemplate.setDomRules(new QuotesReplacer().replaceQuotes(domRules));
-
-		System.out.println(domRules.get(0).getKey() + " " + domRules.get(1).getKey());
-		System.out.println("get id: " + "s" + generatedId + "url: " + scanningTemplate.getUrl());
+		
 		templateService.saveTemplate(scanningTemplate);
 
 		return generatedId;
@@ -109,14 +109,14 @@ public class MainController {
 
 	@MessageMapping("/crawler")
 	@SendTo("/topic/result")
-	public void greeting(ScanningTemplate userInput, Principal principal) throws Exception {
+	public void greeting(Page userInput, Principal principal) throws Exception {
 
 		System.out.println(principal + " : " + principal.getName());
 		if (principal.getName() != null) {
 
 			DomRuleConverter converterDom = new DomRuleConverter();
 			QuotesReplacer replacerQuote = new QuotesReplacer();
-			userInput.setDomRules(replacerQuote.replaceQuotes((ArrayList<DomRule>) (userInput.getDomRules())));
+			userInput.setDomRules(replacerQuote.replaceQuotes((userInput.getDomRules())));
 
 			userInput = converterDom.convertTags(userInput);
 

@@ -1,19 +1,19 @@
 package by.njjnex.logic;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 import org.jsoup.nodes.Document;
 
 import by.njjnex.model.DomRule;
-import by.njjnex.model.ScanningTemplate;
+import by.njjnex.model.Page;
 
 public class ValueExtractor {
 	
-	private ScanningTemplate scanningTemplate;
+	private Page scanningTemplate;
 	private LinkedHashMap<String, String> resultPage = new LinkedHashMap<String, String>();
 		
-	public ValueExtractor(ScanningTemplate scanningTemplate) {
+	public ValueExtractor(Page scanningTemplate) {
 		super();
 		this.scanningTemplate = scanningTemplate;
 	}
@@ -23,7 +23,7 @@ public class ValueExtractor {
 		String value = null;
 		String key = null;
 		String selector = null;
-		ArrayList<DomRule> domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
+		LinkedHashSet<DomRule> domRules = (LinkedHashSet<DomRule>) scanningTemplate.getDomRules();
 				
 		for (DomRule domRule : domRules){
 			

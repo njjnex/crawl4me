@@ -9,6 +9,7 @@ app
 					$scope.valueTip = 'For Parameter Name you can choose any name. It will describe the value what you are looking in the page. Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like: &lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="howTo">How To</a> for examples.'
 
 					$scope.urlData = "http://www.bel.biz";
+					$scope.myPageData = {};
 
 					$scope.explorePage = function() {
 						console.log($scope.urlData)
@@ -22,7 +23,7 @@ app
 							'data' : $scope.urlData
 						}).success(function(data) {
 							console.log(data)
-							$scope.pageData = data
+							$scope.myPageData = data
 							$scope.pageLinks = data.links;
 							$scope.domRules = data.domRules;
 							$scope.pageTitle = data.title;
@@ -135,18 +136,27 @@ app
 						}
 					};
 					$scope.sendPageData = function(){
-					
+						var pageData = {};
 						var activeLinks= [];
 						for(var i=0; i < $scope.pageLinks.length; i++){
 							if ($scope.pageLinks[i].included) activeLinks.push($scope.pageLinks[i])
 						}
-						
-					$scope.pageData.url = $scope.urlData;
-					$scope.pageData.title = $scope.pageTitle;
-					$scope.pageData.domRules = $scope.domRules;
-					$scope.pageData.links = activeLinks;
 					
-					return $scope.pageData;
+					pageData['id'] = null;	
+					pageData['url'] = $scope.urlData;
+					pageData['title'] = $scope.pageTitle;
+					
+					var links = [];
+					pageData['links'] = activeLinks;
+					
+					var domRules = [];
+					pageData["domRules"] = domRules;
+					
+					pageData['domRules'] = $scope.domRules;
+									
+					console.log("data from angular  " + JSON.stringify(pageData));
+														
+					return pageData;
 										
 					}
 					

@@ -41,17 +41,19 @@ var returnedResultCount = 0;
 		// get Angular scope from the known DOM element
 		e = document.getElementById('crawlerPage');
 		scope = angular.element(e).scope();
+		console.log(e + " ----- " + scope);
 		// update the model with a wrap in $apply(fn) which will refresh the view for us
 				
 		createNewScanButton();
 		removeResultConsole();
 		removeResultTable();
 		window.location.replace("#jump4");
+		console.log("data from connector " + JSON.stringify(angular.element(scope.sendPageData())[0]));
 		if(!connected){
 			connect();
-			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData())))}, 2000);
+			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData()))[0])}, 2000);
 		}else{
-			stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData())));
+			stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData())[0]));
 		}
 		
 	}

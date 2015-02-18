@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class DomRule {
 
 	@Id
@@ -21,7 +24,8 @@ public class DomRule {
 	private String value;
 	
 	private String selector;
-		
+	private boolean included;
+	
 	public long getId() {
 		return id;
 	}
@@ -51,6 +55,12 @@ public class DomRule {
 	}
 	public void setSelector(String selector) {
 		this.selector = selector;
+	}
+	public boolean isIncluded() {
+		return included;
+	}
+	public void setIncluded(boolean included) {
+		this.included = included;
 	}
 		
 }

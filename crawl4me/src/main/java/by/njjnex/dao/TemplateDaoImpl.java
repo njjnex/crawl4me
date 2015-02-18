@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import by.njjnex.model.Page;
 import by.njjnex.model.ScanningTemplate;
 
 @Repository
@@ -13,7 +14,7 @@ public class TemplateDaoImpl implements TemplateDao {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public void saveTemplate(ScanningTemplate template) {
+	public void saveTemplate(Page template) {
 		sessionFactory.getCurrentSession().persist(template);
 
 	}

@@ -3,14 +3,14 @@ package by.njjnex.logic;
 import org.apache.commons.lang3.StringUtils;
 
 import by.njjnex.model.DomRule;
-import by.njjnex.model.ScanningTemplate;
+import by.njjnex.model.Page;
 
 public class DomRuleConverter {
 	
 	
-	public ScanningTemplate convertTags(ScanningTemplate scanningTemplate){
+	public Page convertTags(Page page){
 						
-		for(DomRule rule: scanningTemplate.getDomRules()){
+		for(DomRule rule: page.getDomRules()){
 			String value = rule.getValue();
 			String result = null;
 					
@@ -43,7 +43,7 @@ public class DomRuleConverter {
 			 }
 		}
 				
-		return scanningTemplate;
+		return page;
 	}
 
 }	
