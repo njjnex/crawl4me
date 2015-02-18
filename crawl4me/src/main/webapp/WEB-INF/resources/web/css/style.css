@@ -408,7 +408,7 @@ form fieldset {
   border-color: #313b44;
 }
 .section.type-1 .form-control {
-  background: #384048;
+ /*  background: #384048; */
   border-color:/*  transparent !important */#eee;
   color: #a5b3bf;
   -o-transition: background-color 0.3s linear;
@@ -503,7 +503,7 @@ form fieldset {
 /*= SPLASH
 ---------------------------------------------------------------------------------------------- */
 .splash-cover {
-  background: #2a333b;
+  /* background: #2a333b; */ 
   width: 100%;
   height: 100%;
   top: 0;
@@ -990,4 +990,10 @@ mark{
 #disqusId{
 	color: black;
 
+}
+#linksTable table{
+ 
+  max-height: 200px;
+  width: 100%;
+  
 }

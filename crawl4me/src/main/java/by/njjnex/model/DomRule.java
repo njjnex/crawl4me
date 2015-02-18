@@ -19,6 +19,8 @@ public class DomRule {
 	private String key;
 	@Column(name = "RULE_VALUE")
 	private String value;
+	
+	private String selector;
 		
 	public long getId() {
 		return id;
@@ -43,6 +45,12 @@ public class DomRule {
 	}
 	public void setRuleNumber(int ruleNumber) {
 		this.ruleNumber = ruleNumber;
+	}
+	public String getSelector() {
+		return selector;
+	}
+	public void setSelector(String selector) {
+		this.selector = selector;
 	}
 		
 }

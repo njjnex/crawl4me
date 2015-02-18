@@ -1,7 +1,5 @@
 package by.njjnex.logic;
 
-import java.util.ArrayList;
-
 import org.apache.commons.lang3.StringUtils;
 
 import by.njjnex.model.DomRule;
@@ -11,9 +9,7 @@ public class DomRuleConverter {
 	
 	
 	public ScanningTemplate convertTags(ScanningTemplate scanningTemplate){
-		
-		ArrayList<String> selectors = new ArrayList<String>();
-		
+						
 		for(DomRule rule: scanningTemplate.getDomRules()){
 			String value = rule.getValue();
 			String result = null;
@@ -25,10 +21,10 @@ public class DomRuleConverter {
 			if (value.contains("{")){
 				String selector = StringUtils.substringBetween(value, "{","}");
 				value = StringUtils.substringBefore(value, "{");
-				selectors.add(selector);
+				rule.setSelector(selector);
 				System.out.println("Selector extracted: " + selector);
 			}else{
-				selectors.add("empty");
+				rule.setSelector("empty");
 				System.out.println("No selectors founded " + value);
 			}
 				
@@ -46,8 +42,7 @@ public class DomRuleConverter {
 				 System.out.println("rule after:" + result);
 			 }
 		}
-		scanningTemplate.setSelectors(selectors);
-		
+				
 		return scanningTemplate;
 	}
 

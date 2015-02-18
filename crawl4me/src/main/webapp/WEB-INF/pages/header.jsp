@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     <title>ScrapingOn free online data scraping.</title>
     <!-- Stylesheets -->
-    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootswatch.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300'
         rel='stylesheet' type='text/css'>
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/icons/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -29,6 +29,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/custom.js"></script>
     
     <script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/alert.js"></script>
+   	<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/popover.js"></script>
    		
 	<script	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stomp.js"></script>
@@ -73,7 +74,7 @@
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#jump0" onclick="window.location.href='${pageContext.request.contextPath}/#'">Home</a></li>
+                        <li class="active"><a href="#crawler" onclick="window.location.href='${pageContext.request.contextPath}/#'">Home</a></li>
                         <li><a href="#scanning-result" onclick="window.location.href='${pageContext.request.contextPath}/#scanning-result'">Result</a></li>
                         <li><a href="#messages" onclick="window.location.href='${pageContext.request.contextPath}/#messages'">Messages</a></li>
                          <li><a href="${pageContext.request.contextPath}/howTo" onclick="window.location.href='${pageContext.request.contextPath}/howTo'">How To</a></li>
@@ -93,7 +94,7 @@
                 <!-- /.navbar-collapse -->
                 <div class="collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#jump0" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <li class="active"><a href="#crawler" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                             Home</a></li>
                         <li><a href="#jump4" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                             Result</a></li>

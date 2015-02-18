@@ -50,8 +50,10 @@ public class Launcher extends DeepCrawler{
 		this.principal = principal;
 		this.messagingTemplate = messagingTemplate;
 		this.domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
-		regexRule.addRule(scanningTemplate.getRegex()); // positive rule
 		
+		for(String rule: scanningTemplate.getRegex()){
+			regexRule.addRule(rule); // positive rule
+		}
 		settingCrawler(this, scanningTemplate.getUrl(), domRules );
 	}
 

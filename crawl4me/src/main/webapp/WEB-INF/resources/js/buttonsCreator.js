@@ -4,7 +4,7 @@ function removeResultTable() {
 	}
 	function removeResultConsole() {
 		var console = document.getElementById("consoleBody");
-		console.innerHTML = "<p>Scanning output console...</p>"
+		console.innerHTML = "<p>Scanning output console...</p><p>Connecting....</p>"
 		
 	}
 	function createResultTable(result) {
@@ -52,8 +52,9 @@ function removeResultTable() {
 		if(!document.getElementById("scanButton")) var button = document.createElement("button");
 		button.setAttribute("class","btn btn-outline btn-lg ");
 		button.setAttribute("id","scanButton");
-		button.setAttribute("onclick","newScan();");
-		button.innerHTML = "Start scan";
+		button.setAttribute("type","button");
+		button.setAttribute("onclick","return newScan();");
+		button.innerHTML = "Scrap it.";
 		buttonDiv.appendChild(button);
 	}
 	function createNewScanButton(){

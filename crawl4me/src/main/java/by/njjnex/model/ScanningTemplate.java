@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TEMPLATE")
@@ -22,36 +22,28 @@ public class ScanningTemplate {
 	@Column(name = "URL")
 	private String url;
 	@Column(name = "REGEX")
-	private String regex;
+	@ElementCollection
+	private List<String> regex = new ArrayList<String>();
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<DomRule> domRules = new ArrayList<DomRule>();
-	@Transient
-	private ArrayList<String> selectors = new ArrayList<String>();
-	
+		
 	public String getUrl() {
 		return url;
 	}
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getRegex() {
+	public List<String> getRegex() {
 		return regex;
 	}
-	public void setRegex(String regex) {
+	public void setRegex(List<String> regex) {
 		this.regex = regex;
 	}
-		
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public ArrayList<String> getSelectors() {
-		return selectors;
-	}
-	public void setSelectors(ArrayList<String> selectors) {
-		this.selectors = selectors;
 	}
 	public void setDomRules(List<DomRule> domRules) {
 		this.domRules = domRules;
@@ -59,8 +51,5 @@ public class ScanningTemplate {
 	public List<DomRule> getDomRules() {
 		return domRules;
 	}
-	
-	
-	
-	
+
 }

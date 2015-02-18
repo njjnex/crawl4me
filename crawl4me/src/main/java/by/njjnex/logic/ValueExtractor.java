@@ -20,17 +20,15 @@ public class ValueExtractor {
 
 	public LinkedHashMap<String, String> extract(Document doc){
 		
-		int domRuleNumber = 0;
 		String value = null;
 		String key = null;
 		String selector = null;
 		ArrayList<DomRule> domRules = (ArrayList<DomRule>) scanningTemplate.getDomRules();
-		ArrayList<String> selectors = scanningTemplate.getSelectors();
-		
+				
 		for (DomRule domRule : domRules){
 			
 			key = domRule.getKey();
-			selector = selectors.get(domRuleNumber);
+			selector = domRule.getSelector();
 			
 			if(!selector.equals("empty")){
 				switch(selector){
@@ -53,7 +51,6 @@ public class ValueExtractor {
 			}
 			
 			resultPage.put(key, value);
-			domRuleNumber++;
 		}
 		return resultPage;
 	}
