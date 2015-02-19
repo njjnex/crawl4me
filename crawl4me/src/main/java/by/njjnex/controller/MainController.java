@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import by.njjnex.collector.Launcher;
-import by.njjnex.logic.DomRuleConverter;
 import by.njjnex.logic.FileUtils;
-import by.njjnex.logic.QuotesReplacer;
+import by.njjnex.logic.domRules.DomRuleConverter;
+import by.njjnex.logic.domRules.QuotesReplacer;
 import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
 import by.njjnex.model.Page;

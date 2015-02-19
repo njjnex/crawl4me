@@ -15,6 +15,8 @@
 
 <script
 	src="${pageContext.request.contextPath}/resources/web/angular/controller/angularForm.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/switcher.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/web/angular/css/simple-grid.css" />
 <script type="text/ng-template" id="simple-grid.html"
@@ -47,61 +49,71 @@
 					<!-- End registration data alert -->
 
 					<!-- Scan form -->
-					<div name="scan-form">
+					<div name="scan-form" ng-init="explorePage()">
 
+
+						<form>
+							<div class="form-group col-lg-12">
+								<label>URL to scan <a href="#"
+									class="icon-info-sign pull-right"
+									tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
+								</label> <input type="url" name="url" id="url" ng-model="urlData"
+									class="form-control" data-validate="required,url">
+							</div>
+						</form>
 						
-							<form>
-								<div class="form-group col-lg-12">
-									<label>URL to scan <a href="#"
-										class="icon-info-sign pull-right"
-										tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
-									</label> <input type="url" name="url" id="url" ng-model="urlData"
-										class="form-control" data-validate="required,url">
-									<button type="button" class="btn btn-sm btn-success"
-										ng-click="explorePage()">Explore link</button>
+						<!-- collapse links -->
+						<div class="form-group col-lg-12">
+							<div id="pageDetails">
+								<label>Crawl data from links <a href="#"
+									class="icon-info-sign pull-right"
+									tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
+								</label>
+								<div class="btn-group btn-toggle">
+									<button class="btn btn-default  active" data-toggle="collapse"
+										data-target="#collapsibleLink">All pages</button>
+									<button class="btn btn-default" data-toggle="collapse"
+										data-target="#collapsibleLink">Custom format</button>
 								</div>
-							</form>
-							
-								<div class="form-group col-lg-8">
-									<div id="pageDetails">
-										<label>Crawl data from links <a href="#"
-											class="icon-info-sign pull-right"
-											tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
-										</label>
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="panel-title">{{urlData}} - {{pageTitle}}</h4>
-											</div>
-											<div class="panel-body" style="max-height: 200px; overflow-y: scroll;">
-												<div id="linksTable" simple-grid="gridLinksConfig"></div>
-											</div>
+								<div class="well collapse" id="collapsibleLink">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">Links from - {{urlData}}</h4>
 										</div>
-
-										<div>{{myData}} - rows</div>
-
-									</div>
-								</div>
-									<div class="form-group col-lg-8">
-										<div id="pageDetails">
-											<label>Extract data <a href="#"
-												class="icon-info-sign pull-right"
-												tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
-											</label>
-											<div class="panel panel-default">
-												<div class="panel-heading">
-													<h4 class="panel-title">Specify which data should be extracted.</h4>
-												</div>
-												<div class="panel-body">
-													<div id="linksTable" simple-grid="gridRulesConfig"></div>
-												</div>
-											</div>
+										<div class="panel-body"
+											style="max-height: 250px;">
+											<div id="linksTable" simple-grid="gridLinksConfig"></div>
 										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- collapse data -->
+						<div class="form-group col-lg-12">
+							<div id="pageDetails">
+								<label>Extract data <a href="#"
+									class="icon-info-sign pull-right"
+									tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
+								</label>
 								
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">Specify which data should be
+												extracted.</h4>
+										</div>
+										<div class="panel-body" style="max-height: 250px; overflow-y: scroll; ">
+											<div id="linksTable" simple-grid="gridRulesConfig"></div>
+											<button type="button" class="btn btn-sm btn-success" ng-click="addRulesRow()">Add row</button>
+										</div>
+									</div>
+								</div>
 							</div>
 
+						</div>
 
-								<div class="form-group col-lg-12">
+
+						<%-- 		<div class="form-group col-lg-12">
 									<label>Crawl data from URL's like <a href="#"
 										class="icon-info-sign pull-right"
 										tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
@@ -145,58 +157,54 @@
 									</div>
 
 								</c:forEach>
+ --%>
+						<div class="input-group" id="saveTemplate">
+							<sec:authorize var="loggedIn" access="isAuthenticated()" />
+							<c:choose>
+								<c:when test="${1 eq 1}">
+									<p id="textTemplate">You are able to save and share scan
+										settings.</p>
+									<div class="col-sm-6">
+										<span class="input-group-btn" id="saveTemplateLink">
+											<button class="btn btn-outline" id="saveTemplateButton"
+												type="button" onclick="return saveTemplate();"
+												value="Add scan">Save this settings</button>
+										</span>
 
-								<div class="input-group" id="saveTemplate">
-									<sec:authorize var="loggedIn" access="isAuthenticated()" />
-									<c:choose>
-										<c:when test="${1 eq 1}">
-											<p id="textTemplate">You are able to save and share scan
-												settings.</p>
-											<div class="col-sm-6">
-												<span class="input-group-btn" id="saveTemplateLink">
-													<button class="btn btn-outline" id="saveTemplateButton"
-														type="button" onclick="return saveTemplate();"
-														value="Add scan">Save this settings</button>
-												</span>
-												<button type="button" class="btn btn-lg btn-success"
-										ng-click="sendPageData();">Send data</button>
-										
-										<div>Data: {{pageData}}</div>
-												
-											</div>
-										</c:when>
-										<c:otherwise>
-											<p id="textTemplate">
-												<a href="#" onclick="loginMe();">Please log in</a> if you
-												want save and share this settings.
-											</p>
-											<div class="col-sm-6">
-												<span class="input-group-btn">
-													<button class="btn btn-outline disabled"
-														id="saveTemplateButton" onclick="saveTemplate();"
-														value="Add scan">Save settings</button>
-												</span>
-												
-												
-												
-											</div>
-										</c:otherwise>
-									</c:choose>
-									
-										
-									<div id="scanStarter"></div>
-								</div>
-							</div>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<p id="textTemplate">
+										<a href="#" onclick="loginMe();">Please log in</a> if you want
+										save and share this settings.
+									</p>
+									<div class="col-sm-6">
+										<span class="input-group-btn">
+											<button class="btn btn-outline disabled"
+												id="saveTemplateButton" onclick="saveTemplate();"
+												value="Add scan">Save settings</button>
+										</span>
 
-						
-						<!-- End scan form -->
 
+
+									</div>
+								</c:otherwise>
+							</c:choose>
+
+
+							<div id="scanStarter"></div>
+						</div>
 					</div>
-				</div>
 
+
+					<!-- End scan form -->
+
+				</div>
 			</div>
+
 		</div>
 	</div>
+</div>
 </div>
 
 </div>

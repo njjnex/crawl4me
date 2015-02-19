@@ -8,7 +8,7 @@ public class PageLink {
 	private int id;
 	private int timesFounded;
 	private String linkHref;
-	private String linkRegex;
+	private String linkText;
 	private boolean included;
 		
 	public int getId() {
@@ -29,13 +29,13 @@ public class PageLink {
 	public void setLinkHref(String linkHref) {
 		this.linkHref = linkHref;
 	}
-	public String getLinkRegex() {
-		return linkRegex;
+		
+	public String getLinkText() {
+		return linkText;
 	}
-	public void setLinkRegex(String linkRegex) {
-		this.linkRegex = linkRegex;
+	public void setLinkText(String linkText) {
+		this.linkText = linkText;
 	}
-	
 	public boolean isIncluded() {
 		return included;
 	}

@@ -28,7 +28,7 @@ app
 							$scope.domRules = data.domRules;
 							$scope.pageTitle = data.title;
 							$scope.resultLinks();
-							$scope.resultRules();
+							
 
 						});
 					}
@@ -50,10 +50,10 @@ app
 								 * "title": "Regex" },
 								 */
 								{
-									"field" : "timesFounded",
+									"field" : "linkText",
 									"required" : true,
-									"disabled" : true,
-									"title" : "Times founded"
+									"disabled" : false,
+									"title" : "Description"
 								} ],
 								showEditButton : true,
 								editRequested : function(row) {
@@ -83,7 +83,7 @@ app
 							}
 						}
 					};
-					$scope.resultRules = function() {
+					
 						$scope.gridRulesConfig = {
 							// should return your data (an array)
 							getData : function() {
@@ -94,32 +94,40 @@ app
 								columns : [ {
 									"field" : "key",
 									"required" : true,
-									"title" : "Name"
-								}, 
-								{
+									"title" : "Name it"
+								}, {
 									"field" : "selector",
 									"required" : true,
-									"$options": [
-								                {
-								                    "value": "selector",
-								                    "title": "Selector"
-								                },
-								                {
-								                    "value": "selector",
-								                    "title": "selector"
-								                }
-								            ],
-								            
-									"title" : "Selector"
-								},
-								{
+									"inputType" : "select",
+									"options" : [ {
+										value : 0,
+										title : 'Tag'
+									}, {
+										value : 1,
+										title : 'First tag in page'
+									}, {
+										value : 2,
+										title : 'Last tag in page'
+									},
+									{
+										value : 3,
+										title : 'Autodect by text'
+									} ],
+									formatter : function(item) {
+										return item.title;
+									},
+									select : function(item) {
+										return item.value;
+									},
+									"title" : "Extract from"
+								}, {
 									"field" : "value",
 									"required" : true,
 									"title" : "Value"
 								},
-								
+
 								],
-								showEditButton : true,
+								showEditButton : false,
 								orderBy : 'key',
 								// reverseOrder: false,
 								editable : true, // true is the default - set
@@ -127,38 +135,50 @@ app
 								// make it easier to bind to
 								// in the demo html
 								disabled : false,
-								perRowEditModeEnabled : true,
-								allowMultiSelect : true,
-								pageSize : 5,
+								perRowEditModeEnabled : false,
+								allowMultiSelect : false,
+								pageSize : 10,
 								pageNum : 0,
 								dynamicColumns : true
 							}
-						}
-					};
-					$scope.sendPageData = function(){
+						};
+					$scope.sendPageData = function() {
 						var pageData = {};
-						var activeLinks= [];
-						for(var i=0; i < $scope.pageLinks.length; i++){
-							if ($scope.pageLinks[i].included) activeLinks.push($scope.pageLinks[i])
+						var activeLinks = [];
+						for (var i = 0; i < $scope.pageLinks.length; i++) {
+							if ($scope.pageLinks[i].included)
+								activeLinks.push($scope.pageLinks[i])
 						}
-					
-					pageData['id'] = null;	
-					pageData['url'] = $scope.urlData;
-					pageData['title'] = $scope.pageTitle;
-					
-					var links = [];
-					pageData['links'] = activeLinks;
-					
-					var domRules = [];
-					pageData["domRules"] = domRules;
-					
-					pageData['domRules'] = $scope.domRules;
-									
-					console.log("data from angular  " + JSON.stringify(pageData));
-														
-					return pageData;
-										
+
+						pageData['id'] = null;
+						pageData['url'] = $scope.urlData;
+						pageData['title'] = $scope.pageTitle;
+
+						var links = [];
+						pageData['links'] = activeLinks;
+
+						var domRules = [];
+						pageData["domRules"] = domRules;
+
+						pageData['domRules'] = $scope.domRules;
+
+						console.log("data from angular  "
+								+ JSON.stringify(pageData));
+
+						return pageData;
+
 					}
 					
+					$scope.addRulesRow = function () {
+		                var data = $scope.gridRulesConfig.getData();
+		                console.log(data);
+		                data.push(
+		                    {
+		                        $added: true,
+		                        $editable: true
+		                    }
+		                );
+		                $scope.gridRulesConfig.options.pageNum = Math.floor(data.length / $scope.gridRulesConfig.options.pageSize);
+		            };
 					
 				});
