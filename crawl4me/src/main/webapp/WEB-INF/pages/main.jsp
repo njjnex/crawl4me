@@ -26,16 +26,18 @@
 	<div class="splash-cover"></div>
 	<div class="container">
 		<div class="splash-block">
+		
 
 			<div class="centered">
 				<div class="container">
+				<h1>Free online web scraper.</h1> 
 
 					<tabset justified="true"> <tab
 						heading="Basic HTML scrapper"></tab> <tab
 						heading="JavaScript scrapper" data-ng-click=""></tab> <!-- <tab heading=""></tab> -->
 					</tabset>
 					<div class="section-headlines">
-						<!--    <h1>Free online web scraper.</h1>  -->
+						   
 					</div>
 
 					<!-- Registration data alert -->
@@ -62,7 +64,7 @@
 								</div>
 							</form>
 							
-								<div class="form-group col-lg-8">
+								<div class="form-group col-lg-12">
 									<div id="pageDetails">
 										<label>Crawl data from links <a href="#"
 											class="icon-info-sign pull-right"
@@ -76,12 +78,9 @@
 												<div id="linksTable" simple-grid="gridLinksConfig"></div>
 											</div>
 										</div>
-
-										<div>{{myData}} - rows</div>
-
 									</div>
 								</div>
-									<div class="form-group col-lg-8">
+									<div class="form-group col-lg-12">
 										<div id="pageDetails">
 											<label>Extract data <a href="#"
 												class="icon-info-sign pull-right"
@@ -99,53 +98,7 @@
 									</div>
 								
 							</div>
-
-
-								<div class="form-group col-lg-12">
-									<label>Crawl data from URL's like <a href="#"
-										class="icon-info-sign pull-right"
-										tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
-									</label> <input type="text" name="regex" id="regex"
-										class="form-control" value="${template.regex}"
-										data-validate="required,url">
-								</div>
-
-
-
-
-								<%
-									int i = 0;
-								%>
-
-								<c:forEach var="domRule" items="${template.domRules}">
-
-									<%
-										i++;
-											request.setAttribute("i", i);
-									%>
-
-									<div class="col-sm-6">
-										<label>Parameter name ${i} <a href="#"
-											class="icon-info-sign pull-right"
-											tooltip-html-unsafe="{{parameterTip}}"
-											tooltip-trigger="focus"></a>
-										</label> <input type="text" name='domRuleName${i}'
-											id="domRuleName${i}" class="form-control"
-											value='${domRule.key}' data-validate="required">
-									</div>
-									<div class="col-sm-6">
-
-										<label>Looking beetween specific tag: <a href="#"
-											class="icon-info-sign pull-right"
-											tooltip-html-unsafe="{{valueTip}}" tooltip-trigger="focus"
-											tooltip-append-to-body="true"></a>
-										</label> <input type="text" name='domRuleValue${i}'
-											id='domRuleValue${i}' class="form-control"
-											value='${domRule.value}' data-validate="required,divRule">
-									</div>
-
-								</c:forEach>
-
+						
 								<div class="input-group" id="saveTemplate">
 									<sec:authorize var="loggedIn" access="isAuthenticated()" />
 									<c:choose>
@@ -158,10 +111,6 @@
 														type="button" onclick="return saveTemplate();"
 														value="Add scan">Save this settings</button>
 												</span>
-												<button type="button" class="btn btn-lg btn-success"
-										ng-click="sendPageData();">Send data</button>
-										
-										<div>Data: {{pageData}}</div>
 												
 											</div>
 										</c:when>
@@ -213,8 +162,41 @@
 				<h3>Real time data scraping process.</h3>
 			</div>
 		</div>
+	<div class="col-md-12">
+			<div class="panel panel-success" id="console">
+				<div class="panel-heading" id="consoleHeading">
+					<h4>Console output</h4>
+				</div>
+				<div class="panel-body" id="consoleBody">
+					<p>Scanning output console...</p>
+					- Started scanning: 13:57:03 28-01-2015<br>
+					<p>
+						- Found page:
+						http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br>
+					</p>
+					<p>
+						- Found page:
+						http://www.example.com/katrine-silver-tone-pendant-necklace-pdpskj0602p.html?referer=productlisting<br>
+					</p>
+					<p>
+						- Found page:
+						http://www.example.com/katrine-rose-gold-tone-pendant-necklace-pdpskj0603p.html?referer=productlisting<br>
+					</p>
+					<p>
+						- Found page:
+						http://www.example.com/krinsen-silver-tone-ring-pdpskj0600p.html?referer=productlisting<br>
+					</p>
+					<p>
+						- Found page:
+						http://www.example.com/ditte-rose-gold-tone-round-pendant-necklace-pdpskj0557p.html?referer=productlisting<br>
+					</p>
+					<p>
+						- Finished: 13:57:06 28-01-2015<br>
+				</div>
+			</div>
+		</div>
 
-		<div class="col-md-7">
+		<div class="col-md-12">
 			<div class="panel panel-success" id="tablePanel">
 				<div class="panel-heading">
 					<h4>Result table</h4>
@@ -273,40 +255,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-5">
-			<div class="panel panel-success" id="console">
-				<div class="panel-heading" id="consoleHeading">
-					<h4>Console output</h4>
-				</div>
-				<div class="panel-body" id="consoleBody">
-					<p>Scanning output console...</p>
-					- Started scanning: 13:57:03 28-01-2015<br>
-					<p>
-						- Found page:
-						http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br>
-					</p>
-					<p>
-						- Found page:
-						http://www.example.com/katrine-silver-tone-pendant-necklace-pdpskj0602p.html?referer=productlisting<br>
-					</p>
-					<p>
-						- Found page:
-						http://www.example.com/katrine-rose-gold-tone-pendant-necklace-pdpskj0603p.html?referer=productlisting<br>
-					</p>
-					<p>
-						- Found page:
-						http://www.example.com/krinsen-silver-tone-ring-pdpskj0600p.html?referer=productlisting<br>
-					</p>
-					<p>
-						- Found page:
-						http://www.example.com/ditte-rose-gold-tone-round-pendant-necklace-pdpskj0557p.html?referer=productlisting<br>
-					</p>
-					<p>
-						- Finished: 13:57:06 28-01-2015<br>
-				</div>
-			</div>
-		</div>
-
+	
 
 	</div>
 	<!--end:.container-->

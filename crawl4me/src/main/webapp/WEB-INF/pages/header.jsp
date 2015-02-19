@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     <title>ScrapingOn free online data scraping.</title>
     <!-- Stylesheets -->
-    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootswatch.css" rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300'
         rel='stylesheet' type='text/css'>
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/icons/font-awesome/css/font-awesome.css" rel="stylesheet">
