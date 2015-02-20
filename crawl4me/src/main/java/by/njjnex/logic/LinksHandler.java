@@ -1,20 +1,26 @@
 package by.njjnex.logic;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import by.njjnex.model.PageLink;
 
 public class LinksHandler {
 
-	public Set<PageLink> setTemplateLinks(String url) {
-		Set<PageLink> pageLinks = new LinkedHashSet<PageLink>();
+	public List<PageLink> setTemplateLinks(String url) {
+		List<PageLink> pageLinks = new ArrayList<PageLink>();
 		
-		PageLink pageLink = new PageLink();
-		pageLink.setLinkHref(url + "/.*");
-		pageLink.setLinkText("This page and all subpages");
-		pageLink.setIncluded(true);
-		pageLinks.add(pageLink);
+		PageLink pageLinkDefaul = new PageLink();
+		pageLinkDefaul.setLinkHref("-");
+		pageLinkDefaul.setLinkText("Only this page");
+		pageLinkDefaul.setIncluded(true);
+		pageLinks.add(pageLinkDefaul);
+				
+		PageLink pageLink0 = new PageLink();
+		pageLink0.setLinkHref(url + "/.*");
+		pageLink0.setLinkText("This page and all subpages");
+		pageLink0.setIncluded(false);
+		pageLinks.add(pageLink0);
 		
 		PageLink pageLink1 = new PageLink();
 		pageLink1.setLinkHref(url + "/.*.html");

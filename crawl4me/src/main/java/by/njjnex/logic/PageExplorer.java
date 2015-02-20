@@ -236,9 +236,9 @@ public class PageExplorer {
 		return times;
 	}
 	
-	public Set<PageLink> createPageLinks(Set<String> links){
+	public List<PageLink> createPageLinks(Set<String> links){
 		
-		Set<PageLink> pageLinks = new LinkedHashSet<PageLink>();
+		List<PageLink> pageLinks = new ArrayList<PageLink>();
 		int linksCounter = 0;
 		
 		for(String link: links){

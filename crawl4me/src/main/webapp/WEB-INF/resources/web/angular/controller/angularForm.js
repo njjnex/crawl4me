@@ -157,9 +157,6 @@ app
 						var links = [];
 						pageData['links'] = activeLinks;
 
-						var domRules = [];
-						pageData["domRules"] = domRules;
-
 						pageData['domRules'] = $scope.domRules;
 
 						console.log("data from angular  "

@@ -4,6 +4,7 @@
 var stompClient = null;
 var connected = false;
 var returnedResultCount = 0;
+var resultFounded = 0;
 
 	function connect() {
 		
@@ -21,12 +22,14 @@ var returnedResultCount = 0;
 			stompClient.subscribe('/user/topic/result', function(resultOut) {
 				console.log(resultOut.body);
 				var result = JSON.parse(resultOut.body);
-				returnedResultCount++;
-				if (returnedResultCount == 1) {
+				console.log("result" + result);
+				returnedResultCount = resultFounded;
+				if (returnedResultCount == 0) {
 					createResultTable(result);
 					console.log("Create result table");
 				}
-				addResultRow(result, returnedResultCount);
+				
+				resultFounded = addResultRow(result, returnedResultCount);
 
 			});
 		});

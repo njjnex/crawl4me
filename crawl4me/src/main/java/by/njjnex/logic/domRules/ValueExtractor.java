@@ -1,12 +1,16 @@
 package by.njjnex.logic.domRules;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.List;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import by.njjnex.model.DomRule;
 import by.njjnex.model.Page;
+import by.njjnex.model.ScanningResult;
 
 public class ValueExtractor {
 	
@@ -18,12 +22,14 @@ public class ValueExtractor {
 		this.scanningTemplate = scanningTemplate;
 	}
 
-	public LinkedHashMap<String, String> extract(Document doc){
+	public List<ScanningResult> extract(Document doc){
 		
 		String value = null;
 		String key = null;
 		String selector = null;
-		LinkedHashSet<DomRule> domRules = (LinkedHashSet<DomRule>) scanningTemplate.getDomRules();
+		List<ScanningResult> resultList = new ArrayList<ScanningResult>();
+		
+		List<DomRule> domRules = scanningTemplate.getDomRules();
 				
 		for (DomRule domRule : domRules){
 			
@@ -47,11 +53,26 @@ public class ValueExtractor {
 									}
 				}
 			}else{
-				value = doc.select(domRule.getValue()).text();
+				
+				Elements elem = doc.select(domRule.getValue());
+				int position = 0;
+				
+				ScanningResult result = new ScanningResult();
+							
+				ArrayList<String> values = new ArrayList<String>();
+								
+				for(Element el: elem){
+					position++;
+					values.add(el.text());
+					System.out.println(position + " key " + key + " value adding: " + el.text());
+				}
+				
+				result.setKey(key);
+				result.setValues(values);
+				resultList.add(result);
 			}
 			
-			resultPage.put(key, value);
 		}
-		return resultPage;
+		return resultList;
 	}
 }

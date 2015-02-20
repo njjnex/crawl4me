@@ -17,8 +17,11 @@
 	src="${pageContext.request.contextPath}/resources/web/angular/controller/angularForm.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/switcher.js"></script>
+	<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/web/angular/css/simple-grid.css" />
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
 <script type="text/ng-template" id="simple-grid.html"
 	src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
 
@@ -71,7 +74,7 @@
 								</label>
 								<div class="btn-group btn-toggle">
 									<button class="btn btn-default  active" data-toggle="collapse"
-										data-target="#collapsibleLink">All pages</button>
+										data-target="#collapsibleLink">Only this page</button>
 									<button class="btn btn-default" data-toggle="collapse"
 										data-target="#collapsibleLink">Custom format</button>
 								</div>
@@ -228,6 +231,7 @@
 					<h4>Result table</h4>
 				</div>
 				<div class="panel-body" id="resultTableDiv">
+				
 					<table class="table table-striped" id="resultTable">
 						<thead>
 							<tr>
@@ -314,7 +318,24 @@
 				</div>
 			</div>
 		</div>
-
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+        </tr>
+    </tbody>
+</table>
 
 	</div>
 	<!--end:.container-->
@@ -366,6 +387,9 @@
 				}
 			});
 	createScanButton();
+
+	
+	
 </script>
 </body>
 </html>

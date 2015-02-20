@@ -1,13 +1,13 @@
 package by.njjnex.logic.domRules;
 
-import java.util.Set;
+import java.util.List;
 
 import by.njjnex.model.DomRule;
 
 public class QuotesReplacer {
 
-	public Set<DomRule> replaceQuotes(Set<DomRule> domRules){
-		for(DomRule rule:domRules){
+	public List<DomRule> replaceQuotes(List<DomRule> list){
+		for(DomRule rule:list){
 			String value =rule.getValue();
 			String result = null;
 						
@@ -16,6 +16,6 @@ public class QuotesReplacer {
 			 	rule.setValue(result);
 			 }
 		}
-		return domRules;
+		return list;
 	}
 }

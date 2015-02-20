@@ -4,7 +4,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -86,7 +86,7 @@ public class MainController {
 	public @ResponseBody String saveTemplate(@PathVariable("id") String generatedId,
 			@RequestBody Page scanningTemplate) {
 
-		Set<DomRule> domRules = scanningTemplate.getDomRules();
+		List<DomRule> domRules = scanningTemplate.getDomRules();
 		scanningTemplate.setId("s" + generatedId);
 		scanningTemplate.setDomRules(new QuotesReplacer().replaceQuotes(domRules));
 		
