@@ -1,10 +1,19 @@
 package by.njjnex.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@Table(name="LINKS")
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class PageLink {
-
+	
+	@Id
+	@GeneratedValue
 	private int id;
 	private int timesFounded;
 	private String linkHref;

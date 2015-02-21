@@ -2,7 +2,6 @@ package by.njjnex.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity 
 @Table(name= "SCANNING_PAGE")
@@ -25,7 +23,7 @@ public class Page {
 	private String url;
 	@Column(name = "TITLE")
 	private String title;
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<PageLink> links = new ArrayList<PageLink>();
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<DomRule> domRules = new ArrayList<DomRule>();

@@ -44,8 +44,13 @@ public class PageExplorer {
 		}*/
 	}
 
-	public Page explorePage() {
+	public PageExplorer() {
+		
+	}
 
+	public Page explorePage() {
+		
+		page.setUrl(url);
 		// set page title
 		page.setTitle(title);
 

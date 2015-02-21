@@ -15,7 +15,7 @@ function generateId() {
 			url : "/saveState/" + generateId(),
 			cache : false,
 			contentType : "application/json",
-			data : JSON.stringify(createRequestMap()),
+			data : JSON.stringify(angular.element(getAngularScope().sendPageData())[0]),
 			success : function(data) {
 				scanTemplate(data)
 				console.log("template saved");

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import by.njjnex.collector.Launcher;
 import by.njjnex.logic.FileUtils;
+import by.njjnex.logic.PageExplorer;
 import by.njjnex.logic.domRules.DomRuleConverter;
 import by.njjnex.logic.domRules.QuotesReplacer;
 import by.njjnex.model.DomRule;
@@ -47,26 +48,9 @@ public class MainController {
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
-	@RequestMapping("/")
+	@RequestMapping(value = {"/", "/s{id}"})
 	public String mainPage(Model model) {
-
-		ScanningTemplate defaultScanningTemplate = new ScanningTemplate();
-
-		ArrayList<DomRule> domRules = (ArrayList<DomRule>) defaultScanningTemplate.getDomRules();
-		DomRule domRule1 = new DomRule();
-		DomRule domRule2 = new DomRule();
-		domRule1.setKey("Product");
-		domRule1.setValue("<span id=\"vi-lkhdr-itmTitl\">");
-
-		domRule2.setKey("Price");
-		domRule2.setValue("<span id=\"prcIsum\">");
-
-		domRules.add(domRule1);
-		domRules.add(domRule2);
-
-		defaultScanningTemplate.setDomRules(domRules);
-
-		model.addAttribute("template", defaultScanningTemplate);
+		
 		return "main";
 	}
 
@@ -87,6 +71,7 @@ public class MainController {
 			@RequestBody Page scanningTemplate) {
 
 		List<DomRule> domRules = scanningTemplate.getDomRules();
+		System.out.println(scanningTemplate.getLinks().size());
 		scanningTemplate.setId("s" + generatedId);
 		scanningTemplate.setDomRules(new QuotesReplacer().replaceQuotes(domRules));
 		
@@ -95,16 +80,14 @@ public class MainController {
 		return generatedId;
 	}
 
-	@RequestMapping("/s{id}")
-	public String getTemplate(@PathVariable("id") String generatedId, Model model) {
+	@RequestMapping("template/s{id}")
+	public @ResponseBody Page getTemplate(@PathVariable("id") String generatedId, Model model) {
 
 		String id = "s" + generatedId;
 		System.out.println("get template with id: " + id);
-		ScanningTemplate template = templateService.getTemplate(id);
+		Page template = templateService.getTemplate(id);
 
-		model.addAttribute("template", template);
-
-		return "main";
+		return template;
 	}
 
 	@MessageMapping("/crawler")

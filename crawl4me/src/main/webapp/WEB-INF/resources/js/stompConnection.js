@@ -30,7 +30,7 @@ var resultFounded = 0;
 				}
 				
 				resultFounded = addResultRow(result, returnedResultCount);
-
+				
 			});
 		});
 	}
@@ -39,24 +39,31 @@ var resultFounded = 0;
 		setConnected(false);
 		console.log("Disconnected");
 	}
-	function newScan() {
-		
+	
+	function getAngularScope(){
 		// get Angular scope from the known DOM element
 		e = document.getElementById('crawlerPage');
 		scope = angular.element(e).scope();
 		console.log(e + " ----- " + scope);
 		// update the model with a wrap in $apply(fn) which will refresh the view for us
+		
+		return scope;
+	}
+	
+	function newScan() {
+		
+		
 				
 		createNewScanButton();
 		removeResultConsole();
 		removeResultTable();
-		window.location.replace("#jump4");
+		window.location.replace("#scanning-result");
 		console.log("data from connector " + JSON.stringify(angular.element(scope.sendPageData())[0]));
 		if(!connected){
 			connect();
-			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData()))[0])}, 2000);
+			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(getAngularScope().sendPageData()))[0])}, 2000);
 		}else{
-			stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData())[0]));
+			stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(getAngularScope().sendPageData())[0]));
 		}
 		
 	}

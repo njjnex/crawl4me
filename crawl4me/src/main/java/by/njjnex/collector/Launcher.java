@@ -53,7 +53,9 @@ public class Launcher extends DeepCrawler {
 		this.domRules = scanningTemplate.getDomRules();
 
 		for (PageLink rule : scanningTemplate.getLinks()) {
-			regexRule.addRule(rule.getLinkHref()); // positive rule
+			if(rule.isIncluded()){
+				regexRule.addRule(rule.getLinkHref()); // positive rule
+			}	
 		}
 		settingCrawler(this, scanningTemplate.getUrl(), domRules);
 	}

@@ -18,10 +18,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/switcher.js"></script>
 	<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/jquery.bootgrid.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/web/angular/css/simple-grid.css" />
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/jquery.bootgrid.min.css">
 <script type="text/ng-template" id="simple-grid.html"
 	src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
 
@@ -52,7 +52,7 @@
 					<!-- End registration data alert -->
 
 					<!-- Scan form -->
-					<div name="scan-form" ng-init="explorePage()">
+					<div name="scan-form">
 
 
 						<form>
@@ -61,7 +61,7 @@
 									class="icon-info-sign pull-right"
 									tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
 								</label> <input type="url" name="url" id="url" ng-model="urlData"
-									class="form-control" data-validate="required,url">
+									class="form-control" data-validate="required,url" ng-change="setLinks()">
 							</div>
 						</form>
 						
@@ -230,15 +230,17 @@
 				<div class="panel-heading">
 					<h4>Result table</h4>
 				</div>
-				<div class="panel-body" id="resultTableDiv">
+				<div class="panel-body" id="resultTableDiv" style="max-height: 600px; overflow-y: scroll;">
 				
-					<table class="table table-striped" id="resultTable">
+					<table class="table table-condensed table-hover table-striped" id="resultTable">
 						<thead>
 							<tr>
-								<td>#</td>
-								<td>Name</td>
-								<td>Price</td>
+								<th data-column-id="id" data-type="numeric">#</th>
+					            <th data-column-id="data1">Name</th>
+					            <th data-column-id="data2" data-order="desc">Price</th>
 							</tr>
+						</thead>
+						<tbody>	
 							<tr>
 								<td>1</td>
 								<td>Agnethe Silver-Tone Grey Crystal Pearl Ring</td>
@@ -279,7 +281,7 @@
 								<td>Krinsen Silver-Tone Ring</td>
 								<td>£49.00</td>
 							</tr>
-						</thead>
+						</tbody>	
 					</table>
 				</div>
 			</div>
@@ -290,7 +292,7 @@
 				<div class="panel-heading" id="consoleHeading">
 					<h4>Console output</h4>
 				</div>
-				<div class="panel-body" id="consoleBody">
+				<div class="panel-body" id="consoleBody" style="max-height: 600px; overflow-y: scroll;">
 					<p>Scanning output console...</p>
 					- Started scanning: 13:57:03 28-01-2015<br>
 					<p>
@@ -318,25 +320,6 @@
 				</div>
 			</div>
 		</div>
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
-    </tbody>
-</table>
-
 	</div>
 	<!--end:.container-->
 </div>
@@ -387,8 +370,6 @@
 				}
 			});
 	createScanButton();
-
-	
 	
 </script>
 </body>
