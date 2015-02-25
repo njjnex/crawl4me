@@ -9,13 +9,7 @@
 
 <div class="jumper" id="crawler"></div>
 <div class="section type-1 big splash" id="crawlerPage" ng-controller="FormCtrl">
-	<div class="splash-cover">
 	<div class="container">
-		<div class="splash-block">
-
-			<div class="centered">
-				<div class="container">
-
 					<tabset justified="true"> <tab
 						heading="Basic HTML scrapper" data-ng-click="htmlCrawler()"></tab> <tab
 						heading="JavaScript scrapper" data-ng-click="javaScriptCrawler()"></tab>
@@ -138,12 +132,7 @@
 					<!-- End scan form -->
 
 				</div>
-			</div>
-
 		</div>
-	</div>
-</div>
-</div>
 
 </div>
 <%@include file="../pages/footer.jsp"%>
