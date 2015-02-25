@@ -51,14 +51,12 @@ var resultFounded = 0;
 	}
 	
 	function newScan() {
-		
-		
-				
+					
 		createNewScanButton();
 		removeResultConsole();
 		removeResultTable();
 		window.location.replace("#scanning-result");
-		console.log("data from connector " + JSON.stringify(angular.element(scope.sendPageData())[0]));
+		/*console.log("data from connector " + JSON.stringify(angular.element(getAngularScope().sendPageData())[0]));*/
 		if(!connected){
 			connect();
 			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(getAngularScope().sendPageData()))[0])}, 2000);

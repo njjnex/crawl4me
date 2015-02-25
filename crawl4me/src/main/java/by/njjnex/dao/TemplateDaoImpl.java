@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import by.njjnex.model.Page;
+import by.njjnex.model.PageHTML;
 
 @Repository
 public class TemplateDaoImpl implements TemplateDao {
@@ -13,14 +13,14 @@ public class TemplateDaoImpl implements TemplateDao {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public void saveTemplate(Page template) {
+	public void saveTemplate(PageHTML template) {
 		sessionFactory.getCurrentSession().merge(template);
 
 	}
 
 	@Override
-	public Page getTemplate(String id) {
-		return (Page) sessionFactory.getCurrentSession().createQuery("FROM Page where id = :id").setString("id", id).uniqueResult();
+	public PageHTML getTemplate(String id) {
+		return (PageHTML) sessionFactory.getCurrentSession().createQuery("FROM Page where id = :id").setString("id", id).uniqueResult();
 		 
 	}
 

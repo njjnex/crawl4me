@@ -13,8 +13,7 @@ import javax.persistence.Table;
 
 @Entity 
 @Table(name= "SCANNING_PAGE")
-
-public class Page {
+public class PageHTML implements PageCrawler {
 
 	@Id
 	@Column(name = "GENERATED_ID")

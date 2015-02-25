@@ -13,7 +13,7 @@ app
 					$scope.init = function () {
 					    if ($location.path() == "/") {
 					    	console.log(" default location: " + $location.path());
-					    	$scope.explorePage("urlTest");
+					    	$scope.explorePage("htmlDefault");
 					    	
 					    } 
 					    if ($location.path().lastIndexOf("/s", 2) === 0) {
@@ -179,8 +179,7 @@ app
 						pageData['id'] = null;
 						pageData['url'] = $scope.urlData;
 						pageData['title'] = $scope.pageTitle;
-
-						var links = [];
+					
 						pageData['links'] = $scope.pageLinks;
 
 						pageData['domRules'] = $scope.domRules;
@@ -205,5 +204,13 @@ app
 		            };
 					
 		            $scope.init();
+		          
+		            $scope.javaScriptCrawler = function() {
+		            	window.location.href = "http://localhost:8080/JavaScriptCrawler";
+		            };
+		            $scope.htmlCrawler = function() {
+		            	window.location.href = "http://localhost:8080/";
+		            };
+		            
 		            
 				});

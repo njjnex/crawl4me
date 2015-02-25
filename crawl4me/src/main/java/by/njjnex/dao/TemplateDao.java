@@ -1,11 +1,11 @@
 package by.njjnex.dao;
 
-import by.njjnex.model.Page;
+import by.njjnex.model.PageHTML;
 
 public interface TemplateDao {
 
-	void saveTemplate(Page template);
-	Page getTemplate(String id);
+	void saveTemplate(PageHTML template);
+	PageHTML getTemplate(String id);
 	void removeTemplate(String id);
 
 	
