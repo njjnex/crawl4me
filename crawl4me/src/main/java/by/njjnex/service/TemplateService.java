@@ -1,10 +1,10 @@
 package by.njjnex.service;
 
-import by.njjnex.model.Page;
+import by.njjnex.model.PageHTML;
 
 public interface TemplateService {
 
-	public void saveTemplate(Page scanningTemplate);
-	public Page getTemplate(String id);
+	public void saveTemplate(PageHTML scanningTemplate);
+	public PageHTML getTemplate(String id);
 	public void removeTemplate(String id);
 }

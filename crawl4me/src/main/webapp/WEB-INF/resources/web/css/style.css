@@ -223,8 +223,8 @@ body {
   background: #fff;
   color: #666;
   font-size: 14px;
-  font-family:'Roboto', Arial, sans-serif;
-  font-weight: normal;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 300;
 }
 h1,
 h2,
@@ -321,12 +321,6 @@ form fieldset {
 .gap-70 {
   height: 30px;
 }
-.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
-  /*   position:   inherit ; */
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
 /*= FORM
 ---------------------------------------------------------------------------------------------- */
 .form-control {
@@ -336,38 +330,11 @@ form fieldset {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  font-size: 16px;
-  border:1px solid #0088cc;
-}
-.well {
-	margin-top:15px;
-    min-height: 10px;
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #F5F5F5;
-    border: 1px solid #0088cc;
-    border-radius: 3px;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
-}
-.panel-default {
-border: 1px solid #0088cc;
+  font-size: 14px;
 }
 /*= BUTTONS
 ---------------------------------------------------------------------------------------------- */
 .btn {
-    display: inline-block;
-    padding: 12px 12px;
-    margin-bottom: 0px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    white-space: nowrap;
-    -moz-user-select: none;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -401,54 +368,23 @@ border: 1px solid #0088cc;
   background: #2f2f2f;
   color: #fff;
 }
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-    color: #0088cc;
-    background-color: #E5FFEA;
-    border-color: #00d00f;
-}
-.btn-group > .btn:first-child {
-    margin-left: 5px;
-    margin-right: 7px;
-}
-
 /*= HEADER
 ---------------------------------------------------------------------------------------------- */
 .header .navbar {
-  background: rgb(53,106,160); /* Old browsers */
-background: -moz-linear-gradient(left, rgba(53,106,160,1) 29%, rgba(53,106,160,1) 67%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(29%,rgba(53,106,160,1)), color-stop(67%,rgba(53,106,160,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* IE10+ */
-background: linear-gradient(to right, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', endColorstr='#356aa0',GradientType=1 ); /* IE6-9 *//* #0D2B43 */;
-  color:#fff;
+  background: #fff;
 }
 .header .navbar-nav > li > a {
-  font-size: 16px;
-  color: #fff;
-}
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #FFF;
-    background: rgb(53,106,160); /* Old browsers */
-background: -moz-linear-gradient(left, rgba(53,106,160,1) 29%, rgba(53,106,160,1) 67%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(29%,rgba(53,106,160,1)), color-stop(67%,rgba(53,106,160,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* IE10+ */
-background: linear-gradient(to right, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', endColorstr='#356aa0',GradientType=1 ); /* IE6-9 *//* #0D2B43 */;;
+  font-size: 14px;
+  color: #555;
 }
 /*= SECTIONS
 ---------------------------------------------------------------------------------------------- */
 .section {
   padding: 100px 0;
-  
 }
-
 .section.type-1 {
-  background:pink /* MintCream  */;
- 	color: #4C4781; 
+  background: white;
+ 	color: #d2dadf; 
 
 }
 .section.type-1 h1,
@@ -459,13 +395,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 .section.type-1 h6,
 .section.type-1 strong,
 .section.type-1 b {
-  color: #4C4781;
+  color: #fff;
 }
 .section.type-1 h2 {
-	color:#4C4781;
+	color:#a5b3bf;
 }
 .section.type-1 h4 {
-  color: #4C4781;
+  color: #a5b3bf;
   border-color: #313b44;
 }
 .section.type-1 hr {
@@ -473,8 +409,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 }
 .section.type-1 .form-control {
  /*  background: #384048; */
-  border-color:#0088cc/* #4D58FF */;
-  color: #4D58FF;
+  border-color:/*  transparent !important */#eee;
+  color: #a5b3bf;
   -o-transition: background-color 0.3s linear;
   -ms-transition: background-color 0.3s linear;
   -moz-transition: background-color 0.3s linear;
@@ -496,11 +432,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   
 }
 .section.type-3 {
-  background: Honeydew;
+  background: #f0f2f4;
   /* background: url(../img/header/1111.jpg) no-repeat center center fixed; */
-  
+  -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
        /*  color:white; */
-        /* opacity: 0.75; */
+        opacity: 0.75;
  
   
 }
@@ -508,10 +447,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   height: 100%;
 }
 .section.splash {
-  background:green /* url(../img/header/headerbg.jpg) fixed no-repeat; */
+  /* background: url(../img/header/headerbg.jpg) fixed no-repeat; */
   position: relative;
   z-index: 1;
-  /* height: 1000px; */
 }
 .section.splash h1 {
   font-size: 50px;
@@ -565,9 +503,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 /*= SPLASH
 ---------------------------------------------------------------------------------------------- */
 .splash-cover {
-  background:#000/* #E5FFEA */; 
+  /* background: #2a333b; */ 
   width: 100%;
-  height: auto;
+  height: 100%;
   top: 0;
   position: absolute;
   z-index: 2;
@@ -595,13 +533,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   display: inline-block;
   vertical-align: middle;
   width: 100%;
-  height: 100%;
   padding: 100px 0;
 }
 /*= JUMPER
 ---------------------------------------------------------------------------------------------- */
 .jumper {
-  height: auto;
+  height: 0;
   position: relative;
   top: -5px;
 }
@@ -830,7 +767,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 	padding: 10px;
 }
 .section-contact {
- 	/* margin-left: 5%; */
+ 	margin-left: 5%;
 }
 .section-contact .address-sign {
   display: table-cell;
@@ -1009,23 +946,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 	margin-top: 0px;
 }
 #textTemplate{
-	color: #4C4781;
+	color: white;
 	margin-top: 10px;
 	margin-left: 10px;
 }
 .panel-success > .panel-heading{
-	background-color:#8FBF30;
+	background-color:#242b32;
 	color:#fff;
-	border:1px solid #0088cc;
 }
-
 .navbar-brand {
     float: left;
     padding: 5px;
     font-size: 12px;
     line-height: 20px;
     height:60px;
-    color:#fff;
+    color:#84C225;
 }
 mark{
 	color:green;

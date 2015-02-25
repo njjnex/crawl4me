@@ -9,15 +9,16 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import by.njjnex.model.DomRule;
-import by.njjnex.model.Page;
+import by.njjnex.model.PageCrawler;
+import by.njjnex.model.PageHTML;
 import by.njjnex.model.ScanningResult;
 
 public class ValueExtractor {
 	
-	private Page scanningTemplate;
+	private PageCrawler scanningTemplate;
 	private LinkedHashMap<String, String> resultPage = new LinkedHashMap<String, String>();
 		
-	public ValueExtractor(Page scanningTemplate) {
+	public ValueExtractor(PageHTML scanningTemplate) {
 		super();
 		this.scanningTemplate = scanningTemplate;
 	}
@@ -35,10 +36,10 @@ public class ValueExtractor {
 			
 			key = domRule.getKey();
 			selector = domRule.getSelector();
+			System.out.println("KEy " + key + " value " + domRule.getValue());
 			
 			if(!selector.equals("empty")){
 				switch(selector){
-				
 					case "first": 	try{
 										value = doc.select(domRule.getValue()).first().text(); break;
 									}catch (NullPointerException e){
@@ -56,7 +57,6 @@ public class ValueExtractor {
 				
 				Elements elem = doc.select(domRule.getValue());
 				int position = 0;
-				
 				ScanningResult result = new ScanningResult();
 							
 				ArrayList<String> values = new ArrayList<String>();

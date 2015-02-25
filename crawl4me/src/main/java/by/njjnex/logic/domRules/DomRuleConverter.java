@@ -1,14 +1,18 @@
 package by.njjnex.logic.domRules;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 
 import by.njjnex.model.DomRule;
-import by.njjnex.model.Page;
+import by.njjnex.model.PageCrawler;
+import by.njjnex.model.PageHTML;
 
-public class DomRuleConverter {
+public class DomRuleConverter implements DomRuleConvert{
 	
 	
-	public Page convertTags(Page page){
+	public PageCrawler convertTags(PageCrawler page){
 						
 		for(DomRule rule: page.getDomRules()){
 			String value = rule.getValue();
@@ -44,6 +48,32 @@ public class DomRuleConverter {
 		}
 				
 		return page;
+	}
+	
+	public List<DomRule> replaceQuotes(List<DomRule> list){
+		for(DomRule rule:list){
+			String value =rule.getValue();
+			String result = null;
+						
+			 if(value.contains("\'")){
+				 result = value.replaceAll("\'", "\"");
+			 	rule.setValue(result);
+			 }
+		}
+		return list;
+	}
+	
+	public String xPathConverter(String href){
+		
+		System.out.println("before xPath: " + href);
+		
+		href = href.replace("<", "//");
+		href = href.replaceFirst(" ", "[@");
+		href = href.replace(">", "]");
+		
+		System.out.println("after xPath: " + href);
+		
+		return href;
 	}
 
 }	

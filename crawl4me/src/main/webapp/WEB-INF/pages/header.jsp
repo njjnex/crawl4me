@@ -23,6 +23,13 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/jquery.smooth-scroll.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/jquery.mixitup.min.js"></script>
+    
+    <script src="${pageContext.request.contextPath}/resources/web/angular/lib/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/ui-bootstrap-tpls-0.12.0.min.js"></script>
+
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.js"></script>
+
+	<script	src="${pageContext.request.contextPath}/resources/js/switcher.js"></script>
    
     <script src="${pageContext.request.contextPath}/resources/web/js/modernizr.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/web/js/jquery.fancybox.pack.js" type="text/javascript"></script>
@@ -41,6 +48,15 @@
 	<script src="${pageContext.request.contextPath}/resources/js/buttonsCreator.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/resultTableCreator.js"></script>
 	
+	
+	<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/jquery.bootgrid.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/web/angular/css/simple-grid.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/jquery.bootgrid.min.css">
+<script type="text/ng-template" id="simple-grid.html"
+	src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
+	
 	<!-- Google Analytics -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -52,6 +68,12 @@
   ga('send', 'pageview');
 
 </script>
+	
+	<%        
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", -1);
+%>
 	
 </head>
 <body >
@@ -203,5 +225,3 @@
   					</div>
   				</div>
   				<!-- End register popUp -->
-</body>
-</html>
