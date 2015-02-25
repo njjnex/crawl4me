@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.njjnex.model.Page;
-import by.njjnex.model.ScanningTemplate;
 
 @Repository
 public class TemplateDaoImpl implements TemplateDao {
@@ -15,13 +14,13 @@ public class TemplateDaoImpl implements TemplateDao {
 	
 	@Override
 	public void saveTemplate(Page template) {
-		sessionFactory.getCurrentSession().persist(template);
+		sessionFactory.getCurrentSession().merge(template);
 
 	}
 
 	@Override
-	public ScanningTemplate getTemplate(String id) {
-		return (ScanningTemplate) sessionFactory.getCurrentSession().createQuery("FROM ScanningTemplate where id = :id").setString("id", id).uniqueResult();
+	public Page getTemplate(String id) {
+		return (Page) sessionFactory.getCurrentSession().createQuery("FROM Page where id = :id").setString("id", id).uniqueResult();
 		 
 	}
 

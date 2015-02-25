@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.njjnex.dao.TemplateDao;
 import by.njjnex.model.Page;
-import by.njjnex.model.ScanningTemplate;
 
 @Service
 public class TemplateServiceImpl implements TemplateService {
@@ -23,7 +22,7 @@ public class TemplateServiceImpl implements TemplateService {
 
 	@Override
 	@Transactional
-	public ScanningTemplate getTemplate(String id) {
+	public Page getTemplate(String id) {
 		return templateDao.getTemplate(id);
 		
 	}

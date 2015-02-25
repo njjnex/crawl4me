@@ -1,21 +1,45 @@
-var app = angular.module('formModule', [ 'ui.bootstrap', 'simpleGrid' ]);
+var app = angular.module('formModule', ['ui.bootstrap', 'simpleGrid' ], function($locationProvider){
+	$locationProvider.html5Mode({
+		  enabled: true,
+		  requireBase: false
+		});
+});
+
 app
 		.controller(
 				'FormCtrl',
-				function($scope, $http) {
+				function($scope, $http, $location) {
+					
+					$scope.init = function () {
+					    if ($location.path() == "/") {
+					    	console.log(" default location: " + $location.path());
+					    	$scope.explorePage("urlTest");
+					    	
+					    } 
+					    if ($location.path().lastIndexOf("/s", 2) === 0) {
+					    	console.log("template location: " + $location.path());
+					    	$scope.explorePage("template/" + $location.path());
+					    }
+					}
+					
+					$scope.urlData = "http://www.bel.biz";
+										
 					$scope.urlTip = 'Enter valid http adress starting point for spider. After scanning this page all links to other pages that matches URL Regex rule will be extracted and scanned.';
 					$scope.regexTip = 'URL regex rule shous scrapper from which pages data should be extracted. To specify this rule you can use special symbols. Look for examples in <a href="howTo">How To.</a>';
 					$scope.parameterTip = 'Any name you wish. It will describe the value what you are looking in the page.';
 					$scope.valueTip = 'For Parameter Name you can choose any name. It will describe the value what you are looking in the page. Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like: &lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="howTo">How To</a> for examples.'
 
-					$scope.urlData = "http://www.bel.biz";
+					
 					$scope.myPageData = {};
-
-					$scope.explorePage = function() {
+					$scope.urlPath = $location.path();
+					
+					
+					$scope.explorePage = function(postUrl) {
+						console.log("location: " + $location.path());
 						console.log($scope.urlData)
 						connect();
 						$http({
-							'url' : 'urlTest',
+							'url' : postUrl,
 							'method' : 'POST',
 							'headers' : {
 								'Content-Type' : 'application/json'
@@ -27,16 +51,22 @@ app
 							$scope.pageLinks = data.links;
 							$scope.domRules = data.domRules;
 							$scope.pageTitle = data.title;
-							$scope.resultLinks();
-							$scope.resultRules();
-
+							$scope.urlData = data.url;
+							
 						});
 					}
-					$scope.resultLinks = function() {
+					
+						$scope.setLinks = function(){
+							$scope.pageLinks[1].linkHref = $scope.urlData + "/.*";
+							$scope.pageLinks[2].linkHref = $scope.urlData + "/.*.html";
+							$scope.pageLinks[3].linkHref = $scope.urlData + "/.{5}[a-z]?\w=\d.html";
+						}
+										
 						$scope.gridLinksConfig = {
 							// should return your data (an array)
 							getData : function() {
 								return $scope.pageLinks;
+								
 							},
 
 							options : {
@@ -45,15 +75,11 @@ app
 									"required" : true,
 									"title" : "Link"
 								},
-								/*
-								 * { "field": "linkRegex", "required": true,
-								 * "title": "Regex" },
-								 */
 								{
-									"field" : "timesFounded",
+									"field" : "linkText",
 									"required" : true,
-									"disabled" : true,
-									"title" : "Times founded"
+									"disabled" : false,
+									"title" : "Description"
 								} ],
 								showEditButton : true,
 								editRequested : function(row) {
@@ -81,9 +107,9 @@ app
 								pageNum : 0,
 								dynamicColumns : true
 							}
-						}
-					};
-					$scope.resultRules = function() {
+						};
+					
+					
 						$scope.gridRulesConfig = {
 							// should return your data (an array)
 							getData : function() {
@@ -94,32 +120,40 @@ app
 								columns : [ {
 									"field" : "key",
 									"required" : true,
-									"title" : "Name"
-								}, 
-								{
+									"title" : "Name it"
+								}, /*{
 									"field" : "selector",
 									"required" : true,
-									"$options": [
-								                {
-								                    "value": "selector",
-								                    "title": "Selector"
-								                },
-								                {
-								                    "value": "selector",
-								                    "title": "selector"
-								                }
-								            ],
-								            
-									"title" : "Selector"
-								},
-								{
+									"inputType" : "select",
+									"options" : [ {
+										value : 0,
+										title : 'Tag'
+									}, {
+										value : 1,
+										title : 'First tag in page'
+									}, {
+										value : 2,
+										title : 'Last tag in page'
+									},
+									{
+										value : 3,
+										title : 'Autodect by text'
+									} ],
+									formatter : function(item) {
+										return item.title;
+									},
+									select : function(item) {
+										return item.value;
+									},
+									"title" : "Extract from"
+								}, */{
 									"field" : "value",
 									"required" : true,
 									"title" : "Value"
 								},
-								
+
 								],
-								showEditButton : true,
+								showEditButton : false,
 								orderBy : 'key',
 								// reverseOrder: false,
 								editable : true, // true is the default - set
@@ -127,38 +161,49 @@ app
 								// make it easier to bind to
 								// in the demo html
 								disabled : false,
-								perRowEditModeEnabled : true,
-								allowMultiSelect : true,
-								pageSize : 5,
+								perRowEditModeEnabled : false,
+								allowMultiSelect : false,
+								pageSize : 10,
 								pageNum : 0,
 								dynamicColumns : true
 							}
-						}
-					};
-					$scope.sendPageData = function(){
+						};
+					$scope.sendPageData = function() {
 						var pageData = {};
-						var activeLinks= [];
-						for(var i=0; i < $scope.pageLinks.length; i++){
-							if ($scope.pageLinks[i].included) activeLinks.push($scope.pageLinks[i])
+						var activeLinks = [];
+						for (var i = 0; i < $scope.pageLinks.length; i++) {
+							if ($scope.pageLinks[i].included)
+								activeLinks.push($scope.pageLinks[i])
 						}
-					
-					pageData['id'] = null;	
-					pageData['url'] = $scope.urlData;
-					pageData['title'] = $scope.pageTitle;
-					
-					var links = [];
-					pageData['links'] = activeLinks;
-					
-					var domRules = [];
-					pageData["domRules"] = domRules;
-					
-					pageData['domRules'] = $scope.domRules;
-									
-					console.log("data from angular  " + JSON.stringify(pageData));
-														
-					return pageData;
-										
+
+						pageData['id'] = null;
+						pageData['url'] = $scope.urlData;
+						pageData['title'] = $scope.pageTitle;
+
+						var links = [];
+						pageData['links'] = $scope.pageLinks;
+
+						pageData['domRules'] = $scope.domRules;
+
+						console.log("data from angular  "
+								+ JSON.stringify(pageData));
+
+						return pageData;
+
 					}
 					
+					$scope.addRulesRow = function () {
+		                var data = $scope.gridRulesConfig.getData();
+		                console.log(data);
+		                data.push(
+		                    {
+		                        $added: true,
+		                        $editable: true
+		                    }
+		                );
+		                $scope.gridRulesConfig.options.pageNum = Math.floor(data.length / $scope.gridRulesConfig.options.pageSize);
+		            };
 					
+		            $scope.init();
+		            
 				});

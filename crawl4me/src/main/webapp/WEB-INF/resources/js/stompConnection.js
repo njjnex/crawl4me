@@ -4,6 +4,7 @@
 var stompClient = null;
 var connected = false;
 var returnedResultCount = 0;
+var resultFounded = 0;
 
 	function connect() {
 		
@@ -21,13 +22,15 @@ var returnedResultCount = 0;
 			stompClient.subscribe('/user/topic/result', function(resultOut) {
 				console.log(resultOut.body);
 				var result = JSON.parse(resultOut.body);
-				returnedResultCount++;
-				if (returnedResultCount == 1) {
+				console.log("result" + result);
+				returnedResultCount = resultFounded;
+				if (returnedResultCount == 0) {
 					createResultTable(result);
 					console.log("Create result table");
 				}
-				addResultRow(result, returnedResultCount);
-
+				
+				resultFounded = addResultRow(result, returnedResultCount);
+				
 			});
 		});
 	}
@@ -36,24 +39,31 @@ var returnedResultCount = 0;
 		setConnected(false);
 		console.log("Disconnected");
 	}
-	function newScan() {
-		
+	
+	function getAngularScope(){
 		// get Angular scope from the known DOM element
 		e = document.getElementById('crawlerPage');
 		scope = angular.element(e).scope();
 		console.log(e + " ----- " + scope);
 		// update the model with a wrap in $apply(fn) which will refresh the view for us
+		
+		return scope;
+	}
+	
+	function newScan() {
+		
+		
 				
 		createNewScanButton();
 		removeResultConsole();
 		removeResultTable();
-		window.location.replace("#jump4");
+		window.location.replace("#scanning-result");
 		console.log("data from connector " + JSON.stringify(angular.element(scope.sendPageData())[0]));
 		if(!connected){
 			connect();
-			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData()))[0])}, 2000);
+			setTimeout(function(){stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(getAngularScope().sendPageData()))[0])}, 2000);
 		}else{
-			stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(scope.sendPageData())[0]));
+			stompClient.send("/app/crawler", {}, JSON.stringify(angular.element(getAngularScope().sendPageData())[0]));
 		}
 		
 	}

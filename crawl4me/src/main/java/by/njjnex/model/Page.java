@@ -1,7 +1,7 @@
 package by.njjnex.model;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity 
 @Table(name= "SCANNING_PAGE")
@@ -24,10 +23,10 @@ public class Page {
 	private String url;
 	@Column(name = "TITLE")
 	private String title;
-	@Transient
-	private Set<PageLink> links = new LinkedHashSet<PageLink>();
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private Set<DomRule> domRules = new LinkedHashSet<DomRule>();
+	private List<PageLink> links = new ArrayList<PageLink>();
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<DomRule> domRules = new ArrayList<DomRule>();
 	
 
 	public String getId() {
@@ -54,20 +53,21 @@ public class Page {
 		this.title = title;
 	}
 
-	public Set<PageLink> getLinks() {
+	public List<PageLink> getLinks() {
 		return links;
 	}
 
-	public void setLinks(Set<PageLink> links) {
+	public void setLinks(List<PageLink> links) {
 		this.links = links;
 	}
 
-	public Set<DomRule> getDomRules() {
+	public List<DomRule> getDomRules() {
 		return domRules;
 	}
 
-	public void setDomRules(Set<DomRule> domRules) {
+	public void setDomRules(List<DomRule> domRules) {
 		this.domRules = domRules;
 	}
+
 	
 }

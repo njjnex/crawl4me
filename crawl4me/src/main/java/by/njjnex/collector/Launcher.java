@@ -5,19 +5,18 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-import by.njjnex.logic.ValueExtractor;
+import by.njjnex.logic.domRules.ValueExtractor;
 import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
 import by.njjnex.model.Page;
 import by.njjnex.model.PageLink;
-import by.njjnex.model.ScanningTemplate;
+import by.njjnex.model.ScanningResult;
 import cn.edu.hfut.dmic.webcollector.crawler.Crawler;
 import cn.edu.hfut.dmic.webcollector.crawler.DeepCrawler;
 import cn.edu.hfut.dmic.webcollector.model.Links;
@@ -41,8 +40,8 @@ public class Launcher extends DeepCrawler {
 
 	private Principal principal;
 	private SimpMessagingTemplate messagingTemplate;
-	private LinkedHashMap<String, String> resultPage = new LinkedHashMap<String, String>();
-	private Set<DomRule> domRules;
+	private List<ScanningResult> resultPage = new ArrayList<ScanningResult>();
+	private List<DomRule> domRules;
 	private Page scanningTemplate;
 
 	public Launcher(Page scanningTemplate, Principal principal, SimpMessagingTemplate messagingTemplate,
@@ -54,7 +53,9 @@ public class Launcher extends DeepCrawler {
 		this.domRules = scanningTemplate.getDomRules();
 
 		for (PageLink rule : scanningTemplate.getLinks()) {
-			regexRule.addRule(rule.getLinkHref()); // positive rule
+			if(rule.isIncluded()){
+				regexRule.addRule(rule.getLinkHref()); // positive rule
+			}	
 		}
 		settingCrawler(this, scanningTemplate.getUrl(), domRules);
 	}
@@ -84,15 +85,13 @@ public class Launcher extends DeepCrawler {
 		boolean emptyResult = true;
 
 		if (pageCount == 0) {
-			for (String resultValue : resultPage.values()) {
-				if (resultValue.equals(""))
+			for (ScanningResult resultValue : resultPage) {
+				if (resultValue.getValues().equals(""))
 					emptyResult = true;
 			}
 		} else {
-			for (String resultValue : resultPage.values()) {
-				if (!resultValue.equals(""))
-					emptyResult = false;
-			}
+				emptyResult = false;
+			
 
 			System.out.println("page count: " + pageCount);
 			System.out.println("empty? " + emptyResult);
@@ -122,7 +121,7 @@ public class Launcher extends DeepCrawler {
 		return nextLinks;
 	}
 
-	public void settingCrawler(Crawler userCrawler, String urlToScan, Set<DomRule> domRules) throws Exception {
+	public void settingCrawler(Crawler userCrawler, String urlToScan, List<DomRule> domRules) throws Exception {
 		this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
 				"Started scanning: " + sdf.format(new Date())));
 		userCrawler.addSeed(urlToScan);

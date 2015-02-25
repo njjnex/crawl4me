@@ -39,6 +39,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/buttonsCreator.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/resultTableCreator.js"></script>
 	
 	<!-- Google Analytics -->
 	<script>

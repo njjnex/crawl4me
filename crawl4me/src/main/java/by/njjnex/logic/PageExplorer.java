@@ -3,9 +3,12 @@ package by.njjnex.logic;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -13,6 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import by.njjnex.logic.domRules.DomRulesHandler;
 import by.njjnex.model.Page;
 import by.njjnex.model.PageLink;
 
@@ -26,22 +30,27 @@ public class PageExplorer {
 	private Document doc;
 	private Page page = new Page();
 	private String title;
-
+	
 	public PageExplorer(String url) {
 		this.url = url;
 
-		try {
+		/*try {
 			doc = Jsoup.connect(url).userAgent(USER_AGENT).referrer(REFERRER).get();
 			title = doc.select("title").text();
 			connected = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 			title = "Error: cannot connect to URL. Is entered URL valid?";
-		}
+		}*/
+	}
+
+	public PageExplorer() {
+		
 	}
 
 	public Page explorePage() {
-
+		
+		page.setUrl(url);
 		// set page title
 		page.setTitle(title);
 
@@ -70,6 +79,9 @@ public class PageExplorer {
 			
 			page.setLinks(createPageLinks(groupLinks(pageLinks)));
 			page.setDomRules(new DomRulesHandler().setTemplateRules());
+		}else{
+			page.setLinks(new LinksHandler().setTemplateLinks(url));
+			page.setDomRules(new DomRulesHandler().setTemplateRules());
 		}
 
 		return page;
@@ -85,6 +97,17 @@ public class PageExplorer {
 
 			String httpPrefix = null;
 			String httpsPrefix = null;
+			String siteStartUrl = null;
+						
+			Pattern pattern = Pattern.compile("http://.*[.].{2,3}/");
+			Matcher matcher = pattern.matcher(url);
+			if (matcher.find())
+			{
+			    System.out.println("matcher " + matcher.group(1));
+			    siteStartUrl = matcher.group(1);
+			}
+			
+			
 
 			String linkHref = link.getLinkHref();
 			if (!linkHref.isEmpty() && linkHref.length() > 5 ) {
@@ -93,6 +116,7 @@ public class PageExplorer {
 				if (linkHref.startsWith("http://")) {
 					linkHref = StringUtils.substringAfter(linkHref, "http://");
 					httpPrefix = "http:/";
+					
 				}
 				if (linkHref.startsWith("https://")) {
 					linkHref = StringUtils.substringAfter(linkHref, "https://");
@@ -153,6 +177,9 @@ public class PageExplorer {
 												resultItem.add(0, httpPrefix);
 											if (httpsPrefix != null)
 												resultItem.add(0, httpsPrefix);
+											if (!resultItem.get(0).startsWith("http://") || !resultItem.get(0).startsWith("https://")){
+												resultItem.add(0, siteStartUrl);
+											}
 
 											String resultHref = Arrays.toString(resultItem.toArray());
 											resultHref = resultHref.replaceAll(",", "/");
@@ -195,6 +222,8 @@ public class PageExplorer {
 				}
 			}
 		}
+		Collections.sort(resultLinks);
+		
 		return removeDublicates(resultLinks);
 	}
 
@@ -212,9 +241,9 @@ public class PageExplorer {
 		return times;
 	}
 	
-	public Set<PageLink> createPageLinks(Set<String> links){
+	public List<PageLink> createPageLinks(Set<String> links){
 		
-		Set<PageLink> pageLinks = new LinkedHashSet<PageLink>();
+		List<PageLink> pageLinks = new ArrayList<PageLink>();
 		int linksCounter = 0;
 		
 		for(String link: links){
@@ -223,13 +252,24 @@ public class PageExplorer {
 			pageLink.setLinkHref(link);
 			pageLink.setId(linksCounter);
 			pageLink.setIncluded(false);
-			pageLink.setLinkRegex(".*");
 			pageLink.setTimesFounded(timesFounded(doc, StringUtils.substringBeforeLast(link, "/")));
 					
 			pageLinks.add(pageLink);
 		}
 				
 		return pageLinks;
+	}
+	
+	public Set<PageLink> createTemplateLinks(){
+		Set<PageLink> pageLinks = new LinkedHashSet<PageLink>();
+		
+		PageLink pageLink = new PageLink();
+		
+		
+		pageLinks.add(pageLink);
+		
+		return pageLinks;
 		
 	}
+	
 }
