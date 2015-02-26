@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.njjnex.dao.TemplateDao;
 import by.njjnex.model.PageHTML;
+import by.njjnex.model.PageJS;
 
 @Service
 public class TemplateServiceImpl implements TemplateService {
@@ -15,7 +16,7 @@ public class TemplateServiceImpl implements TemplateService {
 
 	@Override
 	@Transactional
-	public void saveTemplate(PageHTML template) {
+	public void saveTemplate(PageJS template) {
 		templateDao.saveTemplate(template);
 
 	}

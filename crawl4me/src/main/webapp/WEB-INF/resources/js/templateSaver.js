@@ -18,7 +18,7 @@ function generateId() {
 			data : JSON.stringify(angular.element(getAngularScope().sendPageData())[0]),
 			success : function(data) {
 				scanTemplate(data)
-				console.log("template saved");
+				console.log("template saved " + data);
 			},
 			error : function() {
 				alert('Error while request..');
@@ -36,5 +36,6 @@ function generateId() {
 		var input = document.createElement("input");
 		input.setAttribute("class", "form-control");
 		saveLink.appendChild(input);
-		input.setAttribute("value", "http://scrapingon.com/s" + data);
+		input.setAttribute("value", "http://scrapingon.com/" + data);
+		
 	}

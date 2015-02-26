@@ -17,9 +17,20 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 	    if ($location.path() == "/JavaScriptCrawler") {
 	    	console.log(" default location: " + $location.path());
 	    	$scope.explorePage("jsDefault");
-	    	
-	    } 
+	    }
+	    if ($location.path().lastIndexOf("/z", 2) === 0) {
+	    	console.log("template location: " + $location.path());
+	    	$scope.explorePage("template/" + $location.path());
+	    }
+	    if ($location.path().lastIndexOf("/j", 2) === 0) {
+	    	console.log("template location: " + $location.path());
+	    	$scope.explorePage("template/" + $location.path());
+	    }
 	} 
+	$scope.urlTip = 'Enter valid http adress starting point for spider. Page must contain input field where scraper will insert data for request.';
+	$scope.searchTextTip = 'Text wich will be inserted and submited to the form.'
+	$scope.valueTip = 'Specify wich data should be extracted by parameters. For Parameter Name you can choose any name. It will describe the value what you are looking in the page. Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like: &lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="howTo">How To</a> for examples.'
+	$scope.paginatorTip = 'After scrap data from first page ScrapingOn is able to swith to another page for this you need to specify paginator rule. Just find in the end of the page link to the next pages (usually this link called "Next page" of something like this) copy-paste a class link to the rule to enable pagination. '
 	
 	$scope.urlData = "http://www.ebay.com";
 		

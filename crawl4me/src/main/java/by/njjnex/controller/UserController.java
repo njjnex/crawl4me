@@ -37,6 +37,12 @@ public class UserController {
 		return "forward:/";
 	}
 	
+	@RequestMapping("/login")
+	public String loginPage(Model model) {
+
+		return "loginForm";
+	}
+	
 	@RequestMapping("/error-login")
 	public String errorLogin(Model model){
 		model.addAttribute("resultString", "Incorrect login please try again.");

@@ -142,4 +142,5 @@
 			</div>
 		</div>
 	</div>
+	<div id="footer" style="align:right;">© 2015 scrapingon.com All Rights Reserved <a href="" id="emailMe" onclick="emailShow()">Send email</a></div>
 </div>

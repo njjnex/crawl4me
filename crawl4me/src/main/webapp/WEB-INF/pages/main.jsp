@@ -124,7 +124,7 @@
 							</c:choose>
 
 
-							<div id="scanStarter"></div>
+							<div id="scanStarter"><button class="btn btn-default btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
 						</div>
 					</div>
 
@@ -146,8 +146,7 @@
 					message : "Please provide correct tag ex: <div id='my_tag'>, or tag with selector ex: <div id='my_tag'>{first} also check the examples."
 				}
 			});
-	createScanButton();
-	
+		
 </script>
 </body>
 </html>

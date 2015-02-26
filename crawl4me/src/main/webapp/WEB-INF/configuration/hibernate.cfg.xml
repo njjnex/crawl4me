@@ -12,6 +12,7 @@
 
 		<!-- Mappings -->
 		<mapping class="by.njjnex.model.DomRule" />
+		<mapping class="by.njjnex.model.PageJS" />
 		<mapping class="by.njjnex.model.PageHTML" />
 		<mapping class="by.njjnex.model.PageLink" />
 		<mapping class="by.njjnex.model.Message" />

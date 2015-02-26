@@ -52,7 +52,7 @@
 							<div id="pageDetails">
 								<label>Extract data <a href="#"
 									class="icon-info-sign pull-right"
-									tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
+									tooltip-html-unsafe="{{valueTip}}" tooltip-trigger="focus"></a>
 								</label>
 								
 									<div class="panel panel-default">
@@ -95,14 +95,6 @@
 							</div>
 						</div>
 							
-							
-							
-							<button class="btn btn-success btn-lg" type="button">Crawl</button>
-							
-					
-						
-						
-
 						<div class="input-group" id="saveTemplate">
 							<sec:authorize var="loggedIn" access="isAuthenticated()" />
 							<c:choose>
@@ -134,11 +126,11 @@
 							</c:choose>
 
 
-							<div id="scanStarter"></div>
+							<div id="scanStarter"><button class="btn btn-default btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
 						</div>
 					</div>
 					<!-- End scan form -->
 				</div>
 		</div>
-<script type="text/javascript">createScanButton();</script>
+
 <%@include file="../pages/footer.jsp"%>
