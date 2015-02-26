@@ -27,14 +27,10 @@ function clearLastScan() {
 	returnedResultCount = 0;
 
 }
-function emailShowMe() {
-	var footer = document.getElementById("showEmail");
-	footer.innerHTML = "njjnex@gmail.com";
 
-}
 function emailShow() {
-	var footer = document.getElementById("footer");
-	var email = document.createTextNode("njjnex@gmail.com");
-	footer.appendChild(email);
+	var footer = document.getElementById("emailMe");
+	footer.innerHTML = "njjnex@gmail.com";
+	
 
 }

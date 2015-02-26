@@ -14,10 +14,14 @@ app
 					    if ($location.path() == "/") {
 					    	console.log(" default location: " + $location.path());
 					    	$scope.explorePage("htmlDefault");
-					    	
 					    } 
-					    if ($location.path().lastIndexOf("/s", 2) === 0) {
+					    if ($location.path().lastIndexOf("/z", 2) === 0) {
 					    	console.log("template location: " + $location.path());
+					    	$scope.explorePage("template/" + $location.path());
+					    }
+					    if ($location.path().lastIndexOf("/j", 2) === 0) {
+					    	console.log("template location: " + $location.path());
+					    	$scope.javaScriptCrawler();
 					    	$scope.explorePage("template/" + $location.path());
 					    }
 					}
@@ -202,9 +206,7 @@ app
 		                );
 		                $scope.gridRulesConfig.options.pageNum = Math.floor(data.length / $scope.gridRulesConfig.options.pageSize);
 		            };
-					
-		            $scope.init();
-		          
+					          
 		            $scope.javaScriptCrawler = function() {
 		            	window.location.href = "http://localhost:8080/JavaScriptCrawler";
 		            };
@@ -212,5 +214,6 @@ app
 		            	window.location.href = "http://localhost:8080/";
 		            };
 		            
+		            $scope.init();
 		            
 				});

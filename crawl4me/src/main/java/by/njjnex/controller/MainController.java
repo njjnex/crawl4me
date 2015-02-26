@@ -40,6 +40,9 @@ public class MainController {
 	 * principal.getName();
 	 */
 	private final String SAVE_DIR = "/tut/";
+	private final String HTML_TEMPLATE_PREFIX = "z";
+	private final String JS_TEMPLATE_PREFIX = "j";
+	
 
 	@Autowired
 	public MainController(SimpMessagingTemplate template) {
@@ -54,16 +57,16 @@ public class MainController {
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
-	@RequestMapping(value = { "/", "/s{id}" })
+	@RequestMapping(value = { "/", "/z{id}"})
 	public String mainPage(Model model) {
 
 		return "main";
 	}
+	
+	@RequestMapping(value = {"/JavaScriptCrawler", "j{id}"})
+	public String jsCrawler(Model model) {
 
-	@RequestMapping("/login")
-	public String loginPage(Model model) {
-
-		return "loginForm";
+		return "jsCrawler";
 	}
 
 	@RequestMapping("/howTo")
@@ -73,65 +76,67 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/saveState/{id}", method = RequestMethod.POST)
-	public @ResponseBody String saveTemplate(@PathVariable("id") String generatedId,
-			@RequestBody PageHTML scanningTemplate) {
+	public @ResponseBody String saveTemplate(@PathVariable("id") String generatedId, @RequestBody PageJS pageCrawler) {
+		
+		String id = null;
+		
+		if (pageCrawler.getSearchPhrase() != null) {
+			id = JS_TEMPLATE_PREFIX + generatedId;
+		} else {
+			id = HTML_TEMPLATE_PREFIX + generatedId;
+		}
+		
+		pageCrawler.setId(id);
+		List<DomRule> domRules = pageCrawler.getDomRules();
+		pageCrawler.setDomRules(new DomRuleConverter().replaceQuotes(domRules));
+		templateService.saveTemplate(pageCrawler);
 
-		List<DomRule> domRules = scanningTemplate.getDomRules();
-		System.out.println(scanningTemplate.getLinks().size());
-		scanningTemplate.setId("s" + generatedId);
-		scanningTemplate.setDomRules(new DomRuleConverter().replaceQuotes(domRules));
-
-		templateService.saveTemplate(scanningTemplate);
-
-		return generatedId;
+		return id;
 	}
 
-	@RequestMapping("template/s{id}")
+	@RequestMapping("template/z{id}")
 	public @ResponseBody PageHTML getTemplate(@PathVariable("id") String generatedId, Model model) {
 
-		String id = "s" + generatedId;
+		String id = HTML_TEMPLATE_PREFIX + generatedId;
 		System.out.println("get template with id: " + id);
-		PageHTML template = templateService.getTemplate(id);
-
-		return template;
+	
+		return templateService.getTemplate(id);
 	}
+	
+	@RequestMapping("template/j{id}")
+	public @ResponseBody PageJS getJSTemplate(@PathVariable("id") String generatedId, Model model) {
 
-	@RequestMapping("/JavaScriptCrawler")
-	public String jsCrawler(Model model) {
-
-		return "jsCrawler";
+		String id = JS_TEMPLATE_PREFIX + generatedId;
+		System.out.println("get template with id: " + id);
+		
+		return (PageJS) templateService.getTemplate(id);
 	}
 
 	@MessageMapping("/crawler")
 	@SendTo("/topic/result")
 	public void greeting(PageJS pageCrawler, Principal principal) throws Exception {
 
-		
-			System.out.println(principal + " : " + principal.getName());
-			if (principal.getName() != null) {
+		System.out.println(principal + " : " + principal.getName());
+		if (principal.getName() != null) {
 
-				DomRuleConverter converterDom = new DomRuleConverter();
-				pageCrawler.setDomRules(converterDom.replaceQuotes((pageCrawler.getDomRules())));
-				pageCrawler = (PageJS) converterDom.convertTags(pageCrawler);
-				
-				
-				if (pageCrawler.getSearchPhrase() != null) {
-					System.out.println("PAGEJS");
-					/*JavaScriptCrawler jsCrawler = new JavaScriptCrawler(pageCrawler, principal, template);
-					jsCrawler.crawl();*/
-					JSLauncher jsLauncher = new JSLauncher(pageCrawler, principal, template, SAVE_DIR);
-					jsLauncher.runCrawler();
-				} else {
+			DomRuleConverter converterDom = new DomRuleConverter();
+			pageCrawler.setDomRules(converterDom.replaceQuotes((pageCrawler.getDomRules())));
+			pageCrawler = (PageJS) converterDom.convertTags(pageCrawler);
+
+			if (pageCrawler.getSearchPhrase() != null) {
+				JSLauncher jsLauncher = new JSLauncher(pageCrawler, principal, template, SAVE_DIR);
+				jsLauncher.runCrawler();
+			} else {
 				Launcher crawler = new Launcher(pageCrawler, principal, template, SAVE_DIR);
 				crawler.startHTMLCrawler();
 
 				FileUtils.deleteDir(SAVE_DIR);
 				this.template.convertAndSendToUser(principal.getName(), "/topic/console",
 						new Output("FINISHED: " + sdf.format(new Date())));
-				}
-			} else {
-				this.template.convertAndSend("/topic/console", new Output(
-						"ERROR: Please reload crawler page and try again. " + sdf.format(new Date())));
 			}
-	}	
+		} else {
+			this.template.convertAndSend("/topic/console", new Output(
+					"ERROR: Please reload crawler page and try again. " + sdf.format(new Date())));
+		}
+	}
 }
