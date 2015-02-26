@@ -59,7 +59,7 @@
 											<h4 class="panel-title">Links from - {{urlData}}</h4>
 										</div>
 										<div class="panel-body"
-											style="max-height: 250px;">
+											style="max-height: 300px;">
 											<div id="linksTable" simple-grid="gridLinksConfig"></div>
 										</div>
 									</div>

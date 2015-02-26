@@ -1,4 +1,4 @@
-/*!
+`/*!
  * Bootstrap v3.0.0
  *
  * Copyright 2013 Twitter, Inc
@@ -4232,11 +4232,12 @@ button.close {
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
-  color: #ffffff;
+  color: #fff;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
-  border-radius: 3px;
+  background-color: #b0cBfA;
+  border-radius: 2px;
+  border:1px solid #0088cc;
 }
 .tooltip-arrow {
   position: absolute;

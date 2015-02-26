@@ -221,7 +221,7 @@ body {
 }
 body {
   background: #fff;
-  color: #666;
+  color: #4C4781;
   font-size: 14px;
   font-family:'Roboto', Arial, sans-serif;
   font-weight: normal;
@@ -380,9 +380,10 @@ border: 1px solid #0088cc;
 }
 .btn-outline {
   border-color: #0088cc;
-  border-color: rgba(133,200,37, 0.7);
-  background: none;
+  border-color: #00d00f;
+  background: #E5FFEA;
   color: #0088cc;
+  
 }
 .btn-outline:hover,
 .btn-outline.active {
@@ -407,10 +408,54 @@ border: 1px solid #0088cc;
     border-color: #00d00f;
 }
 .btn-group > .btn:first-child {
-    margin-left: 5px;
-    margin-right: 7px;
+    margin-left: 20px;
+    margin-right: 10px;
 }
 
+
+nav-tabs.nav-justified > .active > a {
+    border-bottom-color: #0088cc;
+}
+.nav-tabs.nav-justified > li > a {
+    border-bottom: 1px solid #00d00f;
+    margin-right: 0px;
+}
+.nav-tabs.nav-justified > li > a {
+    text-align: center;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #4C4781;
+    background-color: #E5FFEA;
+    border-bottom:#0088cc;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #0088cc #0088cc /* transparent */;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    cursor: default;
+}
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857;
+    border: 1px solid #00d00f;
+    border-radius: 7px 7px 0px 0px;
+}
+.nav-tabs.nav-justified > .active > a {
+    border-bottom-color: #0088cc;
+}
+.btn-success {
+    color: #0088cc;
+    background-color: #E5FFEA;
+    border:2px solid #00d00f;
+}
+.btn-warning {
+    color: #FFF;
+    background-color: #8FBF30;
+    border-color: #0088cc;
+}
 /*= HEADER
 ---------------------------------------------------------------------------------------------- */
 .header .navbar {
@@ -565,7 +610,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 /*= SPLASH
 ---------------------------------------------------------------------------------------------- */
 .splash-cover {
-  background:#000/* #E5FFEA */; 
+  background:#E5FFEA; 
   width: 100%;
   height: auto;
   top: 0;
