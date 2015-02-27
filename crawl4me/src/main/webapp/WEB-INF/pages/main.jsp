@@ -32,12 +32,14 @@
 
 
 						<form>
-							<div class="form-group col-lg-12">
+						<div class="row">
+							<div class="form-group col-md-12 ">
 								<label>URL to scan <a href="#"
 									class="icon-info-sign pull-right"
 									tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
 								</label> <input type="url" name="url" id="url" ng-model="urlData"
 									class="form-control" data-validate="required,url" ng-change="setLinks()">
+							</div>
 							</div>
 						</form>
 						
@@ -49,9 +51,9 @@
 									tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
 								</label>
 								<div class="btn-group btn-toggle">
-									<button class="btn btn-default  active" data-toggle="collapse"
+									<button class="btn btn-outline  " data-toggle="collapse"
 										data-target="#collapsibleLink">Only this page</button>
-									<button class="btn btn-default" data-toggle="collapse"
+									<button class="btn btn-outline" data-toggle="collapse"
 										data-target="#collapsibleLink">Custom format</button>
 								</div>
 								<div class="well collapse" id="collapsibleLink">
@@ -83,7 +85,7 @@
 										</div>
 										<div class="panel-body" style="max-height: 250px; overflow-y: scroll; ">
 											<div id="linksTable" simple-grid="gridRulesConfig"></div>
-											<button type="button" class="btn btn-sm btn-success" ng-click="addRulesRow()">Add row</button>
+											<button type="button" class="btn btn-sm  btn-outline" ng-click="addRulesRow()">Add row</button>
 										</div>
 									</div>
 								</div>
@@ -99,7 +101,7 @@
 										settings.</p>
 									<div class="col-sm-6">
 										<span class="input-group-btn" id="saveTemplateLink">
-											<button class="btn btn-outline" id="saveTemplateButton"
+											<button class="btn btn-outline btn-xs" id="saveTemplateButton"
 												type="button" onclick="return saveTemplate();"
 												value="Add scan">Save this settings</button>
 										</span>
@@ -123,10 +125,13 @@
 									</div>
 								</c:otherwise>
 							</c:choose>
-
-
-							<div id="scanStarter"><button class="btn btn-default btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
+			<div class="row">
+			<div class="form-group col-md-3 .col-md-offset-3">				
+<div id="scanStarter"><button class="btn btn-outline btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
+</div>
+						</div>	
 						</div>
+						
 					</div>
 
 
