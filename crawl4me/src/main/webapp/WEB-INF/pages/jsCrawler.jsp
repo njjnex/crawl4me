@@ -31,12 +31,14 @@
 					<!-- Scan form -->
 					<div name="scan-form">
 						<form>
-							<div class="form-group col-lg-12">
+							<div class="row">
+							<div class="form-group col-md-12 ">
 								<label>Resourse <a href="#"
 									class="icon-info-sign pull-right"
 									tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
 								</label> <input type="url" name="url" id="url" ng-model="urlData"
 									class="form-control" data-validate="required,url" ng-change="">
+							</div>
 							</div>
 							<div class="form-group col-lg-12">
 								<label>Search text <a href="#"
@@ -94,7 +96,7 @@
 								</div>
 							</div>
 						</div>
-							
+						
 						<div class="input-group" id="saveTemplate">
 							<sec:authorize var="loggedIn" access="isAuthenticated()" />
 							<c:choose>
@@ -125,8 +127,12 @@
 								</c:otherwise>
 							</c:choose>
 
-
-							<div id="scanStarter"><button class="btn btn-default btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
+<div class="row">
+			<div class="form-group col-md-3 .col-md-offset-3">				
+<div id="scanStarter"><button class="btn btn-outline btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
+</div>
+						</div>		
+							
 						</div>
 					</div>
 					<!-- End scan form -->
