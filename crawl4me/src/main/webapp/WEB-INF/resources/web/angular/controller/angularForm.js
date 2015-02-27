@@ -26,12 +26,11 @@ app
 					    }
 					}
 					
-					$scope.urlData = "http://www.bel.biz";
+					$scope.urlData = "http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html";
 										
-					$scope.urlTip = 'Enter valid http adress starting point for spider. After scanning this page all links to other pages that matches URL Regex rule will be extracted and scanned.';
-					$scope.regexTip = 'URL regex rule shous scrapper from which pages data should be extracted. To specify this rule you can use special symbols. Look for examples in <a href="howTo">How To.</a>';
-					$scope.parameterTip = 'Any name you wish. It will describe the value what you are looking in the page.';
-					$scope.valueTip = 'For Parameter Name you can choose any name. It will describe the value what you are looking in the page. Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like: &lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="howTo">How To</a> for examples.'
+					$scope.urlTip = 'Enter http adress starting point for spider.';
+					$scope.regexTip = 'Link rules shows scrapper from which pages data should be extracted. To specify this rules you can use special symbols. Look for examples in <a href="howTo">How To.</a>';
+					$scope.paramTip = 'For Parameter Name you can choose any name. It will describe the value what you are looking in the page. Find in the html source page tags in which looking value placed and copy-paste it into <i>Looking between specific tag:</i> field. It should looks like: &lt;div class="price"&gt; or &lt;p id="itemName"&gt;. See <a href="howTo">How To</a> for examples.'
 
 					
 					$scope.myPageData = {};

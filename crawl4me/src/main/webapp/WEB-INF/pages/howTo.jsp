@@ -5,9 +5,9 @@
 <head>
 
 <%@include file="../pages/header.jsp" %>
+ <meta name="description" content="ScrapingOn crawler information. Data scraping How To with examples and links with crawling settings." />
 
-
-<title>Scrapingon. Data scraping How To.</title>
+<title>ScrapingOn crawler information. Data scraping How To with examples</title>
 </head>
 <body>
 	<div class="section type-2">
@@ -64,7 +64,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        E-commerce scraping data example. <i class="icon-plus"></i><i class="icon-minus"></i></a>
+                                        E-commerce scraping data example. (for version 1.1)<i class="icon-plus"></i><i class="icon-minus"></i></a>
                                 </h3>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
@@ -89,7 +89,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    	Data scraping example. <i class="icon-plus"></i><i class="icon-minus">
+                                    	Data scraping example. (for version 1.1) <i class="icon-plus"></i><i class="icon-minus">
                                         </i></a>
                                 </h3>
                             </div>
@@ -112,7 +112,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                                        href="#collapseThree">Crawl data from real estate agency example. <i class="icon-plus"></i><i class="icon-minus">
+                                        href="#collapseThree">Crawl data from real estate agency example. (for version 1.1)<i class="icon-plus"></i><i class="icon-minus">
                                         </i></a>
                                 </h3>
                             </div>
@@ -147,9 +147,55 @@
             <br>
             <div class="row">
                 <div class="col-lg-6 features">
-                    <h3>
-                        About scraper 1.1 version:</h3>
+                	
+                	 <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#scraper2">
+                                       Scraper 2.0 version <i class="icon-minus"></i></a>
+                                </h3>
+                            </div>
+                            <div id="scraper2" class="panel-collapse collapse collapse in">
+                                <div class="panel-body">
+                               <h5>What's new</h5>     
                     <div class="skills">
+                        <p>HTML crawler:</p>
+                      <ul>
+                      		<li>Multiple scraping links </li>
+                      		<li>Extracting up to 10 user defined params</li>
+                       		<li>No limit scraped url's per one user.</li>
+                       		<li>Multithreading perfomance update</li>
+                       </ul>
+                       <p>JavaScript crawler:</p>
+                       <ul>		
+                       		<li>Dynamic content crawling.</li>
+                       		<li>Autodetect user input field.</li>
+                       		<li>Paginator - automatic switch pages after scrapping.</li>
+                       		<li>Multithreading</li>
+                      	</ul>
+                       	<p>Global changes:</p>
+                       	<ul>	
+                       		<li>Disqus massage service.</li>
+                       		<li>New design.</li>
+                       		<li>Up to 200 results or 50 pages per one scan available.</li>
+                       		<li>How To with live examples (coming soon)</li>
+                        </ul>
+                        <hr>
+                                           
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#scraper1">
+                                    	Scraper 1.1 version. <i class="icon-minus"></i>
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="scraper1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                   <div class="skills">
                         <p>Start right now:</p>
                       <ul>
                       		<li>No registration, crawler is ready to go!</li>
@@ -178,14 +224,20 @@
                        		<li>Performance upgrades.</li>
                         </ul>
                        
+                                </div>
+                            </div>
+                        </div>
+                        
+                </div>
+                
+                   
                     </div>
                 </div>
                 <div class="col-lg-6 features">
                     <h3>How To</h3>
                     <p><strong>Start crawling with ScrapingOn.com step-by-steb:</strong><br>
                     <ol>
-                    	<li>Read Legal issues and click I got it. Let's start button</li>
-                    	<li>Enter crawling resource in URL to scan and chose wich page should be examined by filling URL Regex rule field</li>
+                    	<li>Enter crawling resource in URL to scan and if need chose wich pages should be examined after start page by clicking Custon Format. After that fill links regex rule fields.</li>
                     	<li>Choose wich data you want to scrap from pages. Open page as HTML code view and find between wich tags your data placed after copy paste tag for the first parameter and do the same for the second parameter.</li>
                     	<li>Click Scan button and scraping will start so you can able to see console log and result table with crawled result.</li>
                     </ol>

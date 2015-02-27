@@ -5,6 +5,7 @@
 <html ng-app="formModule">
 <head>
 <%@include file="../pages/header.jsp"%>
+
 <script src="${pageContext.request.contextPath}/resources/web/angular/controller/angularForm.js"></script>
 
 <div class="jumper" id="crawler"></div>
@@ -15,7 +16,7 @@
 						heading="JavaScript scrapper" data-ng-click="javaScriptCrawler()"></tab>
 					</tabset>
 					<div class="section-headlines">
-						<!--    <h1>Free online web scraper.</h1>  -->
+						
 					</div>
 
 					<!-- Registration data alert -->
@@ -72,7 +73,7 @@
 							<div id="pageDetails">
 								<label>Extract data <a href="#"
 									class="icon-info-sign pull-right"
-									tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
+									tooltip-html-unsafe="{{paramTip}}" tooltip-trigger="focus"></a>
 								</label>
 								
 									<div class="panel panel-default">
