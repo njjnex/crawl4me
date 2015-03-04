@@ -10,20 +10,16 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 	
 	$scope.init = function () {
 	    if ($location.path() == "/") {
-	    	console.log(" default location: " + $location.path());
 	    	$scope.explorePage("htmlDefault");
 	    	
 	    } 
 	    if ($location.path() == "/JavaScriptCrawler") {
-	    	console.log(" default location: " + $location.path());
 	    	$scope.explorePage("jsDefault");
 	    }
 	    if ($location.path().lastIndexOf("/z", 2) === 0) {
-	    	console.log("template location: " + $location.path());
 	    	$scope.explorePage("template/" + $location.path());
 	    }
 	    if ($location.path().lastIndexOf("/j", 2) === 0) {
-	    	console.log("template location: " + $location.path());
 	    	$scope.explorePage("template/" + $location.path());
 	    }
 	} 
@@ -35,8 +31,6 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 	$scope.urlData = "http://www.ebay.com";
 		
 	$scope.explorePage = function(postUrl) {
-		console.log("location: " + $location.path());
-		console.log($scope.urlData)
 		connect();
 		$http({
 			'url' : postUrl,
@@ -46,7 +40,7 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 			},
 			'data' : $scope.urlData
 		}).success(function(data) {
-			console.log(data)
+			
 			$scope.myPageData = data
 			$scope.domRules = data.domRules;
 			$scope.pageLinks = data.links;
@@ -110,16 +104,16 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 				} ],
 				showEditButton : true,
 				editRequested : function(row) {
-					console.log('edit request:', row);
+					
 				},
 				rowDeleted : function(row) {
-					console.log('deleted:', row);
+					
 				},
 				cellFocused : function(row, column) {
-					console.log('focused:', row, column);
+					
 				},
 				rowSelected : function(row) {
-					console.log('selected:', row);
+					
 				},
 				orderBy : 'timesFounded',
 				// reverseOrder: false,
@@ -154,16 +148,12 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 
 		pageData['domRules'] = $scope.domRules;
 
-		console.log("data from angular  "
-				+ JSON.stringify(pageData));
-
 		return pageData;
 
 	}
 	
 	$scope.addRulesRow = function () {
         var data = $scope.gridRulesConfig.getData();
-        console.log(data);
         data.push(
             {
                 $added: true,
@@ -175,10 +165,10 @@ app.controller('jsCtrl', function($scope, $http, $location) {
 	
 	
 	 $scope.javaScriptCrawler = function() {
-     	window.location.href = "http://localhost:8080/JavaScriptCrawler";
+     	window.location.href = "/JavaScriptCrawler";
      };
      $scope.htmlCrawler = function() {
-     	window.location.href = "http://localhost:8080/";
+     	window.location.href = "/";
      };
 	
 	

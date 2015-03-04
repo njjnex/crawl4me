@@ -12,15 +12,12 @@ app
 					
 					$scope.init = function () {
 					    if ($location.path() == "/") {
-					    	console.log(" default location: " + $location.path());
 					    	$scope.explorePage("htmlDefault");
 					    } 
 					    if ($location.path().lastIndexOf("/z", 2) === 0) {
-					    	console.log("template location: " + $location.path());
 					    	$scope.explorePage("template/" + $location.path());
 					    }
 					    if ($location.path().lastIndexOf("/j", 2) === 0) {
-					    	console.log("template location: " + $location.path());
 					    	$scope.javaScriptCrawler();
 					    	$scope.explorePage("template/" + $location.path());
 					    }
@@ -38,8 +35,6 @@ app
 					
 					
 					$scope.explorePage = function(postUrl) {
-						console.log("location: " + $location.path());
-						console.log($scope.urlData)
 						connect();
 						$http({
 							'url' : postUrl,
@@ -49,7 +44,6 @@ app
 							},
 							'data' : $scope.urlData
 						}).success(function(data) {
-							console.log(data)
 							$scope.myPageData = data
 							$scope.pageLinks = data.links;
 							$scope.domRules = data.domRules;
@@ -187,16 +181,12 @@ app
 
 						pageData['domRules'] = $scope.domRules;
 
-						console.log("data from angular  "
-								+ JSON.stringify(pageData));
-
 						return pageData;
 
 					}
 					
 					$scope.addRulesRow = function () {
 		                var data = $scope.gridRulesConfig.getData();
-		                console.log(data);
 		                data.push(
 		                    {
 		                        $added: true,
@@ -207,10 +197,10 @@ app
 		            };
 					          
 		            $scope.javaScriptCrawler = function() {
-		            	window.location.href = "http://localhost:8080/JavaScriptCrawler";
+		            	window.location.href = "/JavaScriptCrawler";
 		            };
 		            $scope.htmlCrawler = function() {
-		            	window.location.href = "http://localhost:8080/";
+		               	window.location.href = "/";
 		            };
 		            
 		            $scope.init();

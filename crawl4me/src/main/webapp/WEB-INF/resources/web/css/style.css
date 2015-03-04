@@ -3,9 +3,6 @@ Template:   Meilleur
 Author:     EGrappler.com
 Framework:  Bootstrap 3.0
 */
-
-
-
 .row-merge {
   width: 100%;
   *zoom: 1;
@@ -498,9 +495,8 @@ nav-tabs.nav-justified > .active > a {
 	padding: 15px 15px 15px 15px;
 	font-size: 24px;
 	margin-right:40px;
-	margin-left:560px;
+	margin-left: 163%;
 }
-
 
 /*= HEADER
 ---------------------------------------------------------------------------------------------- */
@@ -1149,8 +1145,6 @@ mark{
 }
 #disqusId{
 	color: black;
-	border:1px solid #0088cc;
-
 }
 #linksTable table{
  

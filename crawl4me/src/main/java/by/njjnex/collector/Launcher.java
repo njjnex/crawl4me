@@ -27,7 +27,7 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 
 public class Launcher extends DeepCrawler {
 
-	private final int MAXIMUM_RESULT = 45;
+	private final int MAXIMUM_RESULT = 95;
 	private final int THREADS = 5;
 	private final int SCANNING_DEEP = 3;
 
@@ -142,7 +142,7 @@ public class Launcher extends DeepCrawler {
 		} else
 			nextLinks.addAllFromDocument(doc, regexRule);
 
-		if (resultFounded > MAXIMUM_RESULT || pageCount > 100 || resultLines > 200)
+		if (resultFounded > MAXIMUM_RESULT || pageCount > 200 || resultLines > 200)
 			maximumReached = true;
 		
 		if (maximumReached) {

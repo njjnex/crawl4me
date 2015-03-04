@@ -18,13 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import by.njjnex.collector.JSLauncher;
-import by.njjnex.collector.JavaScriptCrawler;
 import by.njjnex.collector.Launcher;
 import by.njjnex.logic.FileUtils;
 import by.njjnex.logic.domRules.DomRuleConverter;
 import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
-import by.njjnex.model.PageCrawler;
 import by.njjnex.model.PageHTML;
 import by.njjnex.model.PageJS;
 import by.njjnex.service.MessageService;
@@ -39,7 +37,7 @@ public class MainController {
 	 * String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" +
 	 * principal.getName();
 	 */
-	private final String SAVE_DIR = "/tut/";
+	/*private final String SAVE_DIR = "/tut/";*/
 	private final String HTML_TEMPLATE_PREFIX = "z";
 	private final String JS_TEMPLATE_PREFIX = "j";
 	
@@ -116,6 +114,8 @@ public class MainController {
 	@SendTo("/topic/result")
 	public void greeting(PageJS pageCrawler, Principal principal) throws Exception {
 
+		String SAVE_DIR = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
+		
 		System.out.println(principal + " : " + principal.getName());
 		if (principal.getName() != null) {
 

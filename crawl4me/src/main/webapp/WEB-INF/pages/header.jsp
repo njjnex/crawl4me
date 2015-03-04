@@ -6,8 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Scrap data online in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
-	<meta name="keywords" content="scraping data, online crawler, data scrapping, site scanner, data mining, parcer, free scraping, data spider, online data spider, grab data from website, web spider, online spider, free online crawler, free online scraper, free online spider" />
+	<meta name="keywords" content="web crawler, crawler, amazon crawler, ebay crawler, web scraping, web scraper, web spider, data scraping" />
 	<meta name="robots" content="index, follow">
+	<meta name="msvalidate.01" content="A8DA38EA554C679A0FF4177083D7B0E2" />
 	<meta name="revisit-after" content="3 month">
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     <title>ScrapingOn free online data scraping.</title>
@@ -37,11 +38,13 @@
       		
 	<script	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stomp.js"></script>
-		
+		<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/popover.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/templateSaver.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/resultTableCreator.js"></script>
+	<script type="text/javascript">
+  			var disqus_identifier = 'scrapingon';
+	</script>
 	
 	
 	<!-- DataTables -->
@@ -63,6 +66,34 @@
   ga('send', 'pageview');
 
 </script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter28342396 = new Ya.Metrika({id:28342396,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/28342396" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 	
 	<%        
     response.setHeader("Pragma", "No-cache");
