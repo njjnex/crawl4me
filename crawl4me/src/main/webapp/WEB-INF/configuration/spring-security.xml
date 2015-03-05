@@ -25,7 +25,7 @@
                       
     		 p:location="/WEB-INF/configuration/jdbcOpenShift.properties" />
       	  <!--  p:location="/WEB-INF/configuration/jdbcMySQL.properties" />  -->
-	
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.databaseUrl}?useUnicode=true&amp;characterEncoding=UTF-8"
