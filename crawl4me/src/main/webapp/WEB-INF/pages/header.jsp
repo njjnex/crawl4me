@@ -45,7 +45,7 @@
 	
 	<!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/simple-grid.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/jquery.bootgrid.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/simple-grid.css">
 <script type="text/ng-template" id="simple-grid.html" src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
 	
 	<!-- Google Analytics -->

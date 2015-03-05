@@ -125,11 +125,12 @@ public class MainController {
 			} else {
 				Launcher crawler = new Launcher(pageCrawler, principal, template, SAVE_DIR);
 				crawler.startHTMLCrawler();
-
-				FileUtils.deleteDir(SAVE_DIR);
-				this.template.convertAndSendToUser(principal.getName(), "/topic/console",
-						new Output("FINISHED: " + sdf.format(new Date())));
 			}
+			
+			FileUtils.deleteDir(SAVE_DIR);
+			this.template.convertAndSendToUser(principal.getName(), "/topic/console",
+					new Output("FINISHED: " + sdf.format(new Date())));
+			
 		} else {
 			this.template.convertAndSend("/topic/console", new Output(
 					"ERROR: Please reload crawler page and try again. " + sdf.format(new Date())));
