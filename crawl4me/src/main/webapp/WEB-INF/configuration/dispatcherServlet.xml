@@ -18,8 +18,11 @@
 	
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
+	<mvc:resources mapping="/sitemap.xml" location="WEB-INF/resources/web/sitemap.xml" order="0"/>
+	<mvc:resources mapping="/robots.txt" location="WEB-INF/resources/web/robots.txt" order="0"/>
 	<mvc:resources mapping="/resources/**" location="WEB-INF/resources/" />
 	<context:component-scan base-package="by.njjnex" />
+	
 			
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

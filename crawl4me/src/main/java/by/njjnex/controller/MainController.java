@@ -31,12 +31,8 @@ import by.njjnex.service.TemplateService;
 public class MainController {
 
 	private SimpMessagingTemplate template;
-
-	/*
-	 * String saveDir = System.getenv("OPENSHIFT_DATA_DIR")+ "/" +
-	 * principal.getName();
-	 */
-	private final String SAVE_DIR = "/tut/";
+	
+	/*private final String SAVE_DIR = "/tut/";*/
 	private final String HTML_TEMPLATE_PREFIX = "z";
 	private final String JS_TEMPLATE_PREFIX = "j";
 	
@@ -110,7 +106,7 @@ public class MainController {
 	@SendTo("/topic/result")
 	public void crawler(PageJS pageCrawler, Principal principal) throws Exception {
 
-		/*String SAVE_DIR = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
+		String SAVE_DIR = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
 		
 		System.out.println(principal + " : " + principal.getName());
 		if (principal.getName() != null) {

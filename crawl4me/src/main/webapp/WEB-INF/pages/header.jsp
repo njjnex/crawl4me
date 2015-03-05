@@ -6,11 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Scrap data online in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
-	<meta name="keywords" content="web crawler, crawler, amazon crawler, ebay crawler, web scraping, web scraper, web spider, data scraping" />
+	<meta name="keywords" content="web crawler, crawler, amazon crawler, ebay crawler, web scraping, web scraper, web spider, data scraper" />
 	<meta name="robots" content="index, follow">
 	<meta name="revisit-after" content="3 month">
-	    
-    <title>ScrapingOn free online data scraping.</title>
+	<meta name="title" content="ScrapingOn free online data scraper. Scrap data online in one click.">
+	  
     
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     
@@ -116,7 +116,7 @@
                 </div>
                 <div class="collapse navbar-collapse hidden-xs">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#crawler" onclick="window.location.href='${pageContext.request.contextPath}/#'">Home</a></li>
+                        <li class="active"><a href="#crawler" onclick="window.location.href='${pageContext.request.contextPath}/'">Home</a></li>
                         <li><a href="#scanning-result" onclick="window.location.href='${pageContext.request.contextPath}/#scanning-result'">Result</a></li>
                         <li><a href="#messages" onclick="window.location.href='${pageContext.request.contextPath}/#messages'">Messages</a></li>
                          <li><a href="${pageContext.request.contextPath}/howTo" onclick="window.location.href='${pageContext.request.contextPath}/howTo'">How To</a></li>

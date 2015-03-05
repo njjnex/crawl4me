@@ -7,7 +7,7 @@
 
 <%@include file="../pages/header.jsp"%>
  <meta name="description" content="Scrap data for free online just in one click. With JavaScript crawler you able to crawl dynamic web content." />
- <title>JavaScript crawler for parsing dynamic web content</title>
+ <title>JavaScript crawler for parsing dynamic web content. ScrapingOn online data scraper.</title>
 <script src="${pageContext.request.contextPath}/resources/web/angular/controller/jsForm.js"></script>
 
 <div class="jumper" id="crawler"></div>

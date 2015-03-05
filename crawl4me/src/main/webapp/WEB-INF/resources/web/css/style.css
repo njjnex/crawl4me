@@ -1,8 +1,4 @@
-/*
-Template:   Meilleur
-Author:     EGrappler.com
-Framework:  Bootstrap 3.0
-*/
+
 .row-merge {
   width: 100%;
   *zoom: 1;
@@ -213,11 +209,14 @@ Framework:  Bootstrap 3.0
 html,
 body {
   height: 100%;
-  margin: 0;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
   padding: 0;
+  
 }
 body {
-  background: #fff;
+ background:#EFEFEF;
+
   color: #4C4781;
   font-size: 14px;
   font-family:'Roboto', Arial, sans-serif;
@@ -249,7 +248,11 @@ h1 {
   font-size: 28px;
 }
 h2 {
-  font-size: 24px;
+ font-size: 40px;
+ margin-top:5px;
+ margin-left: 20px;
+ text-align:left;
+/* border-bottom: 1px solid #00d00f; */
 }
 h3 {
   font-size: 18px;
@@ -362,7 +365,8 @@ border: 1px solid #0088cc;
 .btn {
     display: inline-block;
     padding: 12px 12px;
-    margin-bottom: 0px;
+  
+    margin-bottom: 5px;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.42857;
@@ -448,7 +452,7 @@ nav-tabs.nav-justified > .active > a {
     -moz-border-left-colors: none;
     border-image: none;
     cursor: default;
-    border-radius:3px;
+    border-radius: 7px 7px 0px 0px;
 }
 .nav-tabs > li > a {
     margin-right: 2px;
@@ -489,15 +493,35 @@ nav-tabs.nav-justified > .active > a {
 }
 #scanStarter{
 	/* margin-top:50px; */
-	padding-left: 15px;
+	/* padding-left: 15px; */
 }
 #scanButton{
 	padding: 15px 15px 15px 15px;
 	font-size: 24px;
-	margin-right:40px;
-	margin-left: 163%;
+	/* margin-right:40px; */
+	margin-left:163%;
+	margin-right: 35%;
 }
 
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning.focus,
+.btn-warning:active,
+.btn-warning.active,
+.open > .dropdown-toggle.btn-warning {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+.nav-tabs.nav-justified {
+    width: 50%;
+    border-bottom: 0px none;
+    margin-top:50px;
+    text-align:center;
+}
+.nav-tabs {
+    border-bottom: none;
+}
 /*= HEADER
 ---------------------------------------------------------------------------------------------- */
 .header .navbar {
@@ -514,27 +538,44 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 .header .navbar-nav > li > a {
   font-size: 16px;
   color: #fff;
+ /*  background:#84C225; */
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #FFF;
-    background:/*  rgb(53,106,160); Old browsers
-background: -moz-linear-gradient(left, rgba(53,106,160,1) 29%, rgba(53,106,160,1) 67%); FF3.6+
-background: -webkit-gradient(linear, left top, right top, color-stop(29%,rgba(53,106,160,1)), color-stop(67%,rgba(53,106,160,1))); Chrome,Safari4+
-background: -webkit-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); Chrome10+,Safari5.1+
-background: -o-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); Opera 11.10+
-background: -ms-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); IE10+
-background: linear-gradient(to right, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); W3C
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', endColorstr='#356aa0',GradientType=1 ); IE6-9 */#84C225;;
+    /* background:#84C225; */
+    background: rgb(53,106,160); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(53,106,160,1) 29%, rgba(53,106,160,1) 67%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(29%,rgba(53,106,160,1)), color-stop(67%,rgba(53,106,160,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* IE10+ */
+background: linear-gradient(to right, rgba(53,106,160,1) 29%,rgba(53,106,160,1) 67%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', endColorstr='#356aa0',GradientType=1 ); /* IE6-9 *//* #0D2B43 */;
 }
 /*= SECTIONS
 ---------------------------------------------------------------------------------------------- */
 .section {
-  padding: 100px 0;
- 
-  
+  padding: 40px 0px;
+  margin-firstchild:60px; 
+   border:1px solid #e5e6e7; 
+}
+#freescrap{
+	background: #fff;
+	margin-top: 20px;
+	margin-bottom:30px;
+	height:200px;
+	/* border:1px solid #0088cc; */
+}
+#crawlerPage{
+	
+	height:auto;
+	min-height:200px;
+	height:auto !important;        /* for IE as it does not support min-height */
+	height:30px; 
+	background: #DFEBF1;                   /* for IE as it does not support min-height */
 }
 .section.type-1 {
-  background:MintCream;
+  background: #FFF ;
  	color: #4C4781; 
 
 }
@@ -583,6 +624,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   
 }
 .section.type-3 {
+	padding:50px;
   background: Honeydew;
   /* background: url(../img/header/1111.jpg) no-repeat center center fixed; */
   
@@ -704,7 +746,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   background: #fff;
   padding: 15px;
 }
-/*= SERVICES
+/* /*= SERVICES
 ---------------------------------------------------------------------------------------------- */
 .gallery-control {
   margin: 0 0 30px;
@@ -752,7 +794,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   -ms-transition: opacity .3s linear;
   -moz-transition: opacity .3s linear;
   -webkit-transition: opacity .3s linear;
-  /* ...and now override with proper CSS property */
+  ...and now override with proper CSS property
 
   transition: opacity .3s linear;
 }
@@ -790,7 +832,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
   #portfolio .mix {
     width: 100%;
   }
-}
+} */
 /*= FEATURES
 ---------------------------------------------------------------------------------------------- */
 .features .media > i {
@@ -982,7 +1024,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
 .panel-title a.collapsed .icon-plus {
   display: none;
 }
-/*= TESTIMONIAL
+/* /*= TESTIMONIAL
 ---------------------------------------------------------------------------------------------- */
 #carousel-testimonial {
   margin-top: 50px;
@@ -1025,7 +1067,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', end
     width: 80px;
   }
 }
-@media (min-width: 768px) and (max-width: 979px) {
+@media (min-width: 768px) and (max-width: 979px) { */
   /*= RESPONSIVE RESET
   ---------------------------------------------------------------------------------------------- */
 }
@@ -1145,6 +1187,8 @@ mark{
 }
 #disqusId{
 	color: black;
+	/* border:1px solid #0088cc; */
+
 }
 #linksTable table{
  
@@ -1152,9 +1196,11 @@ mark{
   width: 100%;
   
 }
-#crawlerPage{
-	height:auto;
-	min-height:200px;
-	height:auto !important;        /* for IE as it does not support min-height */
-	height:30px;                   /* for IE as it does not support min-height */
+
+#crawlTabs{
+	width:100%;
+	margin-top: 3%;
+}
+#rowscrap{
+	padding-top:20px;
 }

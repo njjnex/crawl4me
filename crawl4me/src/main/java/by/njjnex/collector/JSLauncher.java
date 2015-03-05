@@ -68,7 +68,7 @@ public class JSLauncher {
 		launcherJS.startJSCrawler();
 		
 		
-		
+		 driver.quit();
 		
 	}
 	

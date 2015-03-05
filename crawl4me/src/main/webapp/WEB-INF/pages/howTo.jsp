@@ -14,9 +14,9 @@
         <div class="container">
             <div class="section-headlines">
                 <h3>
-                    ScrapingOn.com free online web scraping.</h3>
+                    ScrapingOn.com free online web scraper.</h3>
                 <div>
-                     Data crawling as easy as never before. Extract and organise data in one click. It can be useful in many cases:
+                     Data crawling as easy as never before. Extract and organize data in one click. It can be useful in many cases:
                 </div>
                
             </div>
