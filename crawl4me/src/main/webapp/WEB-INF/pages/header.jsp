@@ -8,17 +8,18 @@
     <meta name="description" content="Scrap data online in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
 	<meta name="keywords" content="web crawler, crawler, amazon crawler, ebay crawler, web scraping, web scraper, web spider, data scraping" />
 	<meta name="robots" content="index, follow">
-	<meta name="msvalidate.01" content="A8DA38EA554C679A0FF4177083D7B0E2" />
 	<meta name="revisit-after" content="3 month">
-    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
+	    
     <title>ScrapingOn free online data scraping.</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
+    
     <!-- Stylesheets -->
-    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300'
         rel='stylesheet' type='text/css'>
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/icons/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/icons/rondo/style.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/web/css/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/style.css" rel="stylesheet">
    	
    	<!-- JS import -->
@@ -26,14 +27,10 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.3.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/verify.notify.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/jquery.mixitup.min.js"></script>
-    
+        
     <script src="${pageContext.request.contextPath}/resources/web/angular/lib/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/ui-bootstrap-tpls-0.12.0.min.js"></script>
-
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.js"></script>
-
+	
 	<script	src="${pageContext.request.contextPath}/resources/js/switcher.js"></script>
       		
 	<script	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
@@ -42,18 +39,14 @@
 	<script src="${pageContext.request.contextPath}/resources/js/templateSaver.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
-	<script type="text/javascript">
-  			var disqus_identifier = 'scrapingon';
-	</script>
+	
+	<script type="text/javascript"> var disqus_identifier = 'scrapingon'; </script>
 	
 	
 	<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/jquery.bootgrid.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/web/angular/css/simple-grid.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/jquery.bootgrid.min.css">
-<script type="text/ng-template" id="simple-grid.html"
-	src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
+<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/simple-grid.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/jquery.bootgrid.min.css">
+<script type="text/ng-template" id="simple-grid.html" src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
 	
 	<!-- Google Analytics -->
 	<script>

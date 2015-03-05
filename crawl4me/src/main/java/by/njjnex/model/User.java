@@ -10,9 +10,6 @@ import javax.persistence.Table;
 @Table(name = "USER")
 public class User {
 
-	
-	
-
 	public User() {
 		super();
 	}

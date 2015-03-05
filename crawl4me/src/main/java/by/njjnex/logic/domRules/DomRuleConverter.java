@@ -1,17 +1,30 @@
 package by.njjnex.logic.domRules;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import by.njjnex.model.DomRule;
+import by.njjnex.model.Output;
 import by.njjnex.model.PageCrawler;
-import by.njjnex.model.PageHTML;
-
+/*
+ * Converting user input rules for element extraction
+ * according CSS or xPAth rules. You can find more at jsop.org
+ */
 public class DomRuleConverter implements DomRuleConvert{
 	
+	private Principal principal;
+	private SimpMessagingTemplate messagingTemplate;
 	
+	
+	public DomRuleConverter(Principal principal, SimpMessagingTemplate messagingTemplate) {
+		super();
+		this.principal = principal;
+		this.messagingTemplate = messagingTemplate;
+	}
+
 	public PageCrawler convertTags(PageCrawler page){
 						
 		for(DomRule rule: page.getDomRules()){
@@ -52,13 +65,19 @@ public class DomRuleConverter implements DomRuleConvert{
 	
 	public List<DomRule> replaceQuotes(List<DomRule> list){
 		for(DomRule rule:list){
-			String value =rule.getValue();
-			String result = null;
-						
-			 if(value.contains("\'")){
-				 result = value.replaceAll("\'", "\"");
-			 	rule.setValue(result);
-			 }
+			try {
+				String value =rule.getValue();
+				String result = null;
+							
+				 if(value.contains("\'")){
+					 result = value.replaceAll("\'", "\"");
+				 	rule.setValue(result);
+				 }
+			} catch (NullPointerException e) {
+				this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
+						"Empty selector. Please enter correct rule for extract data! STOPPING CRAWLER... "));	
+				e.printStackTrace();
+			}
 		}
 		return list;
 	}

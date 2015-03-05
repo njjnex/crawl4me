@@ -9,6 +9,7 @@ import by.njjnex.logic.PageExplorer;
 import by.njjnex.model.PageHTML;
 import by.njjnex.service.TemplateService;
 
+/*Sets default scanning variables for the home path */
 @RestController
 public class AngularController {
 	

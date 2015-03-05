@@ -5,6 +5,9 @@ import java.util.List;
 
 import by.njjnex.model.PageLink;
 
+/*
+ * Creates default scanning template values.
+ */
 public class LinksHandler {
 
 	public List<PageLink> setTemplateLinks(String url) {

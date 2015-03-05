@@ -25,7 +25,6 @@ import by.njjnex.model.DomRule;
 import by.njjnex.model.Output;
 import by.njjnex.model.PageHTML;
 import by.njjnex.model.PageJS;
-import by.njjnex.service.MessageService;
 import by.njjnex.service.TemplateService;
 
 @Controller
@@ -49,10 +48,7 @@ public class MainController {
 
 	@Autowired
 	TemplateService templateService;
-
-	@Autowired
-	MessageService messageService;
-
+	
 	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
 	@RequestMapping(value = { "/", "/z{id}"})
@@ -74,7 +70,7 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/saveState/{id}", method = RequestMethod.POST)
-	public @ResponseBody String saveTemplate(@PathVariable("id") String generatedId, @RequestBody PageJS pageCrawler) {
+	public @ResponseBody String saveTemplate(@PathVariable("id") String generatedId, @RequestBody PageJS pageCrawler, Principal principal) {
 		
 		String id = null;
 		
@@ -86,7 +82,7 @@ public class MainController {
 		
 		pageCrawler.setId(id);
 		List<DomRule> domRules = pageCrawler.getDomRules();
-		pageCrawler.setDomRules(new DomRuleConverter().replaceQuotes(domRules));
+		pageCrawler.setDomRules(new DomRuleConverter(principal, template).replaceQuotes(domRules));
 		templateService.saveTemplate(pageCrawler);
 
 		return id;
@@ -112,14 +108,14 @@ public class MainController {
 
 	@MessageMapping("/crawler")
 	@SendTo("/topic/result")
-	public void greeting(PageJS pageCrawler, Principal principal) throws Exception {
+	public void crawler(PageJS pageCrawler, Principal principal) throws Exception {
 
 		String SAVE_DIR = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
 		
 		System.out.println(principal + " : " + principal.getName());
 		if (principal.getName() != null) {
 
-			DomRuleConverter converterDom = new DomRuleConverter();
+			DomRuleConverter converterDom = new DomRuleConverter(principal,template);
 			pageCrawler.setDomRules(converterDom.replaceQuotes((pageCrawler.getDomRules())));
 			pageCrawler = (PageJS) converterDom.convertTags(pageCrawler);
 

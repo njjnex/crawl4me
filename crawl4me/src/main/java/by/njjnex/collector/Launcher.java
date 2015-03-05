@@ -27,8 +27,8 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 
 public class Launcher extends DeepCrawler {
 
-	private final int MAXIMUM_RESULT = 95;
-	private final int THREADS = 5;
+	private final int MAXIMUM_RESULT = 95; //MAXIMUM_RESULT + THREADS = maximum result per one scan
+	private final int THREADS = 5;         
 	private final int SCANNING_DEEP = 3;
 
 	private final String USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0";
@@ -49,6 +49,7 @@ public class Launcher extends DeepCrawler {
 	private String paginatorRule;
 	private WebDriver driver = new HtmlUnitDriver();
 
+	/* Default HTML launcher constructor */
 	public Launcher(PageHTML scanningTemplate, Principal principal, SimpMessagingTemplate messagingTemplate,
 			String crawlPath) throws Exception {
 		super(crawlPath);
@@ -58,11 +59,11 @@ public class Launcher extends DeepCrawler {
 
 		for (PageLink rule : scanningTemplate.getLinks()) {
 			if (rule.isIncluded()) {
-				regexRule.addRule(rule.getLinkHref()); // positive HTML rule
+				regexRule.addRule(rule.getLinkHref()); 
 			}
 		}
 	}
-
+	/* Java Script launcher constructor */
 	public Launcher(PageJS pageJS, Principal principal, SimpMessagingTemplate messageTemplate, String path,
 			WebDriver driver) throws Exception {
 		super(path);
@@ -74,7 +75,7 @@ public class Launcher extends DeepCrawler {
 		for (PageLink rule : scanningTemplate.getLinks()) {
 			if (rule.isIncluded()) {
 				if (rule.getLinkHref().startsWith("<")) {
-					paginatorRule = new DomRuleConverter().xPathConverter(rule.getLinkHref());
+					paginatorRule = new DomRuleConverter(principal, messageTemplate).xPathConverter(rule.getLinkHref());
 				}
 			}
 		}
@@ -105,13 +106,14 @@ public class Launcher extends DeepCrawler {
 		titleText = doc.select("title").text();
 
 		if (!titleText.isEmpty()) {
-			resultPage = new ValueExtractor(scanningTemplate).extract(doc);
+			resultPage = new ValueExtractor(scanningTemplate, principal, messagingTemplate).extract(doc);
 			pageCount++;
 			resultLines = resultLines + resultPage.get(0).getValues().size();
 		}
 
 		boolean emptyResult = true;
-
+		
+		
 		if (pageCount == 0) {
 			for (ScanningResult resultValue : resultPage) {
 				
@@ -176,6 +178,9 @@ public class Launcher extends DeepCrawler {
 
 	}
 
+	/* Pagination for Java Script crawler - 
+	 * switch to next page after scan this.
+	 */
 	private String paginator(WebDriver driverPage) {
 											
 		driverPage.findElement(By.xpath(paginatorRule)).click();
