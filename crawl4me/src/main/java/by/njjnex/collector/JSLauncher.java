@@ -3,14 +3,12 @@ package by.njjnex.collector;
 import java.security.Principal;
 import java.util.List;
 
-import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-import cn.edu.hfut.dmic.webcollector.model.Page;
 import by.njjnex.model.Output;
 import by.njjnex.model.PageJS;
 
@@ -30,18 +28,16 @@ public class JSLauncher {
 		
 	}
 
-
 	public void runCrawler() throws Exception{
 		
 		WebDriver driver = new HtmlUnitDriver();
-		
 		driver.get(pageJS.getUrl());
-
-		// Find the text input element by its name
-		/*WebElement elementSearch = driver.findElement(By.id("gh-ac"));*/
+		
 		WebElement elementSearch = null;
 		
-		//Autodetect search field 
+		/* Trying to auto detect search field in the page by searching <form> tag.
+		 * Then in the <form> tag looking for <input type="text"> by checking all children elements. 
+		 */
 		List<WebElement> allFormChildElements = driver.findElements(By.xpath("//form//*"));
 		System.out.println("founded form: " +allFormChildElements.size());
 			for(WebElement item : allFormChildElements ){
@@ -52,8 +48,6 @@ public class JSLauncher {
 			    	
 			        if(item.getAttribute("type").equals("text")) {
 			        	elementSearch = item;
-			        	
-			            
 			            System.out.println("fount text input");
 			        }
 			    }   
@@ -65,15 +59,11 @@ public class JSLauncher {
 			this.messageTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output("Canot detect search field on this page... "
     				));
 		}
-
-		// Enter something to search for
-		elementSearch.sendKeys(pageJS.getSearchPhrase());
-
-		// Now submit the form. WebDriver will find the form for us from the
-		// element
-		elementSearch.submit();
 		
-		pageJS.setUrl(driver.getCurrentUrl());
+		elementSearch.sendKeys(pageJS.getSearchPhrase()); //send text to search field
+		elementSearch.submit(); // push submit button
+		
+		pageJS.setUrl(driver.getCurrentUrl()); // send result page to the Launcher
 		Launcher launcherJS = new Launcher(pageJS, principal, messageTemplate, path, driver);
 		launcherJS.startJSCrawler();
 		

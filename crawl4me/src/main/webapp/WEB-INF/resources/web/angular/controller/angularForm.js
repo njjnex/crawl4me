@@ -8,19 +8,16 @@ var app = angular.module('formModule', ['ui.bootstrap', 'simpleGrid' ], function
 app
 		.controller(
 				'FormCtrl',
-				function($scope, $http, $location) {
+				function($scope, $http, $location, $modal) {
 					
 					$scope.init = function () {
 					    if ($location.path() == "/") {
-					    	console.log(" default location: " + $location.path());
 					    	$scope.explorePage("htmlDefault");
 					    } 
 					    if ($location.path().lastIndexOf("/z", 2) === 0) {
-					    	console.log("template location: " + $location.path());
 					    	$scope.explorePage("template/" + $location.path());
 					    }
 					    if ($location.path().lastIndexOf("/j", 2) === 0) {
-					    	console.log("template location: " + $location.path());
 					    	$scope.javaScriptCrawler();
 					    	$scope.explorePage("template/" + $location.path());
 					    }
@@ -38,8 +35,6 @@ app
 					
 					
 					$scope.explorePage = function(postUrl) {
-						console.log("location: " + $location.path());
-						console.log($scope.urlData)
 						connect();
 						$http({
 							'url' : postUrl,
@@ -49,7 +44,6 @@ app
 							},
 							'data' : $scope.urlData
 						}).success(function(data) {
-							console.log(data)
 							$scope.myPageData = data
 							$scope.pageLinks = data.links;
 							$scope.domRules = data.domRules;
@@ -149,7 +143,8 @@ app
 										return item.value;
 									},
 									"title" : "Extract from"
-								}, */{
+								}, */
+								{
 									"field" : "value",
 									"required" : true,
 									"title" : "Value"
@@ -187,16 +182,12 @@ app
 
 						pageData['domRules'] = $scope.domRules;
 
-						console.log("data from angular  "
-								+ JSON.stringify(pageData));
-
 						return pageData;
 
 					}
 					
 					$scope.addRulesRow = function () {
 		                var data = $scope.gridRulesConfig.getData();
-		                console.log(data);
 		                data.push(
 		                    {
 		                        $added: true,
@@ -207,10 +198,30 @@ app
 		            };
 					          
 		            $scope.javaScriptCrawler = function() {
-		            	window.location.href = "http://localhost:8080/JavaScriptCrawler";
+		            	window.location.href = "/JavaScriptCrawler";
 		            };
 		            $scope.htmlCrawler = function() {
-		            	window.location.href = "http://localhost:8080/";
+		               	window.location.href = "/";
+		            };
+		            
+		            $scope.startCrawler = function() {
+		            	var expErrors = 0;
+		            	for(var i = 0; i < $scope.domRules.length; i++){
+		            				            		
+		            		var domPattern = /^[<]\w{1,}\W\w{1,}[=]["][a-z\sA-Z-0-9]{1,30}["][>]$/;
+		            		if(!domPattern.test($scope.domRules[i].value)){
+		            			expErrors++;
+		            			 
+		            			 var modalInstance = $modal.open({
+		            				  template: '<div style="background:yellow; margin="5%;"><h2 style="text-align: center; color: red;">Incorrect or empty value in extract data field.</h2> <ins> Field: <strong>'+ $scope.domRules[i].key + '</strong> position in list: <strong>' + ++i  +'</strong></ins><br> Please specify correct selector.<br> It should looks like: &lt;div class="my class"&gt;<br> Visit <a href="/howTo">HowTo page</a> for more information.</div>',
+				            	      size: 'sm',
+				            	 });
+		            			
+		            		}
+		            		
+		            	}
+		            			            	
+		            	if(expErrors == 0) newScan();
 		            };
 		            
 		            $scope.init();

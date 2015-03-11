@@ -6,51 +6,46 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Scrap data online in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
-	<meta name="keywords" content="scraping data, online crawler, data scrapping, site scanner, data mining, parcer, free scraping, data spider, online data spider, grab data from website, web spider, online spider, free online crawler, free online scraper, free online spider" />
+	<meta name="keywords" content="web crawler, crawler, amazon crawler, ebay crawler, web scraping, web scraper, web spider, data scraping" />
 	<meta name="robots" content="index, follow">
 	<meta name="revisit-after" content="3 month">
-    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
+	    
     <title>ScrapingOn free online data scraping.</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
+    
     <!-- Stylesheets -->
-    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.css" rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300'
         rel='stylesheet' type='text/css'>
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/icons/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/icons/rondo/style.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/web/css/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="${pageContext.request.contextPath}/resources/web/css/style.css" rel="stylesheet">
    	
    	<!-- JS import -->
    	<!-- Verify.js (with Notify.js included) -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.3.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/verify.notify.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/jquery.mixitup.min.js"></script>
-    
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/bootstrap.min.js"></script>
+        
     <script src="${pageContext.request.contextPath}/resources/web/angular/lib/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/ui-bootstrap-tpls-0.12.0.min.js"></script>
-
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.js"></script>
-
+	
 	<script	src="${pageContext.request.contextPath}/resources/js/switcher.js"></script>
       		
 	<script	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stomp.js"></script>
-		
+		<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/popover.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/templateSaver.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/stompConnection.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bPopup.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/resultTableCreator.js"></script>
+	
+	<script type="text/javascript"> var disqus_identifier = 'scrapingon'; </script>
 	
 	
 	<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/jquery.bootgrid.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/web/angular/css/simple-grid.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/jquery.bootgrid.min.css">
-<script type="text/ng-template" id="simple-grid.html"
-	src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
+<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/resources/web/js/simple-grid.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/web/css/simple-grid.css">
+<script type="text/ng-template" id="simple-grid.html" src="${pageContext.request.contextPath}/resources/web/angular/lib/simple-grid.html"></script>
 	
 	<!-- Google Analytics -->
 	<script>
@@ -63,6 +58,34 @@
   ga('send', 'pageview');
 
 </script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter28342396 = new Ya.Metrika({id:28342396,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/28342396" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 	
 	<%        
     response.setHeader("Pragma", "No-cache");

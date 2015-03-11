@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html ng-app="formModule">
 <head>
 <%@include file="../pages/header.jsp"%>
@@ -10,6 +10,7 @@
 
 <div class="jumper" id="crawler"></div>
 <div class="section type-1 big splash" id="crawlerPage" ng-controller="FormCtrl">
+<<<<<<< HEAD
 <div class="section-headlines" id="freescrap">
 
         <h1>Free online scraper</h1>
@@ -56,6 +57,11 @@
 </div>		 -->
 <!-- <div class="form-group col-lg-12">		
 				<h4><tabset  type="tabs" id="crawlTabs"> <tab
+=======
+	<div class="container">
+		<form name="crawler_form" novalidate ng-submit="startCrawler()">
+					<tabset justified="true"> <tab
+>>>>>>> branch 'local' of https://github.com/njjnex/crawl4me.git
 						heading="Basic HTML scrapper" data-ng-click="htmlCrawler()"></tab> <tab
 						heading="JavaScript scrapper" data-ng-click="javaScriptCrawler()"></tab>
 					</tabset> </h4>
@@ -91,6 +97,7 @@
 					</c:if>
 					<!-- End registration data alert -->
 
+<<<<<<< HEAD
 					<!-- Scan form -->
 					<div name="scan-form">
 
@@ -115,7 +122,21 @@
 							</div>
 							</div> -->
 						</form>
+=======
+<!-- Scan form -->
+		<div name="scan-form">
+			
+				<div class="row">
+					<div class="form-group col-md-12" id="urlToScan">
+						<label>URL to scan <a href="#"
+							class="icon-info-sign pull-right"
+							tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
+						</label> 
+						<input type="url" name="url" id="url" ng-model="urlData"
+							class="form-control" ng-change="setLinks()" required />
+>>>>>>> branch 'local' of https://github.com/njjnex/crawl4me.git
 						
+<<<<<<< HEAD
 						<!-- collapse links -->
 						<!-- <div class="row"> -->
 						<div class="form-group col-lg-8">
@@ -129,23 +150,52 @@
 										data-target="#collapsibleLink">Only this page</button>
 									<button class="btn btn-outline" data-toggle="collapse"
 										data-target="#collapsibleLink">Custom format</button>
+=======
+						 <div class="error" 
+					        ng-show="crawler_form.url.$dirty && crawler_form.url.$invalid">
+					    <small class="error" 
+					        ng-show="crawler_form.url.$error.required">
+					        URL is required.
+					    </small>
+					    Please enter correct address.
+					  </div>	
+							
+					</div>
+				</div>
+
+				<!-- collapse links -->
+				<div class="form-group col-lg-12">
+					<div id="pageDetails">
+						<label>Crawl data from links <a href="#"
+							class="icon-info-sign pull-right"
+							tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
+						</label>
+						<div class="btn-group btn-toggle">
+							<button class="btn btn-outline " data-toggle="collapse" type="button"
+								data-target="#collapsibleLink">Only this page</button>
+							<button class="btn btn-outline" data-toggle="collapse" type="button"
+								data-target="#collapsibleLink">Custom format</button>
+						</div>
+						<div class="well collapse" id="collapsibleLink">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">Links from - {{urlData}}</h4>
+>>>>>>> branch 'local' of https://github.com/njjnex/crawl4me.git
 								</div>
-								<div class="well collapse" id="collapsibleLink">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">Links from - {{urlData}}</h4>
-										</div>
-										<div class="panel-body"
-											style="max-height: 300px;">
-											<div id="linksTable" simple-grid="gridLinksConfig"></div>
-										</div>
-									</div>
+								<div class="panel-body" style="max-height: 300px;">
+									<div id="linksTable" simple-grid="gridLinksConfig"></div>
 								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
 						<div class="form-group col-lg-4" id="textintable">
 						<p>CSS свойство text-align указывает, каким образом будет выравниваться строчное содержимое (текст, изображения) по горизонтали, внутри родительского элемента контейнера (блок, ячейка таблицы, поле ввода формы).
+=======
+					</div>
+				</div>
+>>>>>>> branch 'local' of https://github.com/njjnex/crawl4me.git
 
+<<<<<<< HEAD
 </p>
 						</div>
 <!-- </div> -->
@@ -169,18 +219,42 @@
 										</div>
 									</div>
 								</div>
+=======
+				<!-- collapse data -->
+				<div class="form-group col-lg-12">
+					<div id="pageDetails">
+						<label>Extract data <a href="#"
+							class="icon-info-sign pull-right"
+							tooltip-html-unsafe="{{paramTip}}" tooltip-trigger="focus"></a>
+						</label>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">Specify which data should be extracted.</h4>
+>>>>>>> branch 'local' of https://github.com/njjnex/crawl4me.git
 							</div>
+<<<<<<< HEAD
 							<div class="form-group col-lg-4" id="textintable">
 							<p>Для общего понимания давайте рассмотрим небольшую теорию о том, как браузер получает веб-страницы и что такое веб-сервер. </p>
 </div>
+=======
+							<div class="panel-body"
+								style="max-height: 250px; overflow-y: scroll;">
+								<div id="linksTable" simple-grid="gridRulesConfig"></div>
+								<button type="button" class="btn btn-sm  btn-outline"
+									ng-click="addRulesRow()">Add row</button>
+							</div>
+>>>>>>> branch 'local' of https://github.com/njjnex/crawl4me.git
 						</div>
+					</div>
+				</div>
+			</div>
 
-						<div class="input-group" id="saveTemplate">
+		<div class="input-group" id="saveTemplate">
 							<sec:authorize var="loggedIn" access="isAuthenticated()" />
 							<c:choose>
 								<c:when test="${1 eq 1}">
-									<p id="textTemplate">You are able to save and share scan
-										settings.</p>
+									<p id="textTemplate">You are able to save and share scan settings.</p>
 									<div class="col-sm-6">
 										<span class="input-group-btn" id="saveTemplateLink">
 											<button class="btn btn-outline btn-xs" id="saveTemplateButton"
@@ -208,25 +282,23 @@
 								</c:otherwise>
 							</c:choose>
 			<div class="row">
-			<div class="form-group col-md-3 .col-md-offset-3">				
-<div id="scanStarter"><button class="btn btn-outline btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
-</div>
-						</div>	
-						</div>
-						
+				<div class="form-group col-md-3 .col-md-offset-3">				
+					<div id="scanStarter">
+						<button class="btn btn-outline btn-lg" id="scanButton" type="submit" ng-disabled="crawler_form.$invalid">Scrap it.</button>
 					</div>
-
-
-					<!-- End scan form -->
-
+				</div>
+			</div>	
+	    </div>
+	</form>
+</div>
+<!-- End scan form -->
 				</div>
 		</div>
-
 </div>
 <%@include file="../pages/footer.jsp"%>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$.verify
 			.addRules({
 				divRule : {
@@ -235,6 +307,6 @@
 				}
 			});
 		
-</script>
+</script> -->
 </body>
 </html>

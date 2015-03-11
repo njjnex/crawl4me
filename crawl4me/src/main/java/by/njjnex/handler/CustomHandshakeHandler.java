@@ -11,6 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
+/* 
+ * Set principal to each anonymous user by
+ * linked user cookies to principal name.
+ * This how Socket broker knows to which user sends messages.
+ */
 public class CustomHandshakeHandler extends DefaultHandshakeHandler {
 
 	@Override

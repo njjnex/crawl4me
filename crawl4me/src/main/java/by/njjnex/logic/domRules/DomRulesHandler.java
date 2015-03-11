@@ -5,7 +5,9 @@ import java.util.List;
 
 import by.njjnex.model.DomRule;
 
-
+/*
+ * Template dom rules for homepage
+ */
 public class DomRulesHandler {
 
 	public List<DomRule> setTemplateRules(){

@@ -6,10 +6,6 @@ import by.njjnex.model.PageJS;
 
 public class PageExplorer {
 
-	private final String USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0";
-	private final String REFERRER = "https://www.google.com/";
-	private boolean connected = false;
-
 	private String url;
 	private PageHTML page = new PageHTML();
 	private PageJS pageJS = new PageJS();
