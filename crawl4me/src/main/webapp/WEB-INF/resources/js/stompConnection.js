@@ -45,8 +45,8 @@ var resultFounded = 0;
 	}
 	
 	function newScan() {
-					
-		createNewScanButton();
+				
+		resultFounded = 0;
 		removeResultConsole();
 		removeResultTable();
 		window.location.replace("#scanning-result");
@@ -68,16 +68,6 @@ function createScanButton() {
 		button.setAttribute("onclick", "return newScan();");
 		button.innerHTML = "Scrap it.";
 	}
-}
-function createNewScanButton() {
-	var button = document.getElementById("scanButton");
-	button.innerHTML = "Clear result.";
-	button.setAttribute("class", "btn btn-lg btn-warning");
-	button.setAttribute("onclick", "clearLastScan();");
-}
-function clearLastScan() {
-	createScanButton();
-	resultFounded = 0;
 }
 
 function emailShow() {

@@ -1158,3 +1158,14 @@ mark{
 	height:auto !important;        /* for IE as it does not support min-height */
 	height:30px;                   /* for IE as it does not support min-height */
 }
+
+.ng-valid #url, #urlToScan {
+	color: green;
+}
+.ng-invalid #url, #urlToScan{
+	color: red;
+}
+.ng-invalid input { 
+	border: 1px solid #f00; 
+	color: red;
+}
