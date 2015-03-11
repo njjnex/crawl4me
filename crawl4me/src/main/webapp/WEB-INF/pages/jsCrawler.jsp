@@ -12,15 +12,46 @@
 
 <div class="jumper" id="crawler"></div>
 <div class="section type-1 big splash" id="crawlerPage" ng-controller="jsCtrl">
+<div class="section-headlines" id="freescrap">
+
+        <h1>Free online scraper</h1>
+    
+<div class="row" id=rowscrap">
+<div class="col-md-11 <!--  col-md-offset-0,5 -->">
+            <div class="panel with-nav-tabs panel-default" id="panelurl">
+                <div class="panel-heading" id="panelurltabs">
+                        <ul class="nav nav-tabs" id="paneltabs">
+                            <li><a href="${pageContext.request.contextPath}/" data-ng-click="htmlCrawler()" data-toggle="tab">Basic HTML scrapper</a></li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/JavaScriptCrawler" data-ng-click="javaScriptCrawler()"  data-toggle="tab">JavaScript scrapper</a></li>
+                            
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">
+                        <form class="form-horizontal" role="form">
+							<!-- <div class="form-group col-md-7 col-md-offset-2"> -->
+							<div class="form-group">	
+								<label for="inputEmail3" class="col-sm-2 control-label">URL to scan <a href="#"
+									class="icon-info-sign pull-right"
+									tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
+								</label><div class="col-sm-9"> <input type="url" name="url" id="url" ng-model="urlData"
+									class="form-control" data-validate="required,url" ng-change="setLinks()">
+							</div>
+							</div>	</div>
+                        <div class="tab-pane fade" id="tab2default">Default 2</div>
+                        <div class="tab-pane fade" id="tab3default">Default 3</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+					</div>
+					</div>
 	<div class="container">
 
-					<tabset justified="true"> <tab
-						heading="Basic HTML scrapper" data-ng-click="htmlCrawler()"></tab> <tab
-						heading="JavaScript scrapper" data-ng-click="javaScriptCrawler()" active="true"></tab>
-					</tabset>
-					<div class="section-headlines">
-						<!--    <h1>Free online web scraper.</h1>  -->
-					</div>
+					
 
 					<!-- Registration data alert -->
 					<c:if test="${resultString ne null}">
@@ -33,7 +64,7 @@
 					<!-- Scan form -->
 					<div name="scan-form">
 						<form>
-							<div class="row">
+						<!-- 	<div class="row">
 							<div class="form-group col-md-12 ">
 								<label>Resourse <a href="#"
 									class="icon-info-sign pull-right"
@@ -41,18 +72,23 @@
 								</label> <input type="url" name="url" id="url" ng-model="urlData"
 									class="form-control" data-validate="required,url" ng-change="">
 							</div>
-							</div>
-							<div class="form-group col-lg-12">
+							</div> -->
+							<div class="form-group col-lg-8">
 								<label>Search text <a href="#"
 									class="icon-info-sign pull-right"
 									tooltip-html-unsafe="{{searchTextTip}}" tooltip-trigger="focus"></a>
 								</label> <input type="searchPhrase" name="searchPhrase" id="searchPhrase" ng-model="myPageData.searchPhrase"
 									class="form-control" data-validate="required,alphaNumeric" ng-change="">
 							</div>
+							<div class="form-group col-lg-4" id="textintable">
+						<p>CSS свойство text-align указывает, каким образом будет выравниваться строчное содержимое (текст, изображения) по горизонтали, внутри родительского элемента контейнера (блок, ячейка таблицы, поле ввода формы).
+
+</p>
+						</div>
 						</form>	
 						
 						<!-- collapse data -->
-						<div class="form-group col-lg-12">
+						<div class="form-group col-lg-8">
 							<div id="pageDetails">
 								<label>Extract data <a href="#"
 									class="icon-info-sign pull-right"
@@ -71,10 +107,12 @@
 									</div>
 								</div>
 							</div>
-
+<div class="form-group col-lg-4" id="textintable">
+							<p>Для общего понимания давайте рассмотрим небольшую теорию о том, как браузер получает веб-страницы и что такое веб-сервер. </p>
+</div>
 						</div>
 						
-							<div class="form-group col-lg-12">
+							<div class="form-group col-md-8 .col-md-offset-2">
 							<div id="pageDetails">
 								<label>Switch pages <a href="#"
 									class="icon-info-sign pull-right"
@@ -98,7 +136,7 @@
 								</div>
 							</div>
 						</div>
-						
+						<div class="col-md-11">
 						<div class="input-group" id="saveTemplate">
 							<sec:authorize var="loggedIn" access="isAuthenticated()" />
 							<c:choose>
@@ -119,6 +157,7 @@
 										<a href="#" onclick="loginMe();">Please log in</a> if you want
 										save and share this settings.
 									</p>
+									
 									<div class="col-sm-6">
 										<span class="input-group-btn">
 											<button class="btn btn-outline disabled"
@@ -129,12 +168,12 @@
 								</c:otherwise>
 							</c:choose>
 
-<div class="row">
-			<div class="form-group col-md-3 .col-md-offset-3">				
+
+			<div class="form-group col-md-4 .col-md-offset-3">				
 <div id="scanStarter"><button class="btn btn-outline btn-lg" id="scanButton" type="button" onclick="return newScan();">Scrap it.</button></div>
 </div>
 						</div>		
-							
+						</div>	
 						</div>
 					</div>
 					<!-- End scan form -->
