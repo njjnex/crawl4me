@@ -208,12 +208,12 @@ app
 		            	var expErrors = 0;
 		            	for(var i = 0; i < $scope.domRules.length; i++){
 		            				            		
-		            		var domPattern = /^[<]\w{1,}\W\w{1,}[=]["][a-z\sA-Z-0-9]{1,30}["][>]$/;
+		            		var domPattern = /^[<]\w{1,}\W\w{1,}[=]["][a-z\sA-Z-0-9]{1,70}["][>]$/;
 		            		if(!domPattern.test($scope.domRules[i].value)){
 		            			expErrors++;
-		            			 
+		            			 console.log("error");
 		            			 var modalInstance = $modal.open({
-		            				  template: '<div style="background:yellow; margin="5%;"><h2 style="text-align: center; color: red;">Incorrect or empty value in extract data field.</h2> <ins> Field: <strong>'+ $scope.domRules[i].key + '</strong> position in list: <strong>' + ++i  +'</strong></ins><br> Please specify correct selector.<br> It should looks like: &lt;div class="my class"&gt;<br> Visit <a href="/howTo">HowTo page</a> for more information.</div>',
+		            				  template: '<div style="background:Coral ; margin="10%;"><h2 style="text-align: center; color: DarkCyan ;">Incorrect or empty value in extract data field.</h2> <ins> Field: <strong>'+ $scope.domRules[i].key + '</strong> position in list: <strong>' + ++i  +'</strong></ins><br> Please specify correct selector.<br> It should looks like: &lt;div class="my class"&gt;<br> Visit <a href="/howTo">HowTo page</a> for more information.</div>',
 				            	      size: 'sm',
 				            	 });
 		            			
