@@ -27,7 +27,7 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 
 public class Launcher extends DeepCrawler {
 
-	private final int MAXIMUM_RESULT = 95; //MAXIMUM_RESULT + THREADS = maximum result per one scan
+	private final int MAXIMUM_RESULT = 195; //MAXIMUM_RESULT + THREADS = maximum result per one scan
 	private final int THREADS = 5;         
 	private final int SCANNING_DEEP = 3;
 

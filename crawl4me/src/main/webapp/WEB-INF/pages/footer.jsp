@@ -11,11 +11,11 @@
 <div class="col-md-12">
 			<div class="panel panel-success" id="console">
 				<div class="panel-heading" id="consoleHeading">
-					<h4>Scraper console</h4>
+					<h4>Web site scraping console</h4>
 				</div>
 				<div class="panel-body" id="consoleBody" style="max-height: 600px; overflow-y: scroll;">
-					<p>Scraper output console...</p>
-					- Started web crawler: 13:57:03 28-01-2015<br>
+					<p>Data extraction proccess...</p>
+					- Started scraping: 13:57:03 28-01-2015<br>
 					<p>
 						- Found page:
 						http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br>
@@ -49,7 +49,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-success" id="tablePanel">
 				<div class="panel-heading">
-					<h4>Scraping result table</h4>
+					<h4>Web crawler result</h4>
 				</div>
 				<div class="panel-body" id="resultTableDiv" style="max-height: 600px; overflow-y: scroll;">
 				
@@ -147,5 +147,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="footer" style="align:right;">© 2015 scrapingon.com All Rights Reserved <a href="#" id="emailMe" onclick="emailShow()">Send email</a></div>
+	
+	
 </div>
+<div id="footer" style="align:right;">© 2015 scrapingon.com All Rights Reserved <a href="" id="emailMe" onclick="emailShow()">Send email</a></div>

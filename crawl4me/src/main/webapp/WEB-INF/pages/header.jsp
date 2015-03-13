@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Scrap data online in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
-	<meta name="keywords" content="web crawler, crawler, amazon crawler, ebay crawler, web scraping, web scraper, web spider, data scraper" />
+	<meta name="keywords" content="web crawler, web crawlers, java web crawler, free web crawler, online web crawler, amazon crawler, ebay crawler, web scraping, scrap a website, scraping website, internet spider, crawl website" />
 	<meta name="robots" content="index, follow">
 	<meta name="revisit-after" content="3 month">
 	<meta name="title" content="ScrapingOn free online data scraper. Scrap data online in one click.">
@@ -25,8 +25,7 @@
    	<!-- JS import -->
    	<!-- Verify.js (with Notify.js included) -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.3.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/verify.notify.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/web/js/bootstrap.min.js"></script>
         
     <script src="${pageContext.request.contextPath}/resources/web/angular/lib/angular.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/ui-bootstrap-tpls-0.12.0.min.js"></script>

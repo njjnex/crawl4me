@@ -46,7 +46,7 @@ table.simple-grid > tbody > tr > td > input.ng-invalid,
 table.simple-grid > tbody > tr > td > input.ng-invalid:focus,
 table.simple-grid > tbody > tr > td > select.ng-invalid,
 table.simple-grid > tbody > tr > td > select.ng-invalid:focus {
-    background-color: #fcc;
+    background-color: #fff;
 }
 table.simple-grid > tbody > tr > td > input:focus, 
 table.simple-grid > tbody > tr > td > input:hover
@@ -73,7 +73,7 @@ table.simple-grid > tbody > tr.deleted > td
 , table.simple-grid > tbody > tr.deleted > td input
 , table.simple-grid > tbody > tr.deleted > td span
 , table.simple-grid > tbody > tr.deleted > td select {
-    color: #888;
+    color: #4C4781;
     text-decoration: line-through;
 }
 table.simple-grid > tbody > tr > td.sg-actions-cell
@@ -87,24 +87,24 @@ table.simple-grid > tbody > tr > td.sg-actions-cell
 }
 table.simple-grid > tbody > tr.added,
 table.simple-grid > tbody > tr.added > td {
-    background-color: #DFFFC0;
+    background-color: #b0cBfA;
 }
 
 /* row selection */
 table.simple-grid > tbody > tr.selected, table.simple-grid > tbody > tr.selected.focused
 , table.simple-grid > tbody > tr.selected > td, table.simple-grid > tbody > tr.selected.focused > td {
-    background-color: #506BDA;
-    color: white;
+    background-color: #b0cBfA;
+    color: #4C4781;
 }
 table.simple-grid > tbody > tr.selected > td > input,table.simple-grid > tbody > tr.selected.focused > td > input
 ,table.simple-grid > tbody > tr.selected > td > select,table.simple-grid > tbody > tr.selected.focused > td > select
 {
-    color: white;
+    color: #4C4781;
 }
 table.simple-grid > tbody > tr.selected > td > input:focus
 ,table.simple-grid > tbody > tr.selected > td > select:focus
 {
-    color: black;
+    color: #4C4781;
 }
 
 /* focus */
