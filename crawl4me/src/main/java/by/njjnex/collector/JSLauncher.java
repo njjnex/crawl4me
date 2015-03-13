@@ -43,11 +43,9 @@ public class JSLauncher {
 		List<WebElement> allFormChildElements = driver.findElements(By.xpath("//form//*"));
 		System.out.println("founded form: " + allFormChildElements.size());
 		for (WebElement item : allFormChildElements) {
-			System.out.println("Item " + item.getTagName());
-
+			
 			if (item.getTagName().equals("input")) {
-				System.out.println("Found input " + item.getAttribute("type") + " attr ");
-
+				
 				if (item.getAttribute("type").equals("text")) {
 					elementSearch = item;
 					System.out.println("fount text input");
@@ -56,7 +54,6 @@ public class JSLauncher {
 
 				if (item.getAttribute("type").equals("submit")) {
 					elementSubmit = item;
-					System.out.println("fount submit");
 				}
 			}
 		}
@@ -67,21 +64,19 @@ public class JSLauncher {
 			this.messageTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
 					"Cannot detect search field on this page... "));
 		}
-		System.out.println("0" + driver.getCurrentUrl());
+		
 		elementSearch.sendKeys(pageJS.getSearchPhrase()); // send text to search
-		System.out.println("1" + driver.getCurrentUrl()); // field
-		System.out.println(pageJS.getUrl() + " --- " + driver.getCurrentUrl());
+		
 		if ((pageJS.getUrl()+ "/").equals(driver.getCurrentUrl())) {
 			if (elementSubmit != null) {
 				elementSubmit.click();
-				System.out.println("2" + driver.getCurrentUrl());
+				
 			} else {
-				System.out.println("3" + driver.getCurrentUrl());
+				
 				elementSearch.submit(); // push submit button
 			}
 		}
-		System.out.println("4" + driver.getCurrentUrl());
-
+		
 		if (!(pageJS.getUrl()+ "/").equals(driver.getCurrentUrl())){
 			pageJS.setUrl(driver.getCurrentUrl()); // send result page to the
 													// Launcher

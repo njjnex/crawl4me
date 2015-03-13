@@ -27,9 +27,9 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 
 public class Launcher extends DeepCrawler {
 
-	private final int MAXIMUM_RESULT = 95; //MAXIMUM_RESULT + THREADS = maximum result per one scan
+	private final int MAXIMUM_RESULT = 195; //MAXIMUM_RESULT + THREADS = maximum result per one scan
 	private final int THREADS = 5;         
-	private final int SCANNING_DEEP = 6;
+	private final int SCANNING_DEEP = 3;
 
 	private final String USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0";
 	private final String REFERRER = "https://www.google.com/";

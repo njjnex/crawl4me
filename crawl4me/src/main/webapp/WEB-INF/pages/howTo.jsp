@@ -7,7 +7,7 @@
 <%@include file="../pages/header.jsp" %>
  <meta name="description" content="ScrapingOn crawler information. Data scraping How To with examples and links with crawling settings." />
 
-<title>ScrapingOn crawler information. Data scraping How To with examples</title>
+<title>ScrapingOn crawler information. How to scrape data from a website.</title>
 </head>
 <body>
 	<div class="section type-2">
@@ -16,7 +16,7 @@
                 <h3>
                     ScrapingOn.com free online web scraping.</h3>
                 <div>
-                     Data crawling as easy as never before. Extract and organise data in one click. It can be useful in many cases:
+                     Data crawling as easy as never before. Scrape a website data in one click. It can be useful in many cases:
                 </div>
                
             </div>
@@ -28,7 +28,7 @@
                             <h3>
                                 E-commerce</h3>
                             <div>
-                                Extracting products and prices from catalogs, web resources.</div>
+                                Scraping web data: products, prices so on  from catalogs, web resources.</div>
                         </div>
                     </div>
                     <br class="gap-30" />
@@ -38,7 +38,7 @@
                             <h3>
                                 Data import</h3>
                             <div>
-                                Crawl user or companies data including emails, names, phones and other.</div>
+                                Crawl companies data including email's, name's, phone's and other.</div>
                         </div>
                     </div>
                     <br class="gap-30" />
@@ -48,7 +48,7 @@
                             <h3>
                                 Market resarch</h3>
                             <div>
-                                Spider can crawl data from jobs sites, media portals, financial markets.</div>
+                                Website data scraping from jobs sites, media portals, financial markets.</div>
                         </div>
                     </div>
                     <div class="visible-xs visible-sm">
@@ -64,24 +64,43 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        E-commerce scraping data example. (for version 1.1)<i class="icon-plus"></i><i class="icon-minus"></i></a>
+                                        E-commerce scraping data example with ScrapingOn Website Crawler</a>
                                 </h3>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <b>Task:</b> crawl jewelry name and price from E-shop page: <mark> http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html</mark>
+                                    <b>Task:</b> scrap price and items from E-shop page: <mark> http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> start crawling URL will be as link below, now let's add regex rule. As we want to scraping data about all products in this category it will be: <mark>http://www.skagen.com/gb/en/men/new-arrivals/jewelry.html.*</mark> we discover it when visit any product link and look at the URL. Then open HTML page as source and quikly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Looking beetween specific tag:</i> field.
+                                    <b>Steps:</b> start crawling URL will be as link below. Scrap website links - Only this page. Then open HTML page as source and quickly find tags where product name placed:<mark> &lt;h1 class="product-title"&gt;</mark> and for price:<mark> &lt;div class="product-price col-md-5"&gt;</mark> - just copy-paste it to the <i>Extract website data:</i> field.
                                     <br />
                                     <br />
-                                    <b>Problem:</b> when we start scan results will appear two times. Examine console and find that every crawled product has two links <mark>....pdpskj0604p.html?referer=productlisting</mark> and <mark>....pdpskj0604p.html?referer=productlisting#</mark> with hash sign at the end. 
+                                    <b>Problem:</b> no data extraction problems... 
                                     <br />
                                     <br /> 
-                                    <b>Solution:</b> to make scrapper visit only one link we will change URL Regex rule. Let's crawl data only from <mark>....pdpskj0604p.html?referer=productlisting</mark> looks like page for that matter we need to add <mark>g</mark> to the end of our <i>URL regex</i>, it will show to crawler that anly pages that ends with letter <mark>g</mark> should be scanned. So we will got <mark>http://www.skagen.com/gb/en/men/new-arrivals/.*g</mark> for URL Regex.
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/zLNX4l">http://scrapingon.com/zLNX4l</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        Scraping Amazon data example with ScrapingOn JavaScript Crawler</a>
+                                </h3>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <b>Task:</b> scrap dynamic content from E-shop page: <mark> http://amazon.com</mark>
+                                   	<br />
+                                    <br />
+                                    <b>Steps:</b> for Scrap website enter http://amazon.com. Send text: "smart watches". Visit http://amazon.com in your browser and enter "smart watches in the search field" - as result we will see list of goods. Copy name of the first one in the list Right Click -> View Source than CTRL+F and paste item name this will find this text in the HTML document. We can see that product name is placed in tag: <mark> &lt;a class="a-link-normal s-access-detail-page  a-text-normal"&gt;</mark> and price:<mark> &lt;span class="a-size-base a-color-price s-price a-text-bold"&gt;</mark> - just copy-paste it to the <i>Extract data:</i> field. After crawling website page we will see 15 result. If we want pagination crawling just add &lt;a class="pagnNext"&gt; to <i>Switch pages</i> field.
                                     <br />
                                     <br />
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/sKWQVc">http://scrapingon.com/sKWQVc</a>
+                                    <b>Problem:</b> no data extraction problems... 
+                                    <br />
+                                    <br /> 
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/jZ0ihX">http://scrapingon.com/jZ0ihX</a>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +108,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    	Data scraping example. (for version 1.1) <i class="icon-plus"></i><i class="icon-minus">
+                                    	Data scraping example. (for version 1.1)
                                         </i></a>
                                 </h3>
                             </div>
@@ -112,7 +131,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                                        href="#collapseThree">Crawl data from real estate agency example. (for version 1.1)<i class="icon-plus"></i><i class="icon-minus">
+                                        href="#collapseThree">Crawl data from real estate agency example. (for version 1.1)
                                         </i></a>
                                 </h3>
                             </div>
@@ -152,7 +171,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#scraper2">
-                                       Scraper 2.0 version <i class="icon-minus"></i></a>
+                                       Scraper 2.0 version </a>
                                 </h3>
                             </div>
                             <div id="scraper2" class="panel-collapse collapse collapse in">
@@ -189,7 +208,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#scraper1">
-                                    	Scraper 1.1 version. <i class="icon-minus"></i>
+                                    	Scraper 1.1 version.</i>
                                     </a>
                                 </h3>
                             </div>

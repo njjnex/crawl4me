@@ -15,7 +15,7 @@
 	<form name="crawler_form" novalidate ng-submit="startCrawler()">
 	<div class="section-headlines" id="freescrap">
 
-		<h1>Free online scraper</h1>
+		<h1>Free online web crawler</h1>
 
 		<div class="row" id=rowscrap">
 			<div class="col-md-11">
@@ -24,12 +24,10 @@
 						<ul class="nav nav-tabs" id="paneltabs">
 							<li class="active"><a
 								href="${pageContext.request.contextPath}/"
-								data-ng-click="htmlCrawler()" data-toggle="tab">Basic HTML
-									scrapper</a></li>
+								data-ng-click="htmlCrawler()" data-toggle="tab">Online website crawler</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/JavaScriptCrawler"
-								data-ng-click="javaScriptCrawler()" data-toggle="tab">JavaScript
-									scrapper</a></li>
+								data-ng-click="javaScriptCrawler()" data-toggle="tab">Online JavaScript crawler</a></li>
 						</ul>
 					</div>
 					<div class="panel-body">
@@ -38,7 +36,7 @@
 
 								<!-- <div class="form-group col-md-7 col-md-offset-2"> --> 
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label" id="urltoscan">URL to scan <a href="#" 
+									<label for="inputEmail3" class="col-sm-2 control-label" id="urltoscan">Scrap website <a href="#" 
 									    class="icon-info-sign pull-right"
 										tooltip-html-unsafe="{{urlTip}}" tooltip-trigger="focus"></a>
 									</label>
@@ -55,11 +53,7 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
-							<div class="tab-pane fade" id="tab2default">Default 2</div>
-							<div class="tab-pane fade" id="tab3default">Default 3</div>
-
 						</div>
 					</div>
 				</div>
@@ -87,7 +81,7 @@
 			<!-- <div class="row"> -->
 			<div class="form-group col-lg-8">
 				<div id="pageDetails">
-					<label>Crawl data from links <a href="#"
+					<label>Scrap website links<a href="#"
 						class="icon-info-sign pull-right"
 						tooltip-html-unsafe="{{regexTip}}" tooltip-trigger="focus"></a>
 					</label>
@@ -112,17 +106,14 @@
 				</div>
 			</div>
 			<div class="form-group col-lg-4" id="textintable">
-				<p>CSS свойство text-align указывает, каким образом будет
-					выравниваться строчное содержимое (текст, изображения) по
-					горизонтали, внутри родительского элемента контейнера (блок, ячейка
-					таблицы, поле ввода формы).</p>
+				<p>Web crawler can also extract links from scraped pages and visit this links to extract similar data. Example: http://www.skagen.com/gb/en/men/new-arrivals/.* will crawl website data from all links that starts with .../new-arrivals/</p>
 			</div>
 			<!-- </div> -->
 			<!-- collapse data -->
 			<div class="row">
 				<div class="form-group col-lg-8">
 					<div id="pageDetails">
-						<label>Extract data <a href="#"
+						<label>Extract website data <a href="#"
 							class="icon-info-sign pull-right"
 							tooltip-html-unsafe="{{paramTip}}" tooltip-trigger="focus"></a>
 						</label>
@@ -142,8 +133,7 @@
 					</div>
 				</div>
 				<div class="form-group col-lg-4" id="textintable">
-					<p>Для общего понимания давайте рассмотрим небольшую теорию о
-						том, как браузер получает веб-страницы и что такое веб-сервер.</p>
+					<p>Data scraping services based on extracting data from HTML elements. First we must to find which web element contains data we want to scrap. Right click -> View Sourse on web page will open html document version and using CTRL+F we will find our scraped text. And copy-paste to ScrapingOn scraping field nearest web element that surrounds our text.<br> It looks like &lt;div class="price"&gt; or &lt;p id="item"&gt;<br> For scraping title of the page just print &lt;title&gt; in scraper value field. This way you can extract any data from websites - email, links, prices, news articles and more. The proccess of extracting data from a website will be shown in scrapper console.  </p>
 				</div>
 			</div>
 
@@ -157,7 +147,7 @@
 							<span class="input-group-btn" id="saveTemplateLink">
 								<button class="btn btn-outline btn-xs" id="saveTemplateButton"
 									type="button" onclick="return saveTemplate();" value="Add scan">Save
-									this settings</button>
+									crawler settings</button>
 							</span>
 
 						</div>

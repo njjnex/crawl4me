@@ -213,7 +213,7 @@ app
 		            			expErrors++;
 		            			 console.log("error");
 		            			 var modalInstance = $modal.open({
-		            				  template: '<div style="background:Coral ; margin="10%;"><h2 style="text-align: center; color: DarkCyan ;">Incorrect or empty value in extract data field.</h2> <ins> Field: <strong>'+ $scope.domRules[i].key + '</strong> position in list: <strong>' + ++i  +'</strong></ins><br> Please specify correct selector.<br> It should looks like: &lt;div class="my class"&gt;<br> Visit <a href="/howTo">HowTo page</a> for more information.</div>',
+		            				  template: '<div style="background:Coral ; margin="10%;"><h2 style="text-align: center; color: DarkCyan ;">Incorrect or empty value in extract data field.</h2> <ins> Field: <strong>'+ $scope.domRules[i].key + '</strong> position in list: <strong>' + ++i  +'</strong></ins><br> Please specify correct selector.<br> It should looks like: &lt;div class="my class"&gt;<br> Visit HowTo page for more information.</div>',
 				            	      size: 'sm',
 				            	 });
 		            			
