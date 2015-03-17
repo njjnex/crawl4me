@@ -5,7 +5,7 @@
 		<div class="section-headlines">
 			<h4>Scraping result</h4>
 			<div id="resultHeader">
-				<h3>Real time data crawling process.</h3>
+				<h3>Online web crawler process.</h3>
 			</div>
 		</div>
 <div class="col-md-12">
@@ -14,35 +14,36 @@
 					<h4>Web site scraping console</h4>
 				</div>
 				<div class="panel-body" id="consoleBody" style="max-height: 600px; overflow-y: scroll;">
-					<p>Data extraction proccess...</p>
-					- Started scraping: 13:57:03 28-01-2015<br>
+					<p><strong>Web scraping process.</strong></p>
+					<u> Initializing web crawler.</u>
+					<em>- Started web scraping: 13:57:03 28-01-2015</em><br>
 					<p>
 						- Found page:
 						http://www.example.com/katrine-silver-tone-heart-pendant-necklace-pdpskj0604p.html?referer=productlisting<br>
-						
+						- Scraping content...
 					</p>
 					<p>
 						- Found page:
 						http://www.example.com/katrine-silver-tone-pendant-necklace-pdpskj0602p.html?referer=productlisting<br>
-						
+						- Scraping content...
 					</p>
 					<p>
 						- Found page:
 						http://www.example.com/katrine-rose-gold-tone-pendant-necklace-pdpskj0603p.html?referer=productlisting<br>
-						
+						- Scraping content...
 					</p>
 					<p>
 						- Found page:
 						http://www.example.com/krinsen-silver-tone-ring-pdpskj0600p.html?referer=productlisting<br>
-						
+						- Scraping content...
 					</p>
 					<p>
 						- Found page:
 						http://www.example.com/ditte-rose-gold-tone-round-pendant-necklace-pdpskj0557p.html?referer=productlisting<br>
-						
+						- Scraping content...
 					</p>
 					<p>
-						- Finished web scraping: 13:57:06 28-01-2015<br>
+						<em>- Finished web scraping: 13:57:06 28-01-2015</em><br>
 				</div>
 			</div>
 		</div>

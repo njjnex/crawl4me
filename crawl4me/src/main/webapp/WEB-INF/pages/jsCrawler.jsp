@@ -102,8 +102,7 @@
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">Specify which data should be
-									extracted.</h4>
+								<h4 class="panel-title">Specify content for scraping.</h4>
 							</div>
 							<div class="panel-body"
 								style="max-height: 250px; overflow-y: scroll;">

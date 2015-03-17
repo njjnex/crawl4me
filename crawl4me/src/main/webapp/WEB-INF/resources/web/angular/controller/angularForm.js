@@ -208,7 +208,7 @@ app
 		            	var expErrors = 0;
 		            	for(var i = 0; i < $scope.domRules.length; i++){
 		            				            		
-		            		var domPattern = /^[<]\w{1,}\W\w{1,}[=]["][a-z\sA-Z-0-9]{1,70}["][>]$/;
+		            		var domPattern = /^[<]\w{1,}\W\w{1,}[=]["].{1,70}["][>]$/;
 		            		if(!domPattern.test($scope.domRules[i].value)){
 		            			expErrors++;
 		            			 console.log("error");

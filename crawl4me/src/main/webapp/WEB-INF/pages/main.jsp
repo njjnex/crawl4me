@@ -6,7 +6,7 @@
 <head>
 
 <%@include file="../pages/header.jsp"%>
- <title>Scrap web data online in one click. ScrapingOn data scraping. </title>
+ <title>ScrapingOn free online web crawler. Start web scraping in one click. </title>
 <script
 	src="${pageContext.request.contextPath}/resources/web/angular/controller/angularForm.js"></script>
 
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 			<div class="form-group col-lg-4" id="textintable">
-				<p>Web crawler can also extract links from scraped pages and visit this links to extract similar data. Example: http://www.skagen.com/gb/en/men/new-arrivals/.* will crawl website data from all links that starts with .../new-arrivals/</p>
+				<p>Web crawler can also extract links from scraped pages and visit this links to extract similar content. Example: http://www.skagen.com/gb/en/men/new-arrivals/.* will crawl website data from all links that starts with .../new-arrivals/</p>
 			</div>
 			<!-- </div> -->
 			<!-- collapse data -->
@@ -121,8 +121,7 @@
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">Specify which data should be
-									extracted.</h4>
+								<h4 class="panel-title">Choose scraping content .</h4>
 							</div>
 							<div class="panel-body"
 								style="max-height: 250px; overflow-y: scroll;">
@@ -134,7 +133,7 @@
 					</div>
 				</div>
 				<div class="form-group col-lg-4" id="textintable">
-					<p>Data scraping services based on extracting data from HTML elements. First we must to find which web element contains data we want to scrap. Right click -> View Sourse on web page will open html document version and using CTRL+F we will find our scraped text. And copy-paste to ScrapingOn scraping field nearest web element that surrounds our text.<br> It looks like &lt;div class="price"&gt; or &lt;p id="item"&gt;<br> For scraping title of the page just print &lt;title&gt; in scraper value field. This way you can extract any data from websites - email, links, prices, news articles and more. The proccess of extracting data from a website will be shown in scrapper console.  </p>
+					<p>Data scraping services based on extracting content from HTML elements. First we must to find which web element contains data we want to scrap. Right click -> View Sourse on web page will open html document version and using CTRL+F we will find our scraped text. And copy-paste to ScrapingOn scraping field nearest web element that surrounds our text.<br> It looks like &lt;div class="price"&gt; or &lt;p id="item"&gt;<br> For scraping title of the page just print &lt;title&gt; in scraper value field. This way you can extract any content from websites - email, links, prices, news articles and more. The proccess of extracting data from a website will be shown in scrapper console.  </p>
 				</div>
 			</div>
 

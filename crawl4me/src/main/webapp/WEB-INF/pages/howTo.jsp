@@ -78,41 +78,41 @@
                                     <b>Problem:</b> no data extraction problems... 
                                     <br />
                                     <br /> 
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/zLNX4l">http://scrapingon.com/zLNX4l</a>
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/zaRT9D">http://scrapingon.com/zaRT9D</a> - price scraping example.
                                 </div>
                             </div>
                         </div>
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                                         Scraping Amazon data example with ScrapingOn JavaScript Crawler</a>
                                 </h3>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse">
+                            <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <b>Task:</b> scrap dynamic content from E-shop page: <mark> http://amazon.com</mark>
                                    	<br />
                                     <br />
-                                    <b>Steps:</b> for Scrap website enter http://amazon.com. Send text: "smart watches". Visit http://amazon.com in your browser and enter "smart watches in the search field" - as result we will see list of goods. Copy name of the first one in the list Right Click -> View Source than CTRL+F and paste item name this will find this text in the HTML document. We can see that product name is placed in tag: <mark> &lt;a class="a-link-normal s-access-detail-page  a-text-normal"&gt;</mark> and price:<mark> &lt;span class="a-size-base a-color-price s-price a-text-bold"&gt;</mark> - just copy-paste it to the <i>Extract data:</i> field. After crawling website page we will see 15 result. If we want pagination crawling just add &lt;a class="pagnNext"&gt; to <i>Switch pages</i> field.
+                                    <b>Steps:</b> for Scrap website enter http://amazon.com. Send text: "smart watches". Visit http://amazon.com in your browser and enter "smart watches in the search field" - as result we will see list of goods. Copy name of the first one in the list Right Click -> View Source than CTRL+F and paste item name this will find this text in the HTML document. We can see that product name is placed in tag: <mark> &lt;h2 class="a-size-medium a-color-null s-inline s-access-title a-text-normal"&gt;</mark> and price:<mark> &lt;span class="a-size-base a-color-price s-price a-text-bold"&gt;</mark> - just copy-paste it to the <i>Extract data:</i> field. After crawling website page we will see 15 result. If we want pagination crawling just add &lt;a class="pagnNext"&gt; to <i>Switch pages</i> field.
                                     <br />
                                     <br />
                                     <b>Problem:</b> no data extraction problems... 
                                     <br />
                                     <br /> 
-                                    <b>Link with settings:</b> <a href="http://scrapingon.com/jZ0ihX">http://scrapingon.com/jZ0ihX</a>
+                                    <b>Link with settings:</b> <a href="http://scrapingon.com/jpvNW3">http://scrapingon.com/jpvNW3</a> - Amazon scraping example.
                                 </div>
                             </div>
                         </div>
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                                     	Data scraping example. (for version 1.1)
                                         </i></a>
                                 </h3>
                             </div>
-                            <div id="collapseTwo" class="panel-collapse collapse">
+                            <div id="collapseThree" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <b>Task:</b> get schools URLs from: <mark> http://www.ncaa.com/schools/a</mark> wich starts from <b>a</b> letter and no longer than 20 symbols.
                                    	<br />
@@ -131,11 +131,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion"
-                                        href="#collapseThree">Crawl data from real estate agency example. (for version 1.1)
+                                        href="#collapseFour">Crawl data from real estate agency example. (for version 1.1)
                                         </i></a>
                                 </h3>
                             </div>
-                            <div id="collapseThree" class="panel-collapse collapse">
+                            <div id="collapseFour" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <b>Task:</b> crawl islands prices from: <mark> http://www.caribbeanislandbrokers.com</mark>
                                    	<br />

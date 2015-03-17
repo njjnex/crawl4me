@@ -43,9 +43,9 @@ public class JSLauncher {
 		List<WebElement> allFormChildElements = driver.findElements(By.xpath("//form//*"));
 		System.out.println("founded form: " + allFormChildElements.size());
 		for (WebElement item : allFormChildElements) {
-			
+
 			if (item.getTagName().equals("input")) {
-				
+
 				if (item.getAttribute("type").equals("text")) {
 					elementSearch = item;
 					System.out.println("fount text input");
@@ -60,26 +60,38 @@ public class JSLauncher {
 		if (elementSearch != null) {
 			this.messageTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
 					"Search field detected " + elementSearch.getTagName() + " . Inserting search text."));
+
+			elementSearch.sendKeys(pageJS.getSearchPhrase()); // send text to
+																// search
+
+			if ((pageJS.getUrl() + "/").equals(driver.getCurrentUrl()))
+				elementSearch.submit();
+
+			if ((pageJS.getUrl() + "/").equals(driver.getCurrentUrl())) {
+				if (elementSubmit != null) {
+					elementSubmit.click();
+				}
+			}
+
+			System.out.println("Get page " + driver.getCurrentUrl());
+
+			if (!(pageJS.getUrl() + "/").equals(driver.getCurrentUrl())) {
+				pageJS.setUrl(driver.getCurrentUrl()); // send result page to
+														// the
+														// Launcher
+				Launcher launcherJS = new Launcher(pageJS, principal, messageTemplate, path, driver);
+				launcherJS.startJSCrawler();
+			} else {
+				this.messageTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
+						"ERROR: Cannot receive dynamic page... "));
+			}
 		} else {
 			this.messageTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
 					"Cannot detect search field on this page... "));
 		}
-		
-		elementSearch.sendKeys(pageJS.getSearchPhrase()); // send text to search
-		
-		if ((pageJS.getUrl()+ "/").equals(driver.getCurrentUrl())) {
-			if (elementSubmit != null) {
-				elementSubmit.click();
-				
-			} else {
-				
-				elementSearch.submit(); // push submit button
-			}
-		}
-		
-		
-		 driver.quit();
-		
+
+		driver.quit();
+
 	}
 
 }

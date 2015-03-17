@@ -5,12 +5,13 @@
 	
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Scrap data online in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
+    <meta name="description" content="ScrapingOn free online web crawler. Start web scraping in one click. HTML page crawler provides standart and advanced settings depends on your needs." />
 	<meta name="keywords" content="web crawler, web crawlers, java web crawler, free web crawler, online web crawler, amazon crawler, ebay crawler, web scraping, scrap a website, scraping website, internet spider, crawl website" />
 	<meta name="robots" content="index, follow">
 	<meta name="revisit-after" content="3 month">
 	<meta name="title" content="ScrapingOn free online data scraper. Scrap data online in one click.">
 	  
+    <link rel="canonical" href="http://scrapingon.com" />
     
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/web/favicon.ico" />
     
@@ -86,6 +87,9 @@
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/28342396" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5502f08e61719966" async="async"></script>
+	
 	
 	<%        
     response.setHeader("Pragma", "No-cache");

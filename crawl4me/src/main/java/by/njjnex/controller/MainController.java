@@ -32,7 +32,6 @@ public class MainController {
 
 	private SimpMessagingTemplate template;
 	
-	/*private final String SAVE_DIR = "/tut/";*/
 	private final String HTML_TEMPLATE_PREFIX = "z";
 	private final String JS_TEMPLATE_PREFIX = "j";
 	
