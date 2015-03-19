@@ -27,8 +27,9 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 
 public class Launcher extends DeepCrawler {
 
-	private final int MAXIMUM_RESULT = 195; //MAXIMUM_RESULT + THREADS = maximum result per one scan
-	private final int THREADS = 5;         
+	private final int MAXIMUM_RESULT = 195; // MAXIMUM_RESULT + THREADS =
+											// maximum result per one scan
+	private final int THREADS = 5;
 	private final int SCANNING_DEEP = 3;
 
 	private final String USER_AGENT = "Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0";
@@ -59,10 +60,11 @@ public class Launcher extends DeepCrawler {
 
 		for (PageLink rule : scanningTemplate.getLinks()) {
 			if (rule.isIncluded()) {
-				regexRule.addRule(rule.getLinkHref()); 
+				regexRule.addRule(rule.getLinkHref());
 			}
 		}
 	}
+
 	/* Java Script launcher constructor */
 	public Launcher(PageJS pageJS, Principal principal, SimpMessagingTemplate messageTemplate, String path,
 			WebDriver driver) throws Exception {
@@ -108,21 +110,22 @@ public class Launcher extends DeepCrawler {
 		if (!titleText.isEmpty()) {
 			resultPage = new ValueExtractor(scanningTemplate, principal, messagingTemplate).extract(doc);
 			pageCount++;
-			resultLines = resultLines + resultPage.get(0).getValues().size();
+			resultLines = resultLines + resultPage.size();
 		}
 
 		boolean emptyResult = true;
-		
-		
+
 		if (pageCount == 0) {
 			for (ScanningResult resultValue : resultPage) {
-				
+
 				if (resultValue.getValues().equals(""))
 					emptyResult = true;
-			}
+				}
 		} else {
 			emptyResult = false;
 
+			
+			
 			System.out.println("page count: " + pageCount);
 			System.out.println("empty? " + emptyResult);
 			System.out.println("resultLines " + resultLines);
@@ -146,7 +149,7 @@ public class Launcher extends DeepCrawler {
 
 		if (resultFounded > MAXIMUM_RESULT || pageCount > 200 || resultLines > 200)
 			maximumReached = true;
-		
+
 		if (maximumReached) {
 			this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
 					"Maximum result limit per one scan REACHED: " + " stopping threads..."));
@@ -178,11 +181,11 @@ public class Launcher extends DeepCrawler {
 
 	}
 
-	/* Pagination for Java Script crawler - 
-	 * switch to next page after scan this.
+	/*
+	 * Pagination for Java Script crawler - switch to next page after scan this.
 	 */
 	private String paginator(WebDriver driverPage) {
-											
+
 		driverPage.findElement(By.xpath(paginatorRule)).click();
 		String nextPage = driverPage.getCurrentUrl();
 		System.out.println("switch to page : " + driverPage.getCurrentUrl());

@@ -49,28 +49,6 @@ public class ValueExtractor {
 			System.out.println("KEy " + key + " value " + domRule.getValue());
 
 			if (!selector.equals("empty")) {
-				switch (selector) {
-				case "first":
-					try {
-						value = doc.select(domRule.getValue()).first().text();
-						break;
-					} catch (NullPointerException e) {
-						System.out.println("No such selector");
-						value = doc.select(domRule.getValue()).text();
-						break;
-					}
-				case "last":
-					try {
-						value = doc.select(domRule.getValue()).last().text();
-						break;
-					} catch (NullPointerException e) {
-						System.out.println("No such selector");
-						value = doc.select(domRule.getValue()).text();
-						break;
-					}
-				}
-			} else {
-
 				ScanningResult result;
 				ArrayList<String> values;
 				try {

@@ -35,17 +35,7 @@ public class DomRuleConverter implements DomRuleConvert{
 				System.out.println("rule before:" + value);
 				
 				value = value.trim();
-				
-				if (value.contains("{")){
-					String selector = StringUtils.substringBetween(value, "{","}");
-					value = StringUtils.substringBefore(value, "{");
-					rule.setSelector(selector);
-					System.out.println("Selector extracted: " + selector);
-				}else{
-					rule.setSelector("empty");
-					System.out.println("No selectors founded " + value);
-				}
-					
+									
 				 if(value.startsWith("<") && value.endsWith(">")){
 					 result = value.replaceFirst(" ", "[");
 					 result = result.replaceFirst("<", "");
@@ -59,7 +49,7 @@ public class DomRuleConverter implements DomRuleConvert{
 					 rule.setValue(result);
 					 System.out.println("rule after:" + result);
 				 }
-				 
+								
 			}
 		} catch (Exception e) {
 			this.messagingTemplate.convertAndSendToUser(principal.getName(), "/topic/console", new Output(
