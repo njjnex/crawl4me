@@ -2,6 +2,7 @@
 Data crawler with user friendly web interface. Demo: http://scrapingon.com
 - WebSocket
 - Spring Framevork 4
+- MySQL
 - Hibernate 4
 - AngularJS
 - Bootstrap CSS
