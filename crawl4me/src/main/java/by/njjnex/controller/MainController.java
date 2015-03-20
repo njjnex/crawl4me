@@ -54,13 +54,13 @@ public class MainController {
 	
 	@RequestMapping(value = {"/JavaScriptCrawler", "j{id}"})
 	public String jsCrawler(Model model) {
-
+		
 		return "jsCrawler";
 	}
 
 	@RequestMapping("/howTo")
 	public String howToPage(Model model) {
-
+		System.out.println(">>>>>>>>>>>>>>>> Visiting HowTO");
 		return "howTo";
 	}
 
@@ -105,9 +105,8 @@ public class MainController {
 	@SendTo("/topic/result")
 	public void crawler(PageJS pageCrawler, Principal principal) throws Exception {
 
-		/*String SAVE_DIR = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();*/
-		String SAVE_DIR = "/tut";
-		
+		String SAVE_DIR = System.getenv("OPENSHIFT_DATA_DIR")+ "/" + principal.getName();
+				
 		System.out.println(principal + " : " + principal.getName());
 		if (principal.getName() != null) {
 

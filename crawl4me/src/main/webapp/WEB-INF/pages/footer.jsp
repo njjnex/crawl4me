@@ -121,41 +121,33 @@
 		<div class="section-headlines">
 			<h4>Web scraping templates.</h4>
 			<div id="resultHeader">
-				<h3>Here you can find crawler settings for scraping data from most popular.</h3>
+				<h3>Here you can find crawler settings for scraping data from most popular resources.</h3>
 				<h5>	Please leave message with link and we will create ScrapingOn template for you resource. </h5><br>
 				<div class="col-md-6">
 					<strong>Scraping web Static content</strong>
 					<table class="table">
 							<tr>
-								<td>link</td>
-								<td>Amazon crawler template will scrap amazon prices and products using pagination according search result. You can manually add another settings to for example scraping amazon supplier or customer reviews.</td>
+								<td><a href="http://scrapingon.com/zJzPGA" onclick="window.location.href = 'http://scrapingon.com/zJzPGA'">http://scrapingon.com/zJzPGA</a></td>
+								<td>Scrap article and author from bbc.co.uk/future. Scraper visits every page and scraping page data.
+							<tr>
+								<td><a href="http://scrapingon.com/zrILFd" onclick="window.location.href = 'http://scrapingon.com/zrILFd'">http://scrapingon.com/zrILFd</a></td>
+								<td>FC Barcelona e-shop scraping.</td>
 							</tr>
 							<tr>
-								<td>link</td>
-								<td>Alibaba crawler template will scrap Alibaba goods price and qty. Pagination included.</td>
+								<td><a href="http://scrapingon.com/zfGl8R" onclick="window.location.href = 'http://scrapingon.com/zfGl8R'">http://scrapingon.com/zfGl8R</a></td>
+								<td>E-book shop scraping for price and product.</td>
 							</tr>
-							<tr>
-								<td>link</td>
-								<td>Google crawler setting, scrap pages and links after search request.</td>
-							</tr>
-						</table>		
+					</table>		
 				</div>
 				
 				<div class="col-md-6">
 					<strong>Scraping web Dynamic content</strong>
 						<table class="table">
 							<tr>
-								<td>link</td>
-								<td>Amazon crawler template will scrap amazon prices and products using pagination according search result. You can manually add another settings to for example scraping amazon supplier or customer reviews.</td>
+								<td><a href="http://scrapingon.com/jXNqB1" onclick="window.location.href = 'http://scrapingon.com/jXNqB1'">http://scrapingon.com/jXNqB1</a></td>
+								<td>Amazon crawler template scrap amazon prices and products using pagination according search result. You can manually add another settings to for example scraping amazon supplier or customer reviews.</td>
 							</tr>
-							<tr>
-								<td>link</td>
-								<td>Alibaba crawler template will scrap Alibaba goods price and qty. Pagination included.</td>
-							</tr>
-							<tr>
-								<td>link</td>
-								<td>Google crawler setting, scrap pages and links after search request.</td>
-							</tr>
+							
 						</table>	
 				</div>
 			</div>

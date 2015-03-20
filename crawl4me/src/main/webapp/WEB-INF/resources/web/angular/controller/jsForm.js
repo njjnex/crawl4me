@@ -176,7 +176,7 @@ app.controller('jsCtrl', function($scope, $http, $location, $modal) {
      	
      	for(var i = 0; i < $scope.domRules.length; i++){
      				            		
-     		var domPattern = /^[<]\w{1,}\W\w{1,}[=]["].{1,70}["][>]$/;
+     		var domPattern = /^[<]\w{0,1}\W{0,1}\w{0,1}[="]{0,1}.{1,120}["]{0,1}[>][{]{0,1}\w{0,10}[}]{0,1}$/;
      		if(!domPattern.test($scope.domRules[i].value)){
      			expErrors++;
      			 console.log("error");

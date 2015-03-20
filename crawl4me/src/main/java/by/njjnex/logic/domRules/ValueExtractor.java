@@ -49,19 +49,48 @@ public class ValueExtractor {
 			System.out.println("KEy " + key + " value " + domRule.getValue());
 
 			if (!selector.equals("empty")) {
+					switch (selector) {
+					case "first":
+						try {
+							value = doc.select(domRule.getValue()).first().text();
+							break;
+						} catch (NullPointerException e) {
+							System.out.println("No such selector");
+							value = doc.select(domRule.getValue()).text();
+							break;
+						}
+					case "last":
+						try {
+							value = doc.select(domRule.getValue()).last().text();
+							break;
+						} catch (NullPointerException e) {
+							System.out.println("No such selector");
+							value = doc.select(domRule.getValue()).text();
+							break;
+						}
+					}
+				} else {
+					
 				ScanningResult result;
 				ArrayList<String> values;
 				try {
 					Elements elem = doc.select(domRule.getValue());
-					int position = 0;
 					result = new ScanningResult();
 
 					values = new ArrayList<String>();
 
 					for (Element el : elem) {
-						position++;
-						values.add(el.text());
-						System.out.println(position + " key " + key + " value adding: " + el.text());
+						if (!el.text().equals("")) {
+							values.add(el.text());
+							System.out.println(" key " + key + " value adding: " + el.text());
+						} else {
+							if (el.children().size() > 0) {
+								values.add(el.child(0).text());
+								System.out.println(" key " + key + " value adding from child element: "
+										+ el.child(0).text());
+							}
+						}
+
 					}
 
 					result.setKey(key);

@@ -35,6 +35,16 @@ public class DomRuleConverter implements DomRuleConvert{
 				System.out.println("rule before:" + value);
 				
 				value = value.trim();
+				
+				if (value.contains("{") && value.contains("}")){
+					String selector = StringUtils.substringBetween(value, "{","}");
+					value = StringUtils.substringBefore(value, "{");
+					rule.setSelector(selector);
+					System.out.println("Selector extracted: " + selector);
+				}else{
+					rule.setSelector("empty");
+					System.out.println("No selectors founded " + value);
+				}
 									
 				 if(value.startsWith("<") && value.endsWith(">")){
 					 result = value.replaceFirst(" ", "[");
