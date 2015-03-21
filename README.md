@@ -14,9 +14,9 @@ used Selenium WebDriver.
 1.Installation:
 
 Master branch is adopted to Redhat OpenShift deployment. If you want to run it locally choose "local" branch.
-
+```sh
 mvn clean install tomcat7:run
-
+```
 2.Features:
 
 - Static/dynamic pages crawling
